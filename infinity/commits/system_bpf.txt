@@ -1,0 +1,3 @@
+system/bpf | a8dc4d9 | Christopher A. Williamson | 2026-03-17 | bpfloader: relax kernel version gates and fatal errors for GSI
+system/bpf | 3dea677 | Pierre-Hugues Husson | 2025-06-16 | Prepare for the future: making bpfloader.rs fails all non-panic
+system/bpf | 5df8c06 | Pierre-Hugues Husson | 2021-10-13 | Support no-bpf usecase

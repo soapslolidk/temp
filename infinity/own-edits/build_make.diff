@@ -1,0 +1,39 @@
+diff --git a/core/config.mk b/core/config.mk
+index 820ecf8..72fabf8 100644
+--- a/core/config.mk
++++ b/core/config.mk
+@@ -915,9 +915,6 @@ BOARD_SEPOLICY_VERS := $(PLATFORM_SEPOLICY_VERSION)
+ 
+ # A list of SEPolicy versions, besides PLATFORM_SEPOLICY_VERSION, that the framework supports.
+ PLATFORM_SEPOLICY_COMPAT_VERSIONS := \
+-    28.0 \
+-    29.0 \
+-    30.0 \
+     31.0 \
+     32.0 \
+     33.0 \
+diff --git a/target/product/aosp_product.mk b/target/product/aosp_product.mk
+index a64e74a..384c059 100644
+--- a/target/product/aosp_product.mk
++++ b/target/product/aosp_product.mk
+@@ -39,7 +39,7 @@ PRODUCT_PACKAGES += \
+ 
+ # Telephony:
+ #   Provide a APN configuration to GSI product
+-ifeq ($(INFINITY_BUILD),)
++ifeq (1,0)
+ PRODUCT_COPY_FILES += \
+     device/sample/etc/apns-full-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
+ endif
+diff --git a/target/product/gsi/Android.bp b/target/product/gsi/Android.bp
+index 82a3739..eb00224 100644
+--- a/target/product/gsi/Android.bp
++++ b/target/product/gsi/Android.bp
+@@ -239,7 +239,6 @@ android_system_image {
+         "preinstalled-packages-platform-telephony-system-ext.xml",
+ 
+         // handheld_product
+-        "Calendar",
+         "Contacts",
+         "DeskClock",
+         "Gallery2",

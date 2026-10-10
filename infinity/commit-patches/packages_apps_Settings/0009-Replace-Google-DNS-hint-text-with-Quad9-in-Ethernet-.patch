@@ -1,0 +1,33 @@
+From f33df1a7e387e49601b2621aeba7b12e1ee378e8 Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Wed, 4 Mar 2026 23:41:35 +0000
+Subject: [PATCH 09/12] Replace Google DNS hint text with Quad9 in Ethernet
+ settings
+
+The Ethernet DNS configuration hints showed Google DNS addresses
+(8.8.8.8 / 8.8.4.4) as placeholder examples. Replace with Quad9
+addresses (9.9.9.9 / 149.112.112.112) to avoid suggesting Google
+services in the UI.
+---
+ res/values/strings.xml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/res/values/strings.xml b/res/values/strings.xml
+index d507872..438267c 100644
+--- a/res/values/strings.xml
++++ b/res/values/strings.xml
+@@ -2787,9 +2787,9 @@
+     <!-- Hint text for the IP address -->
+     <string name="ethernet_ip_address_hint" translatable="false">192.168.1.128</string>
+     <!-- Hint text for DNS -->
+-    <string name="ethernet_dns1_hint" translatable="false">8.8.8.8</string>
++    <string name="ethernet_dns1_hint" translatable="false">9.9.9.9</string>
+     <!-- Hint text for DNS -->
+-    <string name="ethernet_dns2_hint" translatable="false">8.8.4.4</string>
++    <string name="ethernet_dns2_hint" translatable="false">149.112.112.112</string>
+     <!-- Hint text for the gateway -->
+     <string name="ethernet_gateway_hint" translatable="false">192.168.1.1</string>
+     <!-- Hint text for network prefix length -->
+-- 
+2.34.1
+

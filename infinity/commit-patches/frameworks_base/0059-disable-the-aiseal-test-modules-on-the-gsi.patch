@@ -1,0 +1,105 @@
+From 2b3140460ac00f476bdb8515e1fa951fcebf04f3 Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Tue, 29 Sep 2026 12:44:36 +0100
+Subject: [PATCH 59/85] disable the aiseal test modules on the gsi
+
+the aiseal test payload links against the virtualization vm payload
+library, which is not built on the gsi because the virtualization
+sources are excluded from the manifest sync.
+ tests/aiseal/Android.bp                |  2 ++
+ tests/aiseal/tenants/config/Android.bp | 10 ++++++++++
+ tests/aiseal/tenants/odim/Android.bp   |  4 ++++
+ 3 files changed, 16 insertions(+)
+---
+ tests/aiseal/Android.bp                |  2 ++
+ tests/aiseal/tenants/config/Android.bp | 10 ++++++++++
+ tests/aiseal/tenants/odim/Android.bp   |  4 ++++
+ 3 files changed, 16 insertions(+)
+
+diff --git a/tests/aiseal/Android.bp b/tests/aiseal/Android.bp
+index b0af6bfbd..766cdb204 100644
+--- a/tests/aiseal/Android.bp
++++ b/tests/aiseal/Android.bp
+@@ -21,6 +21,8 @@ filegroup {
+ 
+ android_test {
+     name: "AiSealTestCases",
++    // the aiseal payload is not built on the gsi
++    enabled: false,
+     team: "trendy_team_machine_learning",
+     srcs: ["src/**/*.java"],
+     platform_apis: true,
+diff --git a/tests/aiseal/tenants/config/Android.bp b/tests/aiseal/tenants/config/Android.bp
+index ea9194316..ddbb992c4 100644
+--- a/tests/aiseal/tenants/config/Android.bp
++++ b/tests/aiseal/tenants/config/Android.bp
+@@ -18,6 +18,8 @@ package {
+ 
+ genrule {
+     name: "aiseal_test_odim_version",
++    // the aiseal payload is not built on the gsi
++    enabled: false,
+     device_first_srcs: [
+         "//frameworks/base/tests/aiseal/tenants/odim:AiSealTestHelperAppOdim",
+     ],
+@@ -28,6 +30,8 @@ genrule {
+ 
+ genrule {
+     name: "aiseal_test_odim_expected_authority",
++    // the aiseal payload is not built on the gsi
++    enabled: false,
+     device_first_srcs: [
+         "//frameworks/base/tests/aiseal/tenants/odim:AiSealTestHelperAppOdim",
+     ],
+@@ -39,6 +43,8 @@ genrule {
+ 
+ genrule {
+     name: "aiseal_test_vm_config_json",
++    // the aiseal payload is not built on the gsi
++    enabled: false,
+     srcs: [
+         "assets/vm_config.json",
+         ":aiseal_test_odim_expected_authority",
+@@ -51,6 +57,8 @@ genrule {
+ 
+ genrule {
+     name: "aiseal_test_aiseal_config_json",
++    // the aiseal payload is not built on the gsi
++    enabled: false,
+     srcs: ["assets/aiseal_config.json"],
+     out: ["aiseal_config.json"],
+     cmd: "cp -f $(in) $(out)",
+@@ -58,6 +66,8 @@ genrule {
+ 
+ android_test_helper_app {
+     name: "AiSealTestTenantConfig",
++    // the aiseal payload is not built on the gsi
++    enabled: false,
+     asset_dirs: [],
+     assets: [
+         ":aiseal_test_vm_config_json",
+diff --git a/tests/aiseal/tenants/odim/Android.bp b/tests/aiseal/tenants/odim/Android.bp
+index 5ece36795..a29262f32 100644
+--- a/tests/aiseal/tenants/odim/Android.bp
++++ b/tests/aiseal/tenants/odim/Android.bp
+@@ -34,6 +34,8 @@ aidl_interface {
+ rust_ffi {
+     name: "libtest_aiseal_odim_payload",
+     crate_name: "test_aiseal_odim_payload",
++    // the virtualization stack is not built on the gsi
++    enabled: false,
+     srcs: ["native/main.rs"],
+     edition: "2021",
+     prefer_rlib: true,
+@@ -50,6 +52,8 @@ rust_ffi {
+ 
+ android_test_helper_app {
+     name: "AiSealTestHelperAppOdim",
++    // the aiseal payload is not built on the gsi
++    enabled: false,
+     srcs: ["java/**/*.java"],
+     platform_apis: true,
+     certificate: "platform",
+-- 
+2.34.1
+

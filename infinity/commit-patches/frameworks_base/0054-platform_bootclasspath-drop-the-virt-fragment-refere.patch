@@ -1,0 +1,33 @@
+From 75a477d55589a03b32339d0ad4817633604ccb1e Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Mon, 28 Sep 2026 07:58:03 +0100
+Subject: [PATCH 54/85] platform_bootclasspath: drop the virt fragment
+ reference
+
+the com.android.virt apex is no longer installed on the gsi and its
+bootclasspath fragment module was removed, so the platform
+bootclasspath cannot resolve the declared fragment anymore. drop the
+entry; framework-virtualization classes are served statically via
+framework-non-updatable-unbundled-impl-libs.
+---
+ boot/Android.bp | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/boot/Android.bp b/boot/Android.bp
+index ab80e8b0e..ed53664ea 100644
+--- a/boot/Android.bp
++++ b/boot/Android.bp
+@@ -151,10 +151,6 @@ custom_platform_bootclasspath {
+             apex: "com.android.wifi",
+             module: "com.android.wifi-bootclasspath-fragment",
+         },
+-        {
+-            apex: "com.android.virt",
+-            module: "com.android.virt-bootclasspath-fragment",
+-        },
+     ],
+ 
+     soong_config_variables: {
+-- 
+2.34.1
+

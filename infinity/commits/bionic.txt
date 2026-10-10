@@ -1,0 +1,4 @@
+bionic | 685a338 | Christopher A. Williamson | 2026-04-07 | bionic: tolerate MADV_WIPEONFORK failure on pre-4.14 kernels
+bionic | 630cbb6 | Christopher A. Williamson | 2026-03-25 | make property area init failures non-fatal for old vendors
+bionic | f9fabe8 | Christopher A. Williamson | 2026-03-12 | epoll_pwait2: fall back to epoll_pwait on kernels < 5.11
+bionic | 329f45d | Pierre-Hugues Husson | 2022-02-19 | Add new mechanism to fake vendor props on a per-process basis

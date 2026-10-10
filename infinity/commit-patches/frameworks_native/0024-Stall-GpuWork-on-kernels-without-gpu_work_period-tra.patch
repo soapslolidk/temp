@@ -1,0 +1,40 @@
+From 14b71266a4347e1affef78e948618e401af7b770 Mon Sep 17 00:00:00 2001
+From: patch <patch@local>
+Date: Tue, 6 Oct 2026 10:17:35 +0000
+Subject: [PATCH 24/24] Stall GpuWork on kernels without gpu_work_period
+ tracepoint
+
+---
+ services/gpuservice/gpuwork/GpuWork.cpp | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/services/gpuservice/gpuwork/GpuWork.cpp b/services/gpuservice/gpuwork/GpuWork.cpp
+index 08cf43c..b34ddff 100644
+--- a/services/gpuservice/gpuwork/GpuWork.cpp
++++ b/services/gpuservice/gpuwork/GpuWork.cpp
+@@ -26,6 +26,7 @@
+ #include <bpf/WaitForProgsLoaded.h>
+ #include <libbpf.h>
+ #include <log/log.h>
++#include <sys/stat.h>
+ #include <random>
+ #include <stats_event.h>
+ #include <statslog_gpustats.h>
+@@ -144,6 +145,14 @@ void GpuWork::initialize() {
+     // Workaround b/347947040 by allowing time for statsd / bpf setup.
+     std::this_thread::sleep_for(std::chrono::seconds(30));
+ 
++    // If the gpu_work_period tracepoint does not exist (e.g. older/GSI kernels),
++    // stall this thread forever to prevent gpuservice from crash-looping.
++    struct stat sb;
++    if (stat("/sys/kernel/tracing/events/power/gpu_work_period", &sb) != 0) {
++        ALOGI("gpu_work_period tracepoint not found, stalling");
++        while (true) sleep(1);
++    }
++
+     // Make sure BPF programs are loaded.
+     bpf::waitForProgsLoaded();
+ 
+-- 
+2.34.1
+

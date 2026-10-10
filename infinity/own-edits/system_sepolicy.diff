@@ -1,0 +1,71 @@
+diff --git a/Android.bp b/Android.bp
+index 8206075..67fd473 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -717,6 +717,8 @@ precompiled_se_policy_binary {
+         "phhsu_daemon",
+         "tkcore",
+         "ueventd",
++        "backuptool",
++        "su",
+     ],
+     soong_config_variables: {
+         BOARD_USES_ODMIMAGE: {
+@@ -729,10 +731,6 @@ precompiled_se_policy_binary {
+     required: [
+         "sepolicy_neverallows",
+     ],
+-    permissive_domains_on_user_builds: [
+-        "backuptool",
+-        "su",
+-    ],
+ }
+ 
+ // policy for recovery
+diff --git a/contexts/file_contexts_test_data b/contexts/file_contexts_test_data
+index 481198a..a72b37f 100644
+--- a/contexts/file_contexts_test_data
++++ b/contexts/file_contexts_test_data
+@@ -1393,3 +1393,4 @@
+ /mnt/pre_reboot_dexopt                                            pre_reboot_dexopt_file
+ 
+ /second_stage_resources/overlay_remounter                         overlay_remounter_exec
++/dev/ion                                                          ion_device
+diff --git a/private/compat/202504/202504.compat.cil b/private/compat/202504/202504.compat.cil
+index 8f44bf6..2491075 100644
+--- a/private/compat/202504/202504.compat.cil
++++ b/private/compat/202504/202504.compat.cil
+@@ -10,6 +10,8 @@
+ (type crosvm)
+ (typeattributeset crosvm_domain crosvm)
+ (type early_virtmgr)
++(typeattribute early_virtmgr_202504)
++(typeattribute early_virtmgr_exec_202504)
+ (typeattributeset early_virtmgr_domain early_virtmgr)
+ (type virtualizationmanager)
+ (typeattributeset virtualizationmanager_domain virtualizationmanager)
+diff --git a/private/early_virtmgr.te b/private/early_virtmgr.te
+index fe35aaa..d4324bd 100644
+--- a/private/early_virtmgr.te
++++ b/private/early_virtmgr.te
+@@ -1,3 +1,8 @@
++# Domain for a child process that manages early VMs available before /data mount, on behalf of
++# its parent.
++type early_virtmgr_vendor, domain, coredomain, early_virtmgr_domain;
++type early_virtmgr_exec, system_file_type, exec_type, file_type;
++
+ # When early_virtmgr execs a file with the crosvm_exec label, run it in the crosvm domain.
+ # This is only for `early_virtmgr_vendor` because the private `$_early_virtmgr` domains
+ # are handled by the `early_virtmgr_use` macro.
+diff --git a/public/early_virtmgr.te b/public/early_virtmgr.te
+index 97996aa..e713d18 100644
+--- a/public/early_virtmgr.te
++++ b/public/early_virtmgr.te
+@@ -1,7 +1,3 @@
+-# Domain for a child process that manages early VMs available before /data mount, on behalf of
+-# its parent.
+-type early_virtmgr_vendor, domain, coredomain, early_virtmgr_domain;
+-type early_virtmgr_exec, system_file_type, exec_type, file_type;
+ 
+ # system/sepolicy/public is for vendor-facing type and attribute definitions.
+ # DO NOT ADD allow, neverallow, or dontaudit statements here.

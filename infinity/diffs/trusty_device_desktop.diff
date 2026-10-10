@@ -1,0 +1,48 @@
+diff --git a/Android.bp b/Android.bp
+index 4587461..d9d35ce 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -35,7 +35,8 @@ avb_add_hash_footer {
+         },
+         android_arm64: {
+             src: ":trusty_desktop_vm_arm64.bin",
+-            enabled: true,
++            // the vm image is not built on the gsi
++            enabled: false,
+         },
+     },
+ }
+@@ -66,7 +67,8 @@ avb_add_hash_footer {
+         },
+         android_arm64: {
+             src: ":trusty_desktop_vm_arm64_ext_boot.bin",
+-            enabled: true,
++            // the vm image is not built on the gsi
++            enabled: false,
+         },
+     },
+ }
+@@ -92,8 +94,10 @@ cc_defaults {
+ cc_genrule {
+     name: "desktop_trusty_kernel_digest",
+     defaults: ["desktop_trusty_kernel_digest_target.defaults"],
++    // the signed boot images are not built on the gsi
++    enabled: false,
+     out: ["desktop_trusty.kernelhash"],
+-    srcs: [":desktop_trusty_signed_bin"],
++    srcs: [":empty_file"],
+     tools: ["avbtool"],
+     cmd: "$(location avbtool) info_image --image $(in) |" +
+         " awk '/Digest:/ {print $$2}' | xxd -r -p > $(out)",
+@@ -102,8 +106,10 @@ cc_genrule {
+ cc_genrule {
+     name: "desktop_trusty_ext_boot_kernel_digest",
+     defaults: ["desktop_trusty_kernel_digest_target.defaults"],
++    // the signed boot images are not built on the gsi
++    enabled: false,
+     out: ["desktop_trusty_ext_boot.kernelhash"],
+-    srcs: [":desktop_trusty_ext_boot_signed_bin"],
++    srcs: [":empty_file"],
+     tools: ["avbtool"],
+     cmd: "$(location avbtool) info_image --image $(in) |" +
+         " awk '/Digest:/ {print $$2}' | xxd -r -p > $(out)",

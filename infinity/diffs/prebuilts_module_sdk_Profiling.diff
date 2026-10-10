@@ -1,0 +1,12 @@
+diff --git a/current/Android.bp b/current/Android.bp
+index a58c723..f658bc8 100644
+--- a/current/Android.bp
++++ b/current/Android.bp
+@@ -167,6 +167,6 @@ prebuilt_systemserverclasspath_fragment {
+     visibility: ["//visibility:public"],
+     apex_available: ["com.android.profiling"],
+     licenses: ["profiling-module-sdk_Android-Apache-2.0"],
+-    contents: ["service-anomaly-detector"],
++    contents: [],
+     standalone_contents: ["service-profiling"],
+ }

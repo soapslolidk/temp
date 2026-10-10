@@ -1,0 +1,11 @@
+diff --git a/config/version.mk b/config/version.mk
+index 45fa351..0a018e3 100644
+--- a/config/version.mk
++++ b/config/version.mk
+@@ -42,6 +42,5 @@ PRODUCT_PRODUCT_PROPERTIES += \
+   ro.infinity.build.date=$(INFINITY_BUILD_DATE) \
+   ro.infinity.buildtype=$(INFINITY_BUILD_TYPE) \
+   ro.infinity.fingerprint=$(INFINITY_FINGERPRINT) \
+-  ro.infinity.device=$(INFINITY_BUILD) \
+   ro.infinity.version=$(INFINITYVERSION) \
+   ro.infinity.maintainer=$(INFINITY_MAINTAINER)

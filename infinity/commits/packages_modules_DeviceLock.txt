@@ -1,0 +1,1 @@
+packages/modules/DeviceLock | 08bc93b | Pierre-Hugues Husson | 2023-10-18 | Don't crash when we get no DeviceLockManager

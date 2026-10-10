@@ -1,0 +1,2 @@
+system/extras | 9841e8d | Christopher A. Williamson | 2026-05-19 | bootctl: add BOOTCTL_V1_1 to version string mapping
+system/extras | 045897b | Luca Stefani | 2020-09-09 | libfscrypt: Bail out if we can't open directory

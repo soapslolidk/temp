@@ -1,0 +1,49 @@
+From f94c5546f82446c31e2a6a414216189f60bbc277 Mon Sep 17 00:00:00 2001
+From: patch <patch@local>
+Date: Tue, 6 Oct 2026 01:17:23 +0000
+Subject: [PATCH 71/85] frameworks_base: add gnss as a fallback time source
+ with a disable toggle
+
+---
+ core/res/res/values/config.xml                     | 3 ++-
+ services/java/com/android/server/SystemServer.java | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/core/res/res/values/config.xml b/core/res/res/values/config.xml
+index 107b776f3..808f5e50b 100644
+--- a/core/res/res/values/config.xml
++++ b/core/res/res/values/config.xml
+@@ -2071,6 +2071,7 @@
+     <!-- Whether to create scaled versions of the default wallpaper image to match the display size -->
+     <bool name="config_optimizeDefaultWallpaper">false</bool>
+ 
++        <item>gnss</item>
+     <!-- The maximum number of optimized default wallpapers to keep. This is only relevant if
+          config_optimizeDefaultWallpaper is true. -->
+     <integer name="config_maxNumOptimizedDefaultWallpapers">3</integer>
+@@ -2093,7 +2094,7 @@
+ 
+     <!-- Enables the GnssTimeUpdate service. This is the global switch for enabling Gnss time based
+          suggestions to TimeDetector service. See also config_autoTimeSourcesPriority. -->
+-    <bool name="config_enableGnssTimeUpdateService">false</bool>
++    <bool name="config_enableGnssTimeUpdateService">true</bool>
+ 
+     <!-- Whether the geolocation time zone detection feature is enabled. Setting this to false means
+          the feature cannot be used. Setting this to true means system server components can be
+diff --git a/services/java/com/android/server/SystemServer.java b/services/java/com/android/server/SystemServer.java
+index 3a8a31fc7..bef594d67 100644
+--- a/services/java/com/android/server/SystemServer.java
++++ b/services/java/com/android/server/SystemServer.java
+@@ -2476,7 +2476,8 @@ public final class SystemServer implements Dumpable {
+             }
+             t.traceEnd();
+ 
+-            if (context.getResources().getBoolean(R.bool.config_enableGnssTimeUpdateService)) {
++            if (context.getResources().getBoolean(R.bool.config_enableGnssTimeUpdateService)
++                    && !"false".equals(SystemProperties.get("persist.sys.phh.hardening.gnss_time"))) {
+                 t.traceBegin("StartGnssTimeUpdateService");
+                 try {
+                     mSystemServiceManager.startService(GnssTimeUpdateService.Lifecycle.class);
+-- 
+2.34.1
+

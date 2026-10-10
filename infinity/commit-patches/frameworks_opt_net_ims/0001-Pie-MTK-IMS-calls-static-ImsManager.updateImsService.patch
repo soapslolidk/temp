@@ -1,0 +1,33 @@
+From 88e799f3898e4e1d9782420b2a75f45ef0af313c Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Sun, 14 Nov 2021 13:47:29 -0500
+Subject: [PATCH 1/2] Pie MTK IMS calls static
+ ImsManager.updateImsServiceConfig(Context,int,boolean). Bring it back
+
+Change-Id: I3dd66d436629d37c8ec795df6569736195ae570e
+---
+ src/java/com/android/ims/ImsManager.java | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/src/java/com/android/ims/ImsManager.java b/src/java/com/android/ims/ImsManager.java
+index b4fca3b..985baa3 100644
+--- a/src/java/com/android/ims/ImsManager.java
++++ b/src/java/com/android/ims/ImsManager.java
+@@ -1720,6 +1720,14 @@ public class ImsManager implements FeatureUpdates {
+         }
+     }
+ 
++    public static void updateImsServiceConfig(Context context, int phoneId, boolean force) {
++        ImsManager mgr = ImsManager.getInstance(context, phoneId);
++        if (mgr != null) {
++            mgr.updateImsServiceConfig();
++        }
++        Rlog.e(TAG, "updateImsServiceConfig: ImsManager null, returning without update.");
++    }
++
+     /**
+      * Push configuration updates to the ImsService implementation.
+      */
+-- 
+2.34.1
+

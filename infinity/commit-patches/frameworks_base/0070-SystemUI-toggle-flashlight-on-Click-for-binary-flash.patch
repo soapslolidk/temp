@@ -1,0 +1,43 @@
+From b57b1abdfe9b315eba4af6187628d4443abca673 Mon Sep 17 00:00:00 2001
+From: patch <patch@local>
+Date: Tue, 6 Oct 2026 01:17:22 +0000
+Subject: [PATCH 70/85] SystemUI: toggle flashlight on Click for binary
+ flashlights
+
+---
+ .../FlashlightTileUserActionInteractor.kt     | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/qs/tiles/impl/flashlight/domain/interactor/FlashlightTileUserActionInteractor.kt b/packages/SystemUI/src/com/android/systemui/qs/tiles/impl/flashlight/domain/interactor/FlashlightTileUserActionInteractor.kt
+index 0eadcaae6..399658dd3 100644
+--- a/packages/SystemUI/src/com/android/systemui/qs/tiles/impl/flashlight/domain/interactor/FlashlightTileUserActionInteractor.kt
++++ b/packages/SystemUI/src/com/android/systemui/qs/tiles/impl/flashlight/domain/interactor/FlashlightTileUserActionInteractor.kt
+@@ -44,14 +44,17 @@ constructor(
+             when (action) {
+                 is QSTileUserAction.Click -> {
+                     if (FlashlightStrength.isEnabled) {
+-                        if (
+-                            !ActivityManager.isUserAMonkey() &&
+-                                input.data is FlashlightModel.Available.Level
+-                        ) {
+-                            // Note: no Click response for Binary state. See ToggleClick.
+-                            flashlightInteractor.get().setEnabled(true)
+-                            // the ui code runs on the main thread
+-                            flashlightDialogDelegate.get().showDialog(input.action.expandable)
++                        if (!ActivityManager.isUserAMonkey()) {
++                            val data = input.data
++                            if (data is FlashlightModel.Available.Level && !data.enabled) {
++                                flashlightInteractor.get().setEnabled(true)
++                                // the ui code runs on the main thread
++                                flashlightDialogDelegate.get().showDialog(input.action.expandable)
++                            } else if (data is FlashlightModel.Available) {
++                                // binary flashlights only ever receive Click, the tile never
++                                // advertises ToggleClick for them, so toggle here as well
++                                flashlightInteractor.get().setEnabled(!data.enabled)
++                            }
+                         } else if (
+                             !ActivityManager.isUserAMonkey() &&
+                                 input.data is FlashlightModel.Available
+-- 
+2.34.1
+

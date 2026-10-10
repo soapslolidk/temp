@@ -1,0 +1,28 @@
+From 9b74df740f914bc3e2f42630b1c246c78c0b4d5e Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Tue, 29 Sep 2026 11:57:44 +0100
+Subject: [PATCH 72/85] frameworks: drop the AvfBuildFlags dep from
+ services.core
+
+the virtualization sources are excluded from the gsi manifest sync, so
+the AvfBuildFlags module defined there does not exist and soong analysis
+of services.core.unboosted fails on the undefined dependency.
+---
+ services/core/Android.bp | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/services/core/Android.bp b/services/core/Android.bp
+index a9b4e4e8c..e6845b503 100644
+--- a/services/core/Android.bp
++++ b/services/core/Android.bp
+@@ -270,7 +270,6 @@ java_library_static {
+         "vendor.mediatek.hardware.mtkpower-V1.1-java",
+         "vendor.samsung.hardware.sysinput-V1.2-java",
+         "aconfig_adbdauth_flags_java_lib",
+-        "AvfBuildFlags",
+         "textclassifier_flags_lib",
+         "lights_flags_lib",
+         "android.bpfprogs.flags-aconfig-java",
+-- 
+2.34.1
+

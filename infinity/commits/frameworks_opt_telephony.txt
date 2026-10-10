@@ -1,0 +1,12 @@
+frameworks/opt/telephony | f77d064 | Langsdorff | 2026-09-30 | SimPhonebookRecordCache: fall back to SIM_IO ADN when the modem rejects the phonebook capacity query
+frameworks/opt/telephony | 54a08d0 | Christopher A. Williamson | 2026-05-09 | UiccSlot: force eUICC detection and EuiccCard creation for non-standard eSIM
+frameworks/opt/telephony | 44b1f8c | ironydelerium | 2021-12-31 | Reintroduce TelephonyMetrics stub for MediaTek IMS compatibility
+frameworks/opt/telephony | e4f29af | mytja | 2025-03-30 | Allow for SMSC patching to be configurable
+frameworks/opt/telephony | 588ca4e | Pierre-Hugues Husson | 2025-01-11 | Samsung SMSC: When we receive those weird SMSC, actually parse it because even in 2025 we still need SMSC for some carriers
+frameworks/opt/telephony | 2241241 | Pierre-Hugues Husson | 2024-02-25 | When reading SMSC, ignore invalid SMSC
+frameworks/opt/telephony | a247145 | Pierre-Hugues Husson | 2024-02-21 | Initialize Samsung HIDL ISehRadio. Fixes 5G on S20 Ultra
+frameworks/opt/telephony | e980948 | Pierre-Hugues Husson | 2024-02-21 | Initialize Samsung AIDL ISehRadioNetwork. Fixes 5G on S24
+frameworks/opt/telephony | d75993f | Pierre-Hugues Husson | 2023-10-17 | When logging UiccSlot, ignore error if we cant print IccIds
+frameworks/opt/telephony | df40e3a | Pierre-Hugues Husson | 2021-12-06 | Fix baseband being too long to fit into a 91 chars property, preventing telephony subsystem from starting
+frameworks/opt/telephony | 9a3405b | Artem Borisov | 2018-11-10 | Telephony: Don not call onUssdRelease for Huawei RIL
+frameworks/opt/telephony | 8ce950e | Peter Cai | 2022-09-05 | SubscriptionController: Do not override default calling account from third-party apps

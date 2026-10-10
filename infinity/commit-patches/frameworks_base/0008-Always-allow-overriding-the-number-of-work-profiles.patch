@@ -1,0 +1,30 @@
+From b17861ecf2cb8e1d50df0ab5f964f6385bb62c97 Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Sun, 5 Apr 2020 16:32:46 +0200
+Subject: [PATCH 08/85] Always allow overriding the number of work profiles
+
+Change-Id: I6eb09aa71663c6fbe7563e3038bffcabdba0ff6a
+---
+ .../core/java/com/android/server/pm/UserTypeFactory.java    | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/services/core/java/com/android/server/pm/UserTypeFactory.java b/services/core/java/com/android/server/pm/UserTypeFactory.java
+index dbc2f0deb..738014a49 100644
+--- a/services/core/java/com/android/server/pm/UserTypeFactory.java
++++ b/services/core/java/com/android/server/pm/UserTypeFactory.java
+@@ -615,11 +615,7 @@ public final class UserTypeFactory {
+     /** Returns the number of managed profiles allowed, virtually always 1. */
+     private static int getMaxManagedProfiles() {
+         final int normalValue = 1;
+-        if (!Build.IS_DEBUGGABLE) {
+-            return normalValue;
+-        } else {
+-            return SystemProperties.getInt("persist.sys.max_profiles", normalValue);
+-        }
++        return SystemProperties.getInt("persist.sys.max_profiles", normalValue);
+     }
+ 
+     /**
+-- 
+2.34.1
+

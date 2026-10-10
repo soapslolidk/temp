@@ -1,0 +1,1 @@
+trusty/vendor/google/aosp | f0d3539 | Christopher A. Williamson | 2026-09-29 | disable the trusty desktop vm images on the gsi

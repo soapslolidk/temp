@@ -1,0 +1,27 @@
+From 158764746c73fb29a33ee5417dd00dcc5dd652e2 Mon Sep 17 00:00:00 2001
+From: evox <evox@localhost>
+Date: Tue, 6 Oct 2026 16:41:11 +0000
+Subject: [PATCH 37/37] Revert "CameraParameters: don't segfault on NULL key or
+ value"
+
+This reverts commit 6cb7597f0042f34ed9cb41cba6922729477ef62f.
+---
+ camera/CameraParameters.cpp | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/camera/CameraParameters.cpp b/camera/CameraParameters.cpp
+index bf93ba7..5c2efb4 100644
+--- a/camera/CameraParameters.cpp
++++ b/camera/CameraParameters.cpp
+@@ -238,8 +238,6 @@ void CameraParameters::unflatten(const String8 &params)
+ }
+ 
+ 
+-    if (key == NULL || value == NULL) return;
+-
+ void CameraParameters::set(const char *key, const char *value)
+ {
+     if (key == NULL || value == NULL)
+-- 
+2.34.1
+

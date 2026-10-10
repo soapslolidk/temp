@@ -1,0 +1,11 @@
+diff --git a/apex/Android.bp b/apex/Android.bp
+index baf8d19..4ae1434 100644
+--- a/apex/Android.bp
++++ b/apex/Android.bp
+@@ -63,3 +63,6 @@ apex_vndk {
+     vndk_version: "31",
+     system_ext_specific: true,
+ }
++
++
++

@@ -1,0 +1,2 @@
+packages/modules/DnsResolver | b027822 | Christopher A. Williamson | 2026-03-04 | Replace Google DoH providers with Quad9
+packages/modules/DnsResolver | dc16703 | Pierre-Hugues Husson | 2024-05-07 | replace Google DNS defaults with Quad9

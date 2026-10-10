@@ -1,0 +1,416 @@
+diff --git a/202604/64/arm/source-based/libavf.so.lsdump b/202604/64/arm/source-based/libavf.so.lsdump
+deleted file mode 100644
+index ee5be3d..0000000
+--- a/202604/64/arm/source-based/libavf.so.lsdump
++++ /dev/null
+@@ -1,98 +0,0 @@
+-{
+- "array_types" : [],
+- "builtin_types" : [],
+- "elf_functions" :
+- [
+-  {
+-   "name" : "AVirtualMachineRawConfig_addCustomMemoryBackingFile"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_addDisk"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_addTeeService"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_create"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_destroy"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setDeviceTreeOverlay"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setHypervisorSpecificAuthMethod"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setInitRd"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setInstanceId"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setKernel"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setMemoryMiB"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setName"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setProtectedVm"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setSwiotlbMiB"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setVCpuCount"
+-  },
+-  {
+-   "name" : "AVirtualMachine_addAccessor"
+-  },
+-  {
+-   "name" : "AVirtualMachine_addMemoryMapping"
+-  },
+-  {
+-   "name" : "AVirtualMachine_connectVsock"
+-  },
+-  {
+-   "name" : "AVirtualMachine_createRaw"
+-  },
+-  {
+-   "name" : "AVirtualMachine_destroy"
+-  },
+-  {
+-   "name" : "AVirtualMachine_removeMemoryMapping"
+-  },
+-  {
+-   "name" : "AVirtualMachine_start"
+-  },
+-  {
+-   "name" : "AVirtualMachine_startWithStopCallback"
+-  },
+-  {
+-   "name" : "AVirtualMachine_stop"
+-  },
+-  {
+-   "name" : "AVirtualMachine_waitForStop"
+-  },
+-  {
+-   "name" : "AVirtualizationService_create"
+-  },
+-  {
+-   "name" : "AVirtualizationService_destroy"
+-  }
+- ],
+- "elf_objects" : [],
+- "enum_types" : [],
+- "function_types" : [],
+- "functions" : [],
+- "global_vars" : [],
+- "lvalue_reference_types" : [],
+- "pointer_types" : [],
+- "qualified_types" : [],
+- "record_types" : [],
+- "rvalue_reference_types" : []
+-}
+diff --git a/202604/64/arm64/source-based/libavf.so.lsdump b/202604/64/arm64/source-based/libavf.so.lsdump
+deleted file mode 100644
+index ee5be3d..0000000
+--- a/202604/64/arm64/source-based/libavf.so.lsdump
++++ /dev/null
+@@ -1,98 +0,0 @@
+-{
+- "array_types" : [],
+- "builtin_types" : [],
+- "elf_functions" :
+- [
+-  {
+-   "name" : "AVirtualMachineRawConfig_addCustomMemoryBackingFile"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_addDisk"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_addTeeService"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_create"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_destroy"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setDeviceTreeOverlay"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setHypervisorSpecificAuthMethod"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setInitRd"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setInstanceId"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setKernel"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setMemoryMiB"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setName"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setProtectedVm"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setSwiotlbMiB"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setVCpuCount"
+-  },
+-  {
+-   "name" : "AVirtualMachine_addAccessor"
+-  },
+-  {
+-   "name" : "AVirtualMachine_addMemoryMapping"
+-  },
+-  {
+-   "name" : "AVirtualMachine_connectVsock"
+-  },
+-  {
+-   "name" : "AVirtualMachine_createRaw"
+-  },
+-  {
+-   "name" : "AVirtualMachine_destroy"
+-  },
+-  {
+-   "name" : "AVirtualMachine_removeMemoryMapping"
+-  },
+-  {
+-   "name" : "AVirtualMachine_start"
+-  },
+-  {
+-   "name" : "AVirtualMachine_startWithStopCallback"
+-  },
+-  {
+-   "name" : "AVirtualMachine_stop"
+-  },
+-  {
+-   "name" : "AVirtualMachine_waitForStop"
+-  },
+-  {
+-   "name" : "AVirtualizationService_create"
+-  },
+-  {
+-   "name" : "AVirtualizationService_destroy"
+-  }
+- ],
+- "elf_objects" : [],
+- "enum_types" : [],
+- "function_types" : [],
+- "functions" : [],
+- "global_vars" : [],
+- "lvalue_reference_types" : [],
+- "pointer_types" : [],
+- "qualified_types" : [],
+- "record_types" : [],
+- "rvalue_reference_types" : []
+-}
+diff --git a/202604/64/x86/source-based/libavf.so.lsdump b/202604/64/x86/source-based/libavf.so.lsdump
+deleted file mode 100644
+index ee5be3d..0000000
+--- a/202604/64/x86/source-based/libavf.so.lsdump
++++ /dev/null
+@@ -1,98 +0,0 @@
+-{
+- "array_types" : [],
+- "builtin_types" : [],
+- "elf_functions" :
+- [
+-  {
+-   "name" : "AVirtualMachineRawConfig_addCustomMemoryBackingFile"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_addDisk"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_addTeeService"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_create"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_destroy"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setDeviceTreeOverlay"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setHypervisorSpecificAuthMethod"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setInitRd"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setInstanceId"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setKernel"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setMemoryMiB"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setName"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setProtectedVm"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setSwiotlbMiB"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setVCpuCount"
+-  },
+-  {
+-   "name" : "AVirtualMachine_addAccessor"
+-  },
+-  {
+-   "name" : "AVirtualMachine_addMemoryMapping"
+-  },
+-  {
+-   "name" : "AVirtualMachine_connectVsock"
+-  },
+-  {
+-   "name" : "AVirtualMachine_createRaw"
+-  },
+-  {
+-   "name" : "AVirtualMachine_destroy"
+-  },
+-  {
+-   "name" : "AVirtualMachine_removeMemoryMapping"
+-  },
+-  {
+-   "name" : "AVirtualMachine_start"
+-  },
+-  {
+-   "name" : "AVirtualMachine_startWithStopCallback"
+-  },
+-  {
+-   "name" : "AVirtualMachine_stop"
+-  },
+-  {
+-   "name" : "AVirtualMachine_waitForStop"
+-  },
+-  {
+-   "name" : "AVirtualizationService_create"
+-  },
+-  {
+-   "name" : "AVirtualizationService_destroy"
+-  }
+- ],
+- "elf_objects" : [],
+- "enum_types" : [],
+- "function_types" : [],
+- "functions" : [],
+- "global_vars" : [],
+- "lvalue_reference_types" : [],
+- "pointer_types" : [],
+- "qualified_types" : [],
+- "record_types" : [],
+- "rvalue_reference_types" : []
+-}
+diff --git a/202604/64/x86_64/source-based/libavf.so.lsdump b/202604/64/x86_64/source-based/libavf.so.lsdump
+deleted file mode 100644
+index ee5be3d..0000000
+--- a/202604/64/x86_64/source-based/libavf.so.lsdump
++++ /dev/null
+@@ -1,98 +0,0 @@
+-{
+- "array_types" : [],
+- "builtin_types" : [],
+- "elf_functions" :
+- [
+-  {
+-   "name" : "AVirtualMachineRawConfig_addCustomMemoryBackingFile"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_addDisk"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_addTeeService"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_create"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_destroy"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setDeviceTreeOverlay"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setHypervisorSpecificAuthMethod"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setInitRd"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setInstanceId"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setKernel"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setMemoryMiB"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setName"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setProtectedVm"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setSwiotlbMiB"
+-  },
+-  {
+-   "name" : "AVirtualMachineRawConfig_setVCpuCount"
+-  },
+-  {
+-   "name" : "AVirtualMachine_addAccessor"
+-  },
+-  {
+-   "name" : "AVirtualMachine_addMemoryMapping"
+-  },
+-  {
+-   "name" : "AVirtualMachine_connectVsock"
+-  },
+-  {
+-   "name" : "AVirtualMachine_createRaw"
+-  },
+-  {
+-   "name" : "AVirtualMachine_destroy"
+-  },
+-  {
+-   "name" : "AVirtualMachine_removeMemoryMapping"
+-  },
+-  {
+-   "name" : "AVirtualMachine_start"
+-  },
+-  {
+-   "name" : "AVirtualMachine_startWithStopCallback"
+-  },
+-  {
+-   "name" : "AVirtualMachine_stop"
+-  },
+-  {
+-   "name" : "AVirtualMachine_waitForStop"
+-  },
+-  {
+-   "name" : "AVirtualizationService_create"
+-  },
+-  {
+-   "name" : "AVirtualizationService_destroy"
+-  }
+- ],
+- "elf_objects" : [],
+- "enum_types" : [],
+- "function_types" : [],
+- "functions" : [],
+- "global_vars" : [],
+- "lvalue_reference_types" : [],
+- "pointer_types" : [],
+- "qualified_types" : [],
+- "record_types" : [],
+- "rvalue_reference_types" : []
+-}

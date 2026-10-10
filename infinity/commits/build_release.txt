@@ -1,0 +1,4 @@
+build/release | 1f2c43a | Christopher A. Williamson | 2026-10-04 | disable require_gralloc4_or_newer for the gsi
+build/release | 553d07a | Langsdorff | 2026-10-02 | Enable the ime switcher button in navbar setting
+build/release | 4dfd77c | Christopher A. Williamson | 2026-09-28 | disable unavailable mainline features for aosp_current
+build/release | 34e38d9 | Christopher A. Williamson | 2026-02-18 | Enable navbar flip order option

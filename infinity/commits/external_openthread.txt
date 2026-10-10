@@ -1,0 +1,1 @@
+external/openthread | c447e51 | Christopher A. Williamson | 2026-03-04 | Replace Google DNS with Quad9 in OpenThread default config

@@ -1,0 +1,6 @@
+build/make | 7df2362 | patch | 2026-10-06 | gsi: product trim adjustments
+build/make | 8f39670 | Christopher A. Williamson | 2026-09-29 | build: drop the virtualization deps from the gsi product images
+build/make | 14a515c | Christopher A. Williamson | 2026-09-28 | gsi: build system adjustments
+build/make | 214661f | Pierre-Hugues Husson | 2023-10-06 | Include vndk v28, v29 and v30 sepolicy support
+build/make | 3df1c5e | Andy CrossGate Yan | 2021-10-14 | build: Remove llkd
+build/make | e6d315c | Andy CrossGate Yan | 2021-12-08 | Remove init.vndk-nodef.rc

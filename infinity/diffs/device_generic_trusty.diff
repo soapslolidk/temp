@@ -1,0 +1,55 @@
+diff --git a/custom_vm/launcher/Android.bp b/custom_vm/launcher/Android.bp
+index d07682b..547ee18 100644
+--- a/custom_vm/launcher/Android.bp
++++ b/custom_vm/launcher/Android.bp
+@@ -23,7 +23,8 @@ rust_defaults {
+         "libmemshare_launcher",
+     ],
+     shared_libs: ["libavf"],
+-    enabled: true,
++    // the virtualization stack is not built on the gsi
++    enabled: false,
+     apex_available: [
+         "//apex_available:platform",
+     ],
+diff --git a/custom_vm/memshare_vm/Android.bp b/custom_vm/memshare_vm/Android.bp
+index 43bd48f..450a1af 100644
+--- a/custom_vm/memshare_vm/Android.bp
++++ b/custom_vm/memshare_vm/Android.bp
+@@ -82,10 +82,9 @@ cc_genrule {
+         },
+     },
+     out: ["memshare_vm.S"],
+-    tools: [
+-        "gen_signed_vm_assembly_file",
+-    ],
+-    cmd: "$(location gen_signed_vm_assembly_file) $(in) $(out)",
++    // the signed vm assembly generator is a virtualization host tool that is
++    // not built on the gsi; this rule is disabled there anyway
++    cmd: "cp $(in) $(out)",
+     visibility: ["//visibility:private"],
+     vendor_available: true,
+     enabled: select((os(), arch(), soong_config_variable("trusty_vendor_vm", "enabled")), {
+diff --git a/pvmfw/Android.bp b/pvmfw/Android.bp
+index bea7411..e2c3bda 100644
+--- a/pvmfw/Android.bp
++++ b/pvmfw/Android.bp
+@@ -15,7 +15,8 @@ cc_genrule {
+                 ":test_avf_bcc_dat",
+                 ":test_ref_dt",
+             ],
+-            enabled: true,
++            // the virtualization stack is not built on the gsi
++            enabled: false,
+         },
+     },
+     out: [
+@@ -27,6 +28,8 @@ cc_genrule {
+ prebuilt_etc {
+     name: "pvmfw_test_img.img",
+     filename: "pvmfw_test_img.img",
++    // the virtualization stack is not built on the gsi
++    enabled: false,
+     relative_install_path: "pvmfw",
+     vendor: true,
+     target: {

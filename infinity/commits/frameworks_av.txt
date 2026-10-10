@@ -1,0 +1,37 @@
+frameworks/av | 1587647 | evox | 2026-10-06 | Revert "CameraParameters: don't segfault on NULL key or value"
+frameworks/av | 5cdd470 | Christopher A. Williamson | 2026-04-10 | MediaProfiles: fall back to defaults when XML file cannot be opened
+frameworks/av | 6cb7597 | patch | 2026-10-06 | CameraParameters: don't segfault on NULL key or value
+frameworks/av | b8c2ecd | Langsdorff | 2026-10-04 | camera: only force samsung 60fps video for grapheneos camera
+frameworks/av | 39fc5e4 | Langsdorff | 2026-10-04 | camera: keep samsung 60fps video working across reconfigures
+frameworks/av | c06e641 | Langsdorff | 2026-10-03 | camera: record samsung 60fps video modes behind persist.sys.phh.samsung.video60
+frameworks/av | d62a387 | Langsdorff | 2026-10-03 | camera: gate samsung remosaic capture behind persist.sys.phh.samsung.remosaic
+frameworks/av | b418949 | Langsdorff | 2026-10-03 | camera: list the samsung remosaic size as a high resolution size
+frameworks/av | cbbc2cc | Langsdorff | 2026-10-02 | camera: expose samsung remosaic capture behind debug.phh.samsung.remosaic
+frameworks/av | 87c9330 | Christopher A. Williamson | 2026-06-01 | MediaCodecSource: fallback to createInputSurface when PersistentSurface fails
+frameworks/av | 005f39d | Peng Zhu | 2013-11-20 | Camera: Add support for manual 3A.
+frameworks/av | 0c96cfd | Manikanta Kanamarlapudi | 2026-03-24 | libstagefright: Free buffers on observer died
+frameworks/av | 06eb615 | Pierre-Hugues Husson | 2025-06-13 | Revert "Remove framework support for audio HIDL HAL V5"
+frameworks/av | 6c00a60 | Pierre-Hugues Husson | 2024-11-29 | Tell Unihertz/Agold we are not a GSI. Fixes aux cam on Jelly Max
+frameworks/av | 7343230 | Pierre-Hugues Husson | 2024-02-10 | Allow using camera modes declared in Samsung proprietary values
+frameworks/av | efe20d5 | Pierre-Hugues Husson | 2024-02-07 | Include Samsung AIDL camera ids
+frameworks/av | 736ba78 | Alberto Ponces | 2023-11-05 | Add a prop to fix echo on incoming or outgoing calls
+frameworks/av | 93dfbb3 | Pierre-Hugues Husson | 2023-10-30 | Add a prop to disable AUDIO_OUTPUT_FLAG_FAST from audio policies, when CPU can't really handle that kind of load
+frameworks/av | c6ac682 | Alberto Ponces | 2023-04-30 | audiopolicy: Fix broken mic while video recording on some Exynos devices
+frameworks/av | 7c650e0 | ponces | 2022-10-24 | voip: Fix high pitched voice on Qualcomm devices
+frameworks/av | 154465c | Pierre-Hugues Husson | 2022-04-16 | Add a prop to change Samsung flash strength
+frameworks/av | b127ffc | Pierre-Hugues Husson | 2021-03-28 | Use a fake volume policy when none has been found
+frameworks/av | 3a7d237 | Pierre-Hugues Husson | 2021-03-28 | Not all sources in a route are valid. Dont ignore the whole route because of one broken source
+frameworks/av | dedc4ee | Pierre-Hugues Husson | 2021-03-13 | Support Samsung R multi-cams
+frameworks/av | df54efc | Pierre-Hugues Husson | 2020-12-21 | Make camera IDs filter-out optional
+frameworks/av | 19903c1 | Pierre-Hugues Husson | 2020-09-12 | No longer make re-assigning legacy audio groups fatal. Mi9 declares AUDIO_STREAM_PATCH and AUDIO_STREAM_REROUTING which is defined by framework too
+frameworks/av | 0607e96 | Pierre-Hugues Husson | 2018-04-24 | FIH devices: Fix "Earpiece" audio output
+frameworks/av | ed7f427 | Pierre-Hugues Husson | 2020-05-19 | Add a property to force camera timestamp source
+frameworks/av | a18e136 | Pierre-Hugues Husson | 2020-05-14 | Add persist.sys.phh.samsung.camera_ids property to access hidden Samsung cameras
+frameworks/av | fc473e8 | Pierre-Hugues Husson | 2020-04-13 | There are three SCO devices. Fallback from one to the others if needed
+frameworks/av | f8cdc14 | Peter Cai | 2022-06-01 | camera: Implement property to override default camera
+frameworks/av | 56ad966 | Peter Cai | 2020-01-23 | audiopolicy: try again with trimmed audio port name if not found
+frameworks/av | add3284 | Peter Cai | 2022-08-25 | APM: Remove A2DP audio ports from the primary HAL
+frameworks/av | 8dfcccb | Peter Cai | 2022-08-24 | APM: Optionally force-load audio policy for system-side bt audio HAL
+frameworks/av | 5d1fe88 | Pierre-Hugues Husson | 2019-10-01 | Add (partial, cam id is hardcoded) support for Asus ZF6 motor camera
+frameworks/av | 2a0dee8 | Pierre-Hugues Husson | 2019-08-05 | Fix BT in-call on CAF devices
+frameworks/av | 7cf7bf7 | Peter Cai | 2022-08-18 | APM: Restore S, R and Q behavior respectively for telephony audio

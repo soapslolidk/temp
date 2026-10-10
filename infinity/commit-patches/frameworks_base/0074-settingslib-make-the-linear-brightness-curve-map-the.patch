@@ -1,0 +1,38 @@
+From 1533e276dee80b01fe801a7a3e1de62c90d8b7e9 Mon Sep 17 00:00:00 2001
+From: patch <patch@local>
+Date: Tue, 6 Oct 2026 01:17:28 +0000
+Subject: [PATCH 74/85] settingslib: make the linear brightness curve map the
+ slider position both ways
+
+---
+ .../com/android/settingslib/display/BrightnessUtils.java   | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/packages/SettingsLib/DisplayUtils/src/com/android/settingslib/display/BrightnessUtils.java b/packages/SettingsLib/DisplayUtils/src/com/android/settingslib/display/BrightnessUtils.java
+index 8d4b7a157..6bc5f7cd1 100644
+--- a/packages/SettingsLib/DisplayUtils/src/com/android/settingslib/display/BrightnessUtils.java
++++ b/packages/SettingsLib/DisplayUtils/src/com/android/settingslib/display/BrightnessUtils.java
+@@ -86,8 +86,7 @@ public class BrightnessUtils {
+      */
+     public static final float convertGammaToLinearFloat(int val, float min, float max) {
+         if (SystemProperties.getBoolean("persist.sys.phh.linear_brightness", false)) {
+-            android.util.Log.e("PHH", "Linear brightness val " + val + " from " + min + " to " + max + " makes " + (val / 65536.0f));
+-            return val / 65536.0f;
++            return MathUtils.lerp(min, max, MathUtils.norm(GAMMA_SPACE_MIN, GAMMA_SPACE_MAX, val));
+         }
+         final float normalizedVal = MathUtils.norm(GAMMA_SPACE_MIN, GAMMA_SPACE_MAX, val);
+ 
+@@ -140,6 +139,10 @@ public class BrightnessUtils {
+     /**
+      * Version of {@link #convertLinearToGamma} that takes float values.
+      * TODO: brightnessfloat merge with above method(?)
++        if (SystemProperties.getBoolean("persist.sys.phh.linear_brightness", false)) {
++            return Math.round(MathUtils.lerp(GAMMA_SPACE_MIN, GAMMA_SPACE_MAX,
++                    MathUtils.constrain(MathUtils.norm(min, max, val), 0f, 1f)));
++        }
+      * @param val The brightness setting value.
+      * @param min The minimum acceptable value for the setting.
+      * @param max The maximum acceptable value for the setting.
+-- 
+2.34.1
+

@@ -1,0 +1,28 @@
+From c8985c2a7fadf3b605de837b30e2bf89550d8a57 Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Tue, 29 Sep 2026 14:05:29 +0100
+Subject: [PATCH 20/24] grant rpc servicemanager aidl visibility to the gsi
+ stubs
+
+the vendored virtualmachineservice aidl interface under the phh treble
+gsi stubs imports the rpc servicemanager aidl interface, which is
+otherwise restricted to the servicemanager and the virtualization tree.
+---
+ libs/binder/Android.bp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/libs/binder/Android.bp b/libs/binder/Android.bp
+index 3d6fd3b..303d85c 100644
+--- a/libs/binder/Android.bp
++++ b/libs/binder/Android.bp
+@@ -1021,6 +1021,7 @@ aidl_interface {
+     },
+     visibility: [
+         ":__subpackages__",
++        "//device/phh/treble/gsi_stubs:__subpackages__",
+         "//system/tools/aidl:__subpackages__",
+         "//frameworks/native/cmds/servicemanager/rpc_servicemanager",
+         "//packages/modules/Virtualization:__subpackages__",
+-- 
+2.34.1
+

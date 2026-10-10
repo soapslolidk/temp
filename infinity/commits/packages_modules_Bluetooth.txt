@@ -1,0 +1,9 @@
+packages/modules/Bluetooth | 98b0fd5 | patch | 2026-10-06 | bluetooth: legacy controller and kernel tolerance
+packages/modules/Bluetooth | 7e40405 | wbs306 | 2023-01-20 | gd: hci: Ignore command READ_REMOTE_VERSION_INFORMATION result if it doesn't in command_queue_
+packages/modules/Bluetooth | e17c530 | Pierre-Hugues Husson | 2023-05-30 | Add a property to cap declared le vendor version. Found needed on unisoc
+packages/modules/Bluetooth | afcd0dd | Pierre-Hugues Husson | 2023-05-27 | Add properties to disable some features/commands/states that the ble chip declared but doesnt actually support
+packages/modules/Bluetooth | 4d6a27f | Andreas Schneider | 2022-11-12 | On Samsung devices, we need to tell Audio HAL if we're running narrow band or wide band
+packages/modules/Bluetooth | 4b880aa | Pierre-Hugues Husson | 2021-10-17 | Don't abort when failing to get real-time priority
+packages/modules/Bluetooth | abe8b1d | Alberto Ponces | 2021-06-17 | Add option to change eSCO Transport Unit Size
+packages/modules/Bluetooth | 77334b0 | DerTeufel | 2023-01-04 | Don't crash on status:UNSUPPORTED_REMOTE_OR_LMP_FEATURE
+packages/modules/Bluetooth | 6f69c4d | Peter Cai | 2022-08-24 | audio_hal_interface: Optionally use sysbta HAL

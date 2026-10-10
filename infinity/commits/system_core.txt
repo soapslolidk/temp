@@ -1,0 +1,19 @@
+system/core | 792eb26 | patch | 2026-10-06 | 0003-init-and-libprocessgroup-tolerate-legacy-vendor-kern
+system/core | 3fdf0c7 | patch | 2026-10-06 | Restore old kernel support in init and libprocessgroup
+system/core | a0480eb | Chrisopher A. Williamson | 2026-02-04 | Required by the session keyring workaround for older kernels. AOSP removed this in Android 16, but GSI/Treble builds need it to support devices with kernels < 4.8 that lack filesystem-level keyring support.
+system/core | aa7e20b | Christopher A. Williamson | 2026-10-05 | ueventd: restore legacy config paths for pre-S vendors
+system/core | 579fd74 | Huy Hoang | 2023-10-19 | fix: Nubia 6 series custom rc action prop validation
+system/core | bc877e6 | Pierre-Hugues Husson | 2023-07-11 | Add /vendor/firmware_mnt. Moto Razr 2019 look for firmwares (modem, sensors, ...) there
+system/core | 6fc5fde | Raphael Mounier | 2023-05-21 | healthd : offline charger fix screen off 3/3
+system/core | 395edaa | Pierre-Hugues Husson | 2023-05-27 | watchdogd: Support pinging two watchdogs
+system/core | 0b18c56 | Pierre-Hugues Husson | 2022-01-22 | Add my own OTA mechanism going over /data (1/2)
+system/core | 379780a | Alberto Ponces | 2022-02-01 | Revert "Set /system/xbin permissions to 750."
+system/core | 1a41334 | Pierre-Hugues Husson | 2019-11-01 | Ugly but secure: Set /dev/uinput as 0666 to fix fingerprint sensor on some devices
+system/core | 3de8ba6 | Alberto Ponces | 2024-10-20 | Revert "init: remove session keyring workaround for old kernels"
+system/core | 3c5f658 | Pierre-Hugues Husson | 2023-11-23 | HACK: Ignore errors when setting fscrypt directory. Some devices fail to set it on first boot, but is happy later (?!?)
+system/core | ebe8759 | Pierre-Hugues Husson | 2022-10-26 | Fix support for devices without cgroupv2 support
+system/core | 540ac9c | Pierre-Hugues Husson | 2018-08-14 | Detect allowed sdcard options based on vndk
+system/core | f7937d7 | Pierre-Hugues Husson | 2020-10-18 | Don't abandon creating property tree if there is a conflict, and hope for the best
+system/core | 28f7c1e | Pierre-Hugues Husson | 2024-04-02 | Flattened apexes no longer exist, we'll deal with it another way
+system/core | cc6a487 | evox | 2026-10-06 | Ignore dm-verity and AVB setup failures
+system/core | 57f0c02 | Christopher A. Williamson | 2026-09-25 | property_service: system override policy for apex, adb and logd props

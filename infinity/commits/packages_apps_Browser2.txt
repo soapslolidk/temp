@@ -1,0 +1,2 @@
+packages/apps/Browser2 | e39c9a7 | Christopher A. Williamson | 2026-09-30 | browser2: rename the launcher entry to browser
+packages/apps/Browser2 | 0a236e4 | Christopher A. Williamson | 2026-09-30 | browser2: add download support via the system downloadmanager

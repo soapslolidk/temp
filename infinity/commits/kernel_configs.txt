@@ -1,0 +1,1 @@
+kernel/configs | 1d6d0d1 | Christopher A. Williamson | 2026-03-24 | Restore old kernel configs and lower version requirements for GSI

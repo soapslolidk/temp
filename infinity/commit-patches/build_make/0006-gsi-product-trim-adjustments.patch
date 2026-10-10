@@ -1,0 +1,125 @@
+From 7df23627ee6f189cd735b6902b5bf4a03900d5b8 Mon Sep 17 00:00:00 2001
+From: patch <patch@local>
+Date: Tue, 6 Oct 2026 01:46:02 +0000
+Subject: [PATCH 6/6] gsi: product trim adjustments
+
+---
+ target/product/base_system.mk        |  1 -
+ target/product/default_art_config.mk |  1 -
+ target/product/gsi/Android.bp        | 56 +++++++++++++++++++++++++++-
+ target/product/handheld_product.mk   |  1 -
+ 4 files changed, 55 insertions(+), 4 deletions(-)
+
+diff --git a/target/product/base_system.mk b/target/product/base_system.mk
+index 2d67a97..a14cb0d 100644
+--- a/target/product/base_system.mk
++++ b/target/product/base_system.mk
+@@ -86,7 +86,6 @@ PRODUCT_PACKAGES += \
+     $(RELEASE_PACKAGE_TZDATA_MODULE) \
+     com.android.uprobestats \
+     com.android.uwb \
+-    com.android.virt \
+     com.android.wifi \
+     ContactsProvider \
+     content \
+diff --git a/target/product/default_art_config.mk b/target/product/default_art_config.mk
+index b7dbe11..dca7ca1 100644
+--- a/target/product/default_art_config.mk
++++ b/target/product/default_art_config.mk
+@@ -89,7 +89,6 @@ PRODUCT_APEX_BOOT_JARS := \
+     com.android.tethering:framework-connectivity-b \
+     com.android.tethering:framework-tethering \
+     com.android.uwb:framework-uwb \
+-    com.android.virt:framework-virtualization \
+     com.android.wifi:framework-wifi \
+ 
+ # When we release ondeviceintelligence in NeuralNetworks module
+diff --git a/target/product/gsi/Android.bp b/target/product/gsi/Android.bp
+index f9c9aaa..82a3739 100644
+--- a/target/product/gsi/Android.bp
++++ b/target/product/gsi/Android.bp
+@@ -74,6 +74,60 @@ gsi_symlinks = [
+     },
+ ]
+ 
++// compat symlinks for legacy vendor partitions: pre-q vendor ld.config.txt files
++// hardcode /system/${LIB}/vndk-${VER} and vndk-sp-${VER} search paths. point them
++// into the matching vndk apex so those paths keep resolving on old devices.
++vndk_compat_symlinks = [
++    {
++        target: "/apex/com.android.vndk.v28/lib",
++        name: "lib/vndk-28",
++    },
++    {
++        target: "/apex/com.android.vndk.v28/lib64",
++        name: "lib64/vndk-28",
++    },
++    {
++        target: "/apex/com.android.vndk.v28/lib",
++        name: "lib/vndk-sp-28",
++    },
++    {
++        target: "/apex/com.android.vndk.v28/lib64",
++        name: "lib64/vndk-sp-28",
++    },
++    {
++        target: "/apex/com.android.vndk.v29/lib",
++        name: "lib/vndk-29",
++    },
++    {
++        target: "/apex/com.android.vndk.v29/lib64",
++        name: "lib64/vndk-29",
++    },
++    {
++        target: "/apex/com.android.vndk.v29/lib",
++        name: "lib/vndk-sp-29",
++    },
++    {
++        target: "/apex/com.android.vndk.v29/lib64",
++        name: "lib64/vndk-sp-29",
++    },
++    {
++        target: "/apex/com.android.vndk.v30/lib",
++        name: "lib/vndk-30",
++    },
++    {
++        target: "/apex/com.android.vndk.v30/lib64",
++        name: "lib64/vndk-30",
++    },
++    {
++        target: "/apex/com.android.vndk.v30/lib",
++        name: "lib/vndk-sp-30",
++    },
++    {
++        target: "/apex/com.android.vndk.v30/lib64",
++        name: "lib64/vndk-sp-30",
++    },
++]
++
+ android_filesystem_defaults {
+     name: "android_gsi_defaults",
+     defaults: [
+@@ -81,7 +135,7 @@ android_filesystem_defaults {
+         "system_ext_image_defaults",
+         "product_image_defaults",
+     ],
+-    symlinks: gsi_symlinks,
++    symlinks: gsi_symlinks + vndk_compat_symlinks,
+     dirs: ["cache"],
+     deps: [
+         ///////////////////////////////////////////
+diff --git a/target/product/handheld_product.mk b/target/product/handheld_product.mk
+index 658b998..94b68de 100644
+--- a/target/product/handheld_product.mk
++++ b/target/product/handheld_product.mk
+@@ -22,7 +22,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/media_product.mk)
+ 
+ # /product packages
+ PRODUCT_PACKAGES += \
+-    DeskClock \
+     preinstalled-packages-platform-handheld-product.xml \
+     SettingsIntelligence \
+     frameworks-base-overlays
+-- 
+2.34.1
+

@@ -1,0 +1,31 @@
+From 228b4531cd59fdd94d441f1471e30b57b3787fed Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Wed, 4 Feb 2026 00:00:00 +0000
+Subject: [PATCH 3/3] Revert "Removing vndk apex v30"
+
+VNDK v30 was removed in A16 QPR2, restore it for GSI compatibility.
+---
+ apex/Android.bp | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/apex/Android.bp b/apex/Android.bp
+index b56c5d0..9151ceb 100644
+--- a/apex/Android.bp
++++ b/apex/Android.bp
+@@ -64,6 +64,13 @@ apex_vndk {
+     system_ext_specific: true,
+ }
+ 
++apex_vndk {
++    name: "com.android.vndk.v30",
++    defaults: ["vndk-apex-defaults"],
++    vndk_version: "30",
++    system_ext_specific: true,
++}
++
+ apex_vndk {
+     name: "com.android.vndk.v29",
+     defaults: ["vndk-apex-defaults"],
+-- 
+2.34.1
+

@@ -1,0 +1,55 @@
+From 631d411cb02927b6d471c04f83ae1587756afec2 Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Sat, 3 Feb 2024 07:38:33 -0500
+Subject: [PATCH 12/24] Increase SW_MAX *= 4
+
+We increase the size of SW_MAX for two reasons:
+1. SW_MACHINE_COVER which is SW_MAX is ignored, guessing an off by one
+   somwehere
+2. Samsung extends SW_ beyond standard SW_MAX. SW_FLIP goes to 0x15,
+   standard SW_MAX 0x10
+---
+ services/inputflinger/reader/EventHub.cpp       | 4 ++--
+ services/inputflinger/reader/include/EventHub.h | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/services/inputflinger/reader/EventHub.cpp b/services/inputflinger/reader/EventHub.cpp
+index 30664ea..6e8c82a 100644
+--- a/services/inputflinger/reader/EventHub.cpp
++++ b/services/inputflinger/reader/EventHub.cpp
+@@ -1248,7 +1248,7 @@ int32_t EventHub::getKeyCodeForKeyLocation(RawDeviceId deviceId, int32_t locatio
+ }
+ 
+ int32_t EventHub::getSwitchState(RawDeviceId deviceId, int32_t sw) const {
+-    if (sw < 0 || sw > SW_MAX) {
++    if (sw < 0 || sw > (SW_MAX * 4)) {
+         return AKEY_STATE_UNKNOWN;
+     }
+     std::scoped_lock _l(mLock);
+@@ -2657,7 +2657,7 @@ void EventHub::openDeviceLocked(const std::string& devicePath) {
+     }
+ 
+     // Check whether this device has switches.
+-    for (int i = 0; i <= SW_MAX; i++) {
++    for (int i = 0; i <= (SW_MAX * 4); i++) {
+         if (device->swBitmask.test(i)) {
+             device->classes |= InputDeviceClass::SWITCH;
+             break;
+diff --git a/services/inputflinger/reader/include/EventHub.h b/services/inputflinger/reader/include/EventHub.h
+index 83ff604..17600e2 100644
+--- a/services/inputflinger/reader/include/EventHub.h
++++ b/services/inputflinger/reader/include/EventHub.h
+@@ -659,8 +659,8 @@ private:
+         BitArray<KEY_CNT> keyBitmask;
+         BitArray<KEY_CNT> keyState;
+         BitArray<REL_CNT> relBitmask;
+-        BitArray<SW_CNT> swBitmask;
+-        BitArray<SW_CNT> swState;
++        BitArray<SW_CNT * 4> swBitmask;
++        BitArray<SW_CNT * 4> swState;
+         BitArray<LED_CNT> ledBitmask;
+         BitArray<FF_CNT> ffBitmask;
+         BitArray<INPUT_PROP_CNT> propBitmask;
+-- 
+2.34.1
+

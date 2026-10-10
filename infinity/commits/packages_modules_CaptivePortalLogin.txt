@@ -1,0 +1,1 @@
+packages/modules/CaptivePortalLogin | 307e69a | Christopher A. Williamson | 2026-03-04 | Replace hardcoded Google captive portal fallback URL
