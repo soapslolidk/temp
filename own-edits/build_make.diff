@@ -1,0 +1,55 @@
+diff --git a/target/product/aosp_product.mk b/target/product/aosp_product.mk
+index 67ab7a7..2b79a1d 100644
+--- a/target/product/aosp_product.mk
++++ b/target/product/aosp_product.mk
+@@ -41,5 +41,5 @@ PRODUCT_PACKAGES += \
+ #   Provide a APN configuration to GSI product
+ ifeq ($(LINEAGE_BUILD),)
+ PRODUCT_COPY_FILES += \
+-    device/sample/etc/apns-full-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
++    
+ endif
+diff --git a/target/product/base_system.mk b/target/product/base_system.mk
+index b84747b..edc4ab2 100644
+--- a/target/product/base_system.mk
++++ b/target/product/base_system.mk
+@@ -86,7 +86,6 @@ PRODUCT_PACKAGES += \
+     $(RELEASE_PACKAGE_TZDATA_MODULE) \
+     com.android.uprobestats \
+     com.android.uwb \
+-    com.android.virt \
+     com.android.wifi \
+     ContactsProvider \
+     content \
+diff --git a/target/product/default_art_config.mk b/target/product/default_art_config.mk
+index b7dbe11..dca7ca1 100644
+--- a/target/product/default_art_config.mk
++++ b/target/product/default_art_config.mk
+@@ -89,7 +89,6 @@ PRODUCT_APEX_BOOT_JARS := \
+     com.android.tethering:framework-connectivity-b \
+     com.android.tethering:framework-tethering \
+     com.android.uwb:framework-uwb \
+-    com.android.virt:framework-virtualization \
+     com.android.wifi:framework-wifi \
+ 
+ # When we release ondeviceintelligence in NeuralNetworks module
+diff --git a/target/product/gsi/Android.bp b/target/product/gsi/Android.bp
+index f9c9aaa..92b7e85 100644
+--- a/target/product/gsi/Android.bp
++++ b/target/product/gsi/Android.bp
+@@ -185,7 +185,6 @@ android_system_image {
+         "preinstalled-packages-platform-telephony-system-ext.xml",
+ 
+         // handheld_product
+-        "Calendar",
+         "Contacts",
+         "DeskClock",
+         "Gallery2",
+diff --git a/target/product/treble_arm64_bvN.mk b/target/product/treble_arm64_bvN.mk
+new file mode 100644
+index 0000000..3476c53
+--- /dev/null
++++ b/target/product/treble_arm64_bvN.mk
+@@ -0,0 +1,2 @@
++RELEASE_PACKAGE_PROFILING_MODULE := true
++RELEASE_ANOMALY_DETECTOR := true

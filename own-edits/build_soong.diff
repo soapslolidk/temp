@@ -1,0 +1,20 @@
+diff --git a/scripts/check_boot_jars/package_allowed_list.txt b/scripts/check_boot_jars/package_allowed_list.txt
+index 335d29c..0d660d4 100644
+--- a/scripts/check_boot_jars/package_allowed_list.txt
++++ b/scripts/check_boot_jars/package_allowed_list.txt
+@@ -244,3 +244,15 @@ qcom.fmradio
+ ###################################################
+ # IFAA Manager used for Alipay and/or WeChat payment
+ org\.ifaa\.android\.manager.*
++
++# phh vendor HAL packages
++vendor\.samsung\.hardware\.radio\..*
++vendor\.samsung\.hardware\..*
++vendor\.qti\..*
++vendor\.huawei\..*
++vendor\.mediatek\..*
++vendor\.lge\..*
++vendor\.oplus\..*
++vendor\.oppo\..*
++vendor\.xiaomi\..*
++vendor\.motorola\..*

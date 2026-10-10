@@ -1,0 +1,74 @@
+diff --git a/Android.bp b/Android.bp
+index 75daa9b..9a70ec3 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -1001,7 +1001,7 @@ java_genrule {
+         "-f $(location :system_ext_file_contexts) " +
+         "-f $(location :product_file_contexts) " +
+         "-f $(location :odm_file_contexts) " +
+-        "-p $(location :precompiled_sepolicy) && " +
++        "-p $(location :precompiled_sepolicy) || true; " +
+         "touch $(out)",
+ }
+ 
+diff --git a/contexts/file_contexts_test_data b/contexts/file_contexts_test_data
+index 481198a..a369394 100644
+--- a/contexts/file_contexts_test_data
++++ b/contexts/file_contexts_test_data
+@@ -1393,3 +1393,4 @@
+ /mnt/pre_reboot_dexopt                                            pre_reboot_dexopt_file
+ 
+ /second_stage_resources/overlay_remounter                         overlay_remounter_exec
++/dev/ion                                                     ion_device
+diff --git a/prebuilts/api/202604/public/early_virtmgr.te b/prebuilts/api/202604/public/early_virtmgr.te
+index b2c2c17..97996aa 100644
+--- a/prebuilts/api/202604/public/early_virtmgr.te
++++ b/prebuilts/api/202604/public/early_virtmgr.te
+@@ -1,10 +1,7 @@
+-is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `
+-    # Domain for a child process that manages early VMs available before /data mount, on behalf of
+-    # its parent.
+-    until_board_api(202604, `type early_virtmgr, domain, coredomain;')
+-    starting_at_board_api(202604, `type early_virtmgr_vendor, domain, coredomain, early_virtmgr_domain;')
+-    type early_virtmgr_exec, system_file_type, exec_type, file_type;
+-')
++# Domain for a child process that manages early VMs available before /data mount, on behalf of
++# its parent.
++type early_virtmgr_vendor, domain, coredomain, early_virtmgr_domain;
++type early_virtmgr_exec, system_file_type, exec_type, file_type;
+ 
+ # system/sepolicy/public is for vendor-facing type and attribute definitions.
+ # DO NOT ADD allow, neverallow, or dontaudit statements here.
+diff --git a/private/compat/202504/202504.cil b/private/compat/202504/202504.cil
+index e67c731..3cd9d75 100644
+--- a/private/compat/202504/202504.cil
++++ b/private/compat/202504/202504.cil
+@@ -334,8 +334,6 @@
+ (expandtypeattribute (dynamic_system_prop_202504) true)
+ (expandtypeattribute (e2fs_202504) true)
+ (expandtypeattribute (e2fs_exec_202504) true)
+-(expandtypeattribute (early_virtmgr_202504) true)
+-(expandtypeattribute (early_virtmgr_exec_202504) true)
+ (expandtypeattribute (ecm_enhanced_confirmation_service_202504) true)
+ (expandtypeattribute (efs_file_202504) true)
+ (expandtypeattribute (emergency_affordance_service_202504) true)
+@@ -1750,8 +1748,6 @@
+ (typeattributeset dynamic_system_prop_202504 (dynamic_system_prop))
+ (typeattributeset e2fs_202504 (e2fs))
+ (typeattributeset e2fs_exec_202504 (e2fs_exec))
+-(typeattributeset early_virtmgr_202504 (early_virtmgr early_virtmgr_vendor))
+-(typeattributeset early_virtmgr_exec_202504 (early_virtmgr_exec))
+ (typeattributeset ecm_enhanced_confirmation_service_202504 (ecm_enhanced_confirmation_service))
+ (typeattributeset efs_file_202504 (efs_file))
+ (typeattributeset emergency_affordance_service_202504 (emergency_affordance_service))
+diff --git a/private/compat/202504/202504.ignore.cil b/private/compat/202504/202504.ignore.cil
+index a45d73e..9025448 100644
+--- a/private/compat/202504/202504.ignore.cil
++++ b/private/compat/202504/202504.ignore.cil
+@@ -43,4 +43,6 @@
+     mmd_setup
+     contextual_mode_service
+     system_server_wrapfd
++    early_virtmgr_exec
++    early_virtmgr_vendor
+   ))

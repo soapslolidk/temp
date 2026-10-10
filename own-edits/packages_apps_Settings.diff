@@ -1,0 +1,48 @@
+diff --git a/src/com/android/settings/development/linuxterminal/LinuxTerminalPreferenceController.java b/src/com/android/settings/development/linuxterminal/LinuxTerminalPreferenceController.java
+index 93d3a0b..74080eb 100644
+--- a/src/com/android/settings/development/linuxterminal/LinuxTerminalPreferenceController.java
++++ b/src/com/android/settings/development/linuxterminal/LinuxTerminalPreferenceController.java
+@@ -16,13 +16,11 @@
+ 
+ package com.android.settings.development.linuxterminal;
+ 
+-import static android.system.virtualmachine.VirtualMachineManager.CAPABILITY_NON_PROTECTED_VM;
+ 
+ import android.content.Context;
+ import android.content.pm.PackageManager;
+ import android.os.Process;
+ import android.os.storage.StorageManager;
+-import android.system.virtualmachine.VirtualMachineManager;
+ import android.text.TextUtils;
+ import android.util.DataUnit;
+ 
+@@ -58,16 +56,7 @@ public class LinuxTerminalPreferenceController extends DeveloperOptionsPreferenc
+                 isPackageInstalled(context.getPackageManager(), packageName) ? packageName : null;
+ 
+         StorageManager storageManager = context.getSystemService(StorageManager.class);
+-        VirtualMachineManager virtualMachineManager =
+-                context.getSystemService(VirtualMachineManager.class);
+-
+-        mIsDeviceCapable =
+-                getTotalMemory() >= MEMORY_MIN_BYTES
+-                        && storageManager != null
+-                        && storageManager.getPrimaryStorageSize() >= STORAGE_MIN_BYTES
+-                        && virtualMachineManager != null
+-                        && ((virtualMachineManager.getCapabilities() & CAPABILITY_NON_PROTECTED_VM)
+-                                != 0);
++        mIsDeviceCapable = false;
+     }
+ 
+     // Avoid lazy initialization because this may be called before displayPreference().
+diff --git a/tests/robotests/Android.bp b/tests/robotests/Android.bp
+index 4ebee9e..b7d3df6 100644
+--- a/tests/robotests/Android.bp
++++ b/tests/robotests/Android.bp
+@@ -91,7 +91,6 @@ android_robolectric_test {
+ 
+     libs: [
+         "android.test.mock.impl",
+-        "framework-virtualization.stubs.system",
+         "ims-common",
+         "telephony-common",
+     ],

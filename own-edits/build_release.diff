@@ -1,0 +1,10 @@
+diff --git a/flag_values/cp2a/RELEASE_ANOMALY_DETECTOR.textproto b/flag_values/cp2a/RELEASE_ANOMALY_DETECTOR.textproto
+index 2a89c9c..6bf804c 100644
+--- a/flag_values/cp2a/RELEASE_ANOMALY_DETECTOR.textproto
++++ b/flag_values/cp2a/RELEASE_ANOMALY_DETECTOR.textproto
+@@ -1,4 +1,4 @@
+ name: "RELEASE_ANOMALY_DETECTOR"
+ value {
+-  bool_value: false
++  bool_value: true
+ }
