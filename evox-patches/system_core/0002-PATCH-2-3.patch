@@ -1,0 +1,53 @@
+From 889abe20153a0bb2799b19c21ebfc57dd6319dc3 Mon Sep 17 00:00:00 2001
+From: Kyros70 <Kyros70@users.noreply.github.com>
+Date: Wed, 7 Oct 2026 12:51:05 +0000
+Subject: [PATCH 2/3] [PATCH 2/3]
+
+Change-Id: I4059e8b44ab8a6dd4627db97c9119900d241b4b4
+---
+ libprocessgroup/setup/cgroup_map_write.cpp | 6 +++---
+ rootdir/init.rc                            | 4 ++++
+ 2 files changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/libprocessgroup/setup/cgroup_map_write.cpp b/libprocessgroup/setup/cgroup_map_write.cpp
+index 0b26e95..f497a8a 100644
+--- a/libprocessgroup/setup/cgroup_map_write.cpp
++++ b/libprocessgroup/setup/cgroup_map_write.cpp
+@@ -173,7 +173,7 @@ static bool ActivateV2CgroupController(const CgroupDescriptor& descriptor) {
+ 
+     if (!Mkdir(controller->path(), descriptor.mode(), descriptor.uid(), descriptor.gid())) {
+         LOG(ERROR) << "Failed to create directory for " << controller->name() << " cgroup";
+-        return descriptor.controller()->flags() & CGROUPRC_CONTROLLER_FLAG_OPTIONAL;
++        return false;
+     }
+ 
+     return ::ActivateControllers(controller->path(), {{controller->name(), descriptor}});
+@@ -290,8 +290,8 @@ bool CgroupSetup() {
+         }
+ 
+         if (!SetupCgroup(descriptor)) {
+-            LOG(ERROR) << "Failed to setup " << name << " cgroup";
+-            return false;
++            // issue a warning and proceed with the next cgroup
++            LOG(WARNING) << "Failed to setup " << name << " cgroup";
+         }
+     }
+ 
+diff --git a/rootdir/init.rc b/rootdir/init.rc
+index 5007ac1..0f3ef2f 100644
+--- a/rootdir/init.rc
++++ b/rootdir/init.rc
+@@ -651,6 +651,10 @@ on post-fs
+     chown system log /proc/last_kmsg
+     chmod 0440 /proc/last_kmsg
+ 
++on late-fs && property:ro.kernel.version=4.9
++    setprop bootreceiver.enable 0
++on late-fs && property:ro.kernel.version=4.14
++    setprop bootreceiver.enable 0
+     # make the selinux kernel policy world-readable
+     chmod 0444 /sys/fs/selinux/policy
+ 
+-- 
+2.34.1
+

@@ -1,0 +1,26 @@
+From 4ed6a2a3ac89091297c98482ed804e1907a0b673 Mon Sep 17 00:00:00 2001
+From: Kyros70 <Kyros70@users.noreply.github.com>
+Date: Wed, 7 Oct 2026 12:51:04 +0000
+Subject: [PATCH 12/15] frameworks: drop the AvfBuildFlags dep from
+ services.core
+
+Change-Id: I8e144c99c7f1fb2e17a51d14b29e7660ade3ef95
+---
+ services/core/Android.bp | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/services/core/Android.bp b/services/core/Android.bp
+index ae90dc406..f1b0e3db3 100644
+--- a/services/core/Android.bp
++++ b/services/core/Android.bp
+@@ -279,7 +279,6 @@ java_library_static {
+         "vendor.samsung.hardware.biometrics.fingerprint-V1-java",
+         "vendor.samsung.hardware.light-V1-java",
+         "aconfig_adbdauth_flags_java_lib",
+-        "AvfBuildFlags",
+         "textclassifier_flags_lib",
+         "lights_flags_lib",
+         "android.bpfprogs.flags-aconfig-java",
+-- 
+2.34.1
+

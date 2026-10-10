@@ -1,0 +1,30 @@
+From 2fbbbc8856927f4ab54f2aa002f11bdd59e114c2 Mon Sep 17 00:00:00 2001
+From: Kyros70 <Kyros70@users.noreply.github.com>
+Date: Wed, 7 Oct 2026 16:34:15 +0000
+Subject: [PATCH 15/15] pm: re-implement fnmatch-like behaviour for RRO
+
+Change-Id: I03c027dac54c3ee5ee2cbf3020a01766d677c4bc
+---
+ .../content/pm/parsing/FrameworkParsingPackageUtils.java    | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/core/java/android/content/pm/parsing/FrameworkParsingPackageUtils.java b/core/java/android/content/pm/parsing/FrameworkParsingPackageUtils.java
+index ac2676236..407487675 100644
+--- a/core/java/android/content/pm/parsing/FrameworkParsingPackageUtils.java
++++ b/core/java/android/content/pm/parsing/FrameworkParsingPackageUtils.java
+@@ -233,7 +233,11 @@ public class FrameworkParsingPackageUtils {
+                 continue;
+             }
+             // 3. Check if prop is equal to expected value.
+-            if (!currValue.equals(propValues[i])) {
++            final String value = propValues[i];
++            if (value.startsWith("+")) {
++                final java.util.regex.Pattern regex = java.util.regex.Pattern.compile(value.substring(1).replace("*", ".*"));
++                if (!regex.matcher(currValue).find()) return false;
++            } else if (!currValue.equals(value)) {
+                 return false;
+             }
+         }
+-- 
+2.34.1
+

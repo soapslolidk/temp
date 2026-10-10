@@ -1,0 +1,28 @@
+From 7958af66366ca1ac3295ae71b65f258a6a666b9a Mon Sep 17 00:00:00 2001
+From: Kyros70 <Kyros70@users.noreply.github.com>
+Date: Wed, 7 Oct 2026 12:51:02 +0000
+Subject: [PATCH 05/15] Add a prop to use linear backlight control
+
+Change-Id: I5b9114292ae35afbb404a28bb14ce82ad6215a8c
+---
+ .../src/com/android/settingslib/display/BrightnessUtils.java  | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/packages/SettingsLib/DisplayUtils/src/com/android/settingslib/display/BrightnessUtils.java b/packages/SettingsLib/DisplayUtils/src/com/android/settingslib/display/BrightnessUtils.java
+index 3c06f8ae9..8d4b7a157 100644
+--- a/packages/SettingsLib/DisplayUtils/src/com/android/settingslib/display/BrightnessUtils.java
++++ b/packages/SettingsLib/DisplayUtils/src/com/android/settingslib/display/BrightnessUtils.java
+@@ -85,6 +85,10 @@ public class BrightnessUtils {
+      * @return The corresponding setting value.
+      */
+     public static final float convertGammaToLinearFloat(int val, float min, float max) {
++        if (SystemProperties.getBoolean("persist.sys.phh.linear_brightness", false)) {
++            android.util.Log.e("PHH", "Linear brightness val " + val + " from " + min + " to " + max + " makes " + (val / 65536.0f));
++            return val / 65536.0f;
++        }
+         final float normalizedVal = MathUtils.norm(GAMMA_SPACE_MIN, GAMMA_SPACE_MAX, val);
+ 
+         if (sDisableGammaConversion) {
+-- 
+2.34.1
+
