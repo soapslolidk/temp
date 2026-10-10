@@ -1,0 +1,43 @@
+FAIL trebledroid/platform_frameworks_base/0004-Relax-requirement-for-visible-flag-to-sdcards.patch
+FAIL trebledroid/platform_frameworks_base/0006-Implement-a-persistent-property-to-override-the-defa.patch
+FAIL trebledroid/platform_frameworks_base/0011-HOME-deserves-to-wake-up-devices-just-as-well-as-bac.patch
+FAIL trebledroid/platform_frameworks_base/0014-Re-implement-fnmatch-like-behaviour-for-RRO-java-sid.patch
+FAIL trebledroid/platform_frameworks_base/0015-Remove-useless-notification-about-console-service-be.patch
+FAIL trebledroid/platform_frameworks_base/0022-Allow-disabling-of-fingerprint-cleanups-needed-on-so.patch
+FAIL trebledroid/platform_frameworks_base/0025-SystemUI-Use-AVCProfileMain-for-screen-recorder.patch
+FAIL trebledroid/platform_frameworks_base/0035-FOD-support-for-Asus-Samsung-recent-Xiaomi-and-RedMa.patch
+FAIL trebledroid/platform_frameworks_base/0036-Fix-brightness-slider-curve-for-some-devices.patch
+FAIL trebledroid/platform_frameworks_base/0039-Add-a-prop-to-use-linear-backlight-control.patch
+FAIL trebledroid/platform_frameworks_base/0040-Add-support-for-Samsung-full-brightness-on-their-AID.patch
+FAIL trebledroid/platform_frameworks_base/0041-Add-Samsung-sysinput.patch
+FAIL trebledroid/platform_frameworks_base/0042-Bunch-of-FOD-stuff-commonize-refreshing-the-services.patch
+FAIL trebledroid/platform_frameworks_base/0046-Allow-signature-spoofing-for-microG-Companion-Servic.patch
+FAIL trebledroid/platform_frameworks_base/0047-Don-t-crash-system_server-if-we-fail-to-parse-dynami.patch
+FAIL trebledroid/platform_frameworks_opt_telephony/0005-Conditionally-revert-Block-Binder-thread-until-incom.patch
+FAIL trebledroid/platform_system_core/0012-Ignore-dm-verity-and-AVB-setup-failures.patch
+FAIL trebledroid/platform_system_vold/0006-Revert-vold-remove-session-keyring-workaround-for-ol.patch
+FAIL personal/packages_apps_Settings/0001-settings-drop-the-vm-capability-check-from-the-lin.patch
+FAIL personal/platform_bionic/0001-Replace-Google-DNS-IP-in-bionic-IPv4-connectivity-pr.patch
+FAIL personal/platform_build/0002-gsi-product-trim-adjustments.patch
+FAIL personal/platform_device_phh_treble/0011-fix-VNDK-version-detection-and-guard-all-vndk-compar.patch
+FAIL personal/platform_external_selinux/0001-Skip-selinux_flags-when-proc-attribute-is-unavailabl.patch
+FAIL personal/platform_frameworks_base/0002-Prefer-HIDL-when-AIDL-fingerprint-sensor-is-virtual.patch
+FAIL personal/platform_frameworks_base/0005-Add-system-property-overrides-for-status-bar-and-cor.patch
+FAIL personal/platform_frameworks_base/0011-skip-fs-verity-on-kernels-that-don-t-support-it.patch
+FAIL personal/platform_frameworks_base/0025-frameworks-drop-the-AvfBuildFlags-dep-from-services-core.patch
+FAIL personal/platform_frameworks_base/0030-settingslib-make-the-linear-brightness-curve-map-the.patch
+FAIL personal/platform_frameworks_base/0032-overlays-add-a-gestural-navigation-mode-overlay-with.patch
+FAIL personal/platform_frameworks_base/0033-keyguard-fall-back-to-the-primary-bouncer-when-the-s.patch
+FAIL personal/platform_packages_apps_Settings/0003-Settings-remove-View-Logs-option-and-dead-controller.patch
+FAIL personal/platform_packages_apps_Settings/0005-gestures-add-a-toggle-to-hide-the-gesture-navigation.patch
+FAIL personal/platform_packages_modules_Bluetooth/0001-bluetooth-legacy-controller-and-kernel-tolerance.patch
+FAIL personal/platform_packages_modules_Connectivity/0001-connectivity-tolerate-BPF-less-legacy-kernels.patch
+MISSING-DIR personal/platform_prebuilts_vndk_v29/0001-Add-android.hardware.audio.common-util-android.hardw.patch -> prebuilts/vndk/v29
+FAIL personal/platform_system_core/0002-Restore-old-kernel-support-in-init-and-libprocessgro.patch
+FAIL personal/platform_system_core/0003-init-and-libprocessgroup-tolerate-legacy-vendor-kern.patch
+FAIL personal/treble_app/0001-Add-Unihertz-8849-hardware-controls.patch
+FAIL personal/treble_app/0016-treble_app-add-a-GNSS-time-fallback-toggle.patch
+MISSING-DIR personal/vendor_magisk/0001-Define-__BIONIC_ALIGN-if-missing.patch -> vendor/magisk
+MISSING-DIR personal/vendor_magisk/0002-rename-file_attr-to-phh_file_attr.patch -> vendor/magisk
+FAIL release-builds/platform_build/0001-Do-not-disable-adb-authentication-in-GSI-system_ext-.patch
+FAIL release-builds/platform_packages_modules_adb/0001-Always-read-ro.adb.secure-to-determine-auth-requirem.patch
