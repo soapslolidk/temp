@@ -1,0 +1,13 @@
+diff --git a/app/tests/avf/Android.bp b/app/tests/avf/Android.bp
+index 6b17dc4..f06edcc 100644
+--- a/app/tests/avf/Android.bp
++++ b/app/tests/avf/Android.bp
+@@ -4,6 +4,8 @@ package {
+ 
+ android_test {
+     name: "AvfRkpdAppIntegrationTests",
++    // the virtualization stack is not built on the gsi
++    enabled: false,
+     srcs: ["src/**/*.java"],
+     static_libs: [
+         "MicrodroidDeviceTestLib",

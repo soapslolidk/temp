@@ -1,0 +1,37 @@
+diff --git a/scripts/Android.bp b/scripts/Android.bp
+index 5ff11cb..c7e82ac 100644
+--- a/scripts/Android.bp
++++ b/scripts/Android.bp
+@@ -342,7 +342,9 @@ cc_genrule {
+     enabled: false,
+     arch: {
+         arm64: {
+-            enabled: true,
++            // the trusty desktop vms depend on virtualization artifacts that
++            // are not built on the gsi
++            enabled: false,
+         },
+     },
+     defaults: [
+@@ -371,7 +373,9 @@ cc_genrule {
+     enabled: false,
+     arch: {
+         arm64: {
+-            enabled: true,
++            // the trusty desktop vms depend on virtualization artifacts that
++            // are not built on the gsi
++            enabled: false,
+         },
+     },
+     defaults: [
+@@ -400,7 +404,9 @@ cc_genrule {
+     enabled: false,
+     arch: {
+         arm64: {
+-            enabled: true,
++            // the trusty desktop vms depend on virtualization artifacts that
++            // are not built on the gsi
++            enabled: false,
+         },
+     },
+     defaults: [

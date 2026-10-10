@@ -1,0 +1,12 @@
+diff --git a/Android.bp b/Android.bp
+index 520360f..62cc80e 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -43,6 +43,7 @@ rust_library {
+     min_sdk_version: "29",
+     visibility: [
+         ":__subpackages__",
++        "//device/phh/treble/gsi_stubs:__subpackages__",
+         "//external/rust/android-crates-io/crates/tokio-openssl",
+         "//packages/modules/ConfigInfrastructure/aconfigd",
+         "//packages/modules/Virtualization/libs/apkverify",
