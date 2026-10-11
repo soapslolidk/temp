@@ -1,0 +1,2 @@
+frameworks/opt/net/ims | 4cc73ff | Christopher A. Williamson | 2026-03-12 | ImsCall: Auto-detect and correct inverted hold/resume callbacks
+frameworks/opt/net/ims | c9c1708 | Pierre-Hugues Husson | 2021-11-14 | Pie MTK IMS calls static ImsManager.updateImsServiceConfig(Context,int,boolean). Bring it back

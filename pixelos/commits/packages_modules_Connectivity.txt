@@ -1,0 +1,13 @@
+packages/modules/Connectivity | 524153f | pixelos-gsi | 2026-10-09 | connectivity: tolerate BPF-less legacy kernels
+packages/modules/Connectivity | 3e7d051 | Langsdorff | 2026-10-02 | bpfnetmaps: keep system_server up when lpm_trie maps cannot be iterated on pre-4.16 kernels
+packages/modules/Connectivity | 67a0303 | Christopher A. Williamson | 2026-10-01 | libeventpolling: degrade gracefully when the ringbuf maps are missing
+packages/modules/Connectivity | 8d195a9 | Christopher A. Williamson | 2026-10-01 | netbpfload: drop reboot_on_failure from the loader rc files
+packages/modules/Connectivity | aab98c3 | Pierre-Hugues Husson | 2025-06-16 | Some additional handling of bpf-less device
+packages/modules/Connectivity | 9211c40 | Pierre-Hugues Husson | 2024-10-17 | Additional bpf prevent-crash
+packages/modules/Connectivity | b937455 | Alberto Ponces | 2024-06-20 | Revert "netdupdatable: add back abort() on init() fail"
+packages/modules/Connectivity | a4ed70d | Pierre-Hugues Husson | 2024-05-15 | More bpf errors ignore -- there are some 4.14 without the bpf jit file
+packages/modules/Connectivity | 3b88f8c | Michael Bestas | 2024-03-15 | netd: Remove <4.14 kernel restrictions
+packages/modules/Connectivity | 85f3a8c | Peter Cai | 2024-03-16 | Revert "drop support for V gsi on pixel 5 R base kernel"
+packages/modules/Connectivity | 216e18a | koron393 | 2023-01-20 | Bring back traffic indicators for legacy devices
+packages/modules/Connectivity | 6d9ff20 | Pierre-Hugues Husson | 2022-10-26 | Support non-working BPF maps on old BPF-less kernel
+packages/modules/Connectivity | ba06b6e | Pierre-Hugues Husson | 2022-10-26 | Allow failing to load bpf programs, for BPF-less devices

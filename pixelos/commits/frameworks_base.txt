@@ -1,0 +1,87 @@
+frameworks/base | 970e3f27e | pixelos-gsi | 2026-10-09 | partial: 0033-keyguard-fall-back-to-the-primary-bouncer-when-the-s.patch
+frameworks/base | c6e43fce0 | pixelos-gsi | 2026-10-09 | partial: 0011-skip-fs-verity-on-kernels-that-don-t-support-it.patch
+frameworks/base | ed20e8624 | pixelos-gsi | 2026-10-09 | partial: 0036-Fix-brightness-slider-curve-for-some-devices.patch
+frameworks/base | de2cec1a8 | pixelos-gsi | 2026-10-09 | partial: 0006-Implement-a-persistent-property-to-override-the-defa.patch
+frameworks/base | e614708f4 | pixelos-gsi | 2026-10-09 | overlays: add a gestural navigation mode overlay without the
+frameworks/base | 2d349749f | Langsdorff | 2026-10-03 | inputmethod: drop the ime navigation bar when it has no visible buttons
+frameworks/base | 5bb1d422e | pixelos-gsi | 2026-10-09 | settingslib: make the linear brightness curve map the slider
+frameworks/base | df8674491 | pixelos-gsi | 2026-10-09 | inputmethod: add a setting to hide the ime back button in the
+frameworks/base | c9a601812 | Langsdorff | 2026-09-30 | display: drive the samsung sysinput aidl hal around display power changes
+frameworks/base | 2cfb5c954 | Christopher A. Williamson | 2026-09-30 | systemserver: drop the ranging service start
+frameworks/base | 9d8f2680d | Christopher A. Williamson | 2026-09-29 | disable the aiseal test modules on the gsi
+frameworks/base | 227135743 | Christopher A. Williamson | 2026-09-29 | frameworks: drop the AvfBuildFlags dep from services.core
+frameworks/base | 9095132b4 | Christopher A. Williamson | 2026-09-29 | frameworks: drop framework-virtualization from the api module lists
+frameworks/base | 2796d1742 | Christopher A. Williamson | 2026-09-28 | frameworks: drop the framework-virtualization build refs references
+frameworks/base | 6f21611cb | Christopher A. Williamson | 2026-09-28 | remove aiseal and npu framework clients
+frameworks/base | 36860f1ac | Christopher A. Williamson | 2026-09-28 | framework: drop unconditional framework-virtualization refs references
+frameworks/base | a24cc7164 | Christopher A. Williamson | 2026-09-28 | platform_bootclasspath: drop the virt fragment reference
+frameworks/base | 36b229b6c | Christopher A. Williamson | 2026-09-22 | core api: add entries for restored FDE and network class APIs
+frameworks/base | 02caacb9b | Christopher A. Williamson | 2026-06-21 | skip fake hw-keyboard in DisplayContent config
+frameworks/base | 3d23b1be5 | dozeofffff | 2026-05-10 | Record event to prop for oplus fingerprint sensor actuation
+frameworks/base | dee6b0c54 | Christopher A. Williamson | 2026-09-25 | Bitmap: scale down bitmaps and tolerate seal failures on legacy kernels
+frameworks/base | ede06a66e | Christopher A. Williamson | 2026-05-23 | voiceinteraction: disable assistant screenshot on kernels below 4.14
+frameworks/base | 4200e782a | Christopher A. Williamson | 2026-05-07 | EuiccManager: force-enable when eUICC slots are forced via prop
+frameworks/base | f5db5e3dd | Christopher A. Williamson | 2026-04-26 | deviceidle: auto-disable AnyMotionDetector on MTK devices
+frameworks/base | 27bb35174 | Christopher A. Williamson | 2026-04-01 | fall back to sysfs touch poke when samsung sysinput HAL is missing
+frameworks/base | 5dd4d8fbd | rmp22 | 2026-03-25 | add performance activity animation override for low-end MTK devices
+frameworks/base | af7d7f9d1 | Christopher A. Williamson | 2026-03-13 | SettingsProvider: Fix NPE in SSAID migration on legacy vendor partitions
+frameworks/base | 56b5d70cf | Christopher A. Williamson | 2026-02-16 | NetworkRegistrationInfo: conditionally force LTE carrier aggregation
+frameworks/base | 321375429 | Christopher A. Williamson | 2026-02-16 | TelephonyManager: add prop to force SIM slot count
+frameworks/base | 72d4ae1cd | OpenCode | 2026-02-16 | Catch NoSuchElementException in Watchdog HIDL lookup
+frameworks/base | 1a987c76f | Christopher A. Williamson | 2026-03-17 | Add system property overrides for status bar and corner geometry
+frameworks/base | ab32d51b1 | Christopher A. Williamson | 2026-04-10 | power: vendor HAL compatibility suppressions
+frameworks/base | 2bbb17487 | Pierre-Hugues Husson | 2026-02-04 | Allow a prop to override DOZE_SUSPEND to DOZE for AoD if device doesnt support DOZE_SUSPEND
+frameworks/base | f0798b6ae | TBM13 | 2025-03-26 | Prefer HIDL when AIDL fingerprint sensor is "virtual"
+frameworks/base | a3b56f68e | pixelos-gsi | 2026-10-09 | frameworks_base: add gnss as a fallback time source with a disable toggle
+frameworks/base | 546c870c7 | pixelos-gsi | 2026-10-09 | SystemUI: toggle flashlight on Click for binary flashlights
+frameworks/base | f8128d7c1 | Christopher A. Williamson | 2026-09-26 | wallpaper: enable per-screen default wallpaper properties
+frameworks/base | c4ed89374 | Christopher A. Williamson | 2026-06-23 | NMS: hide the treble_app foreground-service notification
+frameworks/base | ba1168de8 | Christopher A. Williamson | 2026-03-11 | Skip multiArch ABI forceMatch for system apps
+frameworks/base | 06a3bc103 | Pierre-Hugues Husson | 2025-06-16 | Not all kernel support splicing pipes (or is it sockets?), so gracefully fallback to dumb userspace copy when splice() fails
+frameworks/base | 89998849e | electimon | 2025-04-01 | HintManagerService: Generate dummy mSupportInfo for non power AIDL devices
+frameworks/base | a0dd33d46 | Jonathan Klee | 2024-12-12 | Allow spoofing signingInfo for microG Companion/Services
+frameworks/base | 288ed96e3 | Peter Cai | 2024-12-21 | Add support for treating virtual biometric sensors as real ones
+frameworks/base | a3769a4b4 | Andy CrossGate Yan | 2024-07-07 | Allow APKs of a certain signature to install/work like platform-signed
+frameworks/base | d23569d5b | Pierre-Hugues Husson | 2024-05-08 | Add a prop to disable animation in for sysui media carousel
+frameworks/base | a53605058 | Pierre-Hugues Husson | 2024-04-17 | Don't crash system_server if we fail to parse dynamic udfps position
+frameworks/base | 54f8f8dd8 | pixelos-gsi | 2026-10-09 | Allow signature spoofing for microG Companion/Services
+frameworks/base | f4dc8ff6f | Pierre-Hugues Husson | 2024-02-21 | Include vendor.samsung.hardware.radio-V2.2-java HIDL in base libs, will be used by f/o/telephony
+frameworks/base | 05fc4f592 | Pierre-Hugues Husson | 2024-02-21 | Include vendor.samsung.hardware.radio.network-V1-java in base libs, will be used by f/o/telephony
+frameworks/base | e2c38f68e | Pierre-Hugues Husson | 2024-02-04 | Some Samsung devices use SW_FLIP 0x15 rather than SW_MACHINE_COVER 0x10, so use that
+frameworks/base | 94dfbfc16 | Pierre-Hugues Husson | 2024-01-29 | Bunch of FOD stuff -- commonize refreshing the services, start supporting AIDL Samsung
+frameworks/base | 5456fe5d6 | Pierre-Hugues Husson | 2024-01-29 | Add Samsung sysinput
+frameworks/base | 1b9ac4f9c | Pierre-Hugues Husson | 2023-12-10 | Add support for Samsung full brightness on their AIDL HAL
+frameworks/base | 8e1287a87 | pixelos-gsi | 2026-10-09 | Add a prop to use linear backlight control
+frameworks/base | 98fa14dc1 | Pierre-Hugues Husson | 2023-10-18 | Samsung tablets use SW_MACHINE_COVER rather than SW_LID
+frameworks/base | 95c445ea3 | Pierre-Hugues Husson | 2023-10-18 | Ignore cgroup creation errors
+frameworks/base | b9b06abb9 | pixelos-gsi | 2026-10-09 | FOD support for Asus, Samsung recent Xiaomi and
+frameworks/base | bdae1d6dd | Pierre-Hugues Husson | 2021-12-27 | Once we integrate Samsung Power hal in libpowermanager, libpowermanager and its deps require linking against vendor.samsung.hardware.miscpower@2.0
+frameworks/base | 88c52f272 | Pierre-Hugues Husson | 2023-10-06 | Catch NPE in SystemUI
+frameworks/base | f9b5664ea | Andy CrossGate Yan | 2023-08-12 | Add runWithCleanCallingIdentity variant with both executor and return value
+frameworks/base | 91da24be2 | Andy CrossGate Yan | 2023-08-02 | Restore getSimStateForSlotIndex in SubscriptionManager
+frameworks/base | 9509a674e | Pierre-Hugues Husson | 2023-07-05 | Detect Moto dynamic hardware feature
+frameworks/base | 86e42a125 | Pierre-Hugues Husson | 2023-06-17 | Add Mediatek power hints on touch
+frameworks/base | e10e0ce34 | Pierre-Hugues Husson | 2023-06-02 | Try catch around constrainNitsAndBacklightArrays, and falls back to dumb curve. It crashes on Xperia 1 IV.
+frameworks/base | 6855b683e | Pierre-Hugues Husson | 2022-12-14 | Call Samsung's ISehSysInputDev to report screen state to touchscreen driver
+frameworks/base | 260d88922 | Pierre-Hugues Husson | 2022-12-03 | Set old fingerprint sensors to security "strong"
+frameworks/base | abf47996f | Andy CrossGate Yan | 2022-10-15 | Revert "Remove more FDE methods from StorageManager"
+frameworks/base | f42712388 | Pierre-Hugues Husson | 2021-12-20 | Dynamically resize boot animation to match screen size
+frameworks/base | 54cc2e33f | pixelos-gsi | 2026-10-09 | Allow disabling of fingerprint cleanups, needed on some
+frameworks/base | fe2b1faa4 | Pierre-Hugues Husson | 2018-03-24 | backlight: Fix backlight control on Galaxy S9(+)
+frameworks/base | 5b0674d76 | Pierre-Hugues Husson | 2021-03-23 | Catch broken mainBuiltInDisplayCutoutRectApproximation
+frameworks/base | 8dd4bf4d2 | Pierre-Hugues Husson | 2021-03-20 | Automatically detect pick up sensor, so that an overlay is required for the sole purpose of enabling pulse doze on pick up sensor
+frameworks/base | 08d635d4e | Peter Cai | 2020-12-16 | TelephonyManager: add API annotations for setTelephonyProperty
+frameworks/base | 5a6b49593 | Peter Cai | 2020-12-16 | TelephonyManager: bring back getNetworkClass()
+frameworks/base | a0febcbb0 | Peter Cai | 2020-12-16 | Revert "Remove unused SystemProperties.set"
+frameworks/base | 0fff8dc5e | Pierre-Hugues Husson | 2020-09-29 | Fix brightness range not being complete on Samsung devices
+frameworks/base | b29bfbaab | Pierre-Hugues Husson | 2020-09-29 | Some devices have proximity sensor reporting NaN as max range for some reason. Make them behave standard way by setting 5 cm
+frameworks/base | cdecd9bf1 | Pierre-Hugues Husson | 2020-06-06 | HOME deserves to wake-up devices just as well as back and menu
+frameworks/base | d416f9aba | Pierre-Hugues Husson | 2020-04-05 | Always allow overriding the number of work profiles
+frameworks/base | 86c7f3cc2 | Pierre-Hugues Husson | 2019-08-12 | Add support for samsung touch, physical and hover proximity sensor as fallback to real proximity sensor
+frameworks/base | 90d13fafc | Pierre-Hugues Husson | 2019-03-24 | Support samsung Pie and Q light hal
+frameworks/base | 323737f29 | Pierre-Hugues Husson | 2018-11-08 | Re-order services so that it works even without qtaguid
+frameworks/base | abad1fa2c | Pierre-Hugues Husson | 2018-05-17 | Don't crash if there is IR HAL is not declared
+frameworks/base | c96b86383 | pixelos-gsi | 2026-10-09 | Relax requirement for visible flag to sdcards
+frameworks/base | 6693efc41 | Raphael Mounier | 2022-08-06 | Fix env empty string - ANDROID_STORAGE
+frameworks/base | f9d41fff7 | Pierre-Hugues Husson | 2021-10-05 | Fallback to stupid autobrightness if brightness values are broken
+frameworks/base | a7858c675 | Andy CrossGate Yan | 2018-04-05 | Disable vendor mismatch warning

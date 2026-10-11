@@ -1,0 +1,1 @@
+test/vts-testcase/hal | 460bb7d | Christopher A. Williamson | 2026-09-29 | disable the trusty hal vintf test on the gsi

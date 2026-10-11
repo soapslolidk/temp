@@ -1,0 +1,27 @@
+diff --git a/US.xml b/US.xml
+index 1802652..1b21caf 100644
+--- a/US.xml
++++ b/US.xml
+@@ -3965,6 +3965,22 @@
+         roaming_protocol="IP"
+         type="default,dun,supl"
+     />
++    <apn
++        mcc="311"
++        mnc="480"
++        carrier="Verizon"
++        apn="TRACFONE.VZWENTP"
++        authtype="0"
++        bearer_bitmask="1|2|3|9|10|11|13|14|15|18|20"
++        carrier_id="1839"
++        max_conns="20"
++        max_conns_time="300"
++        modem_cognitive="true"
++        profile_id="0"
++        protocol="IPV4V6"
++        roaming_protocol="IP"
++        type="default,dun,supl"
++    />
+     <apn
+         mcc="311"
+         mnc="480"

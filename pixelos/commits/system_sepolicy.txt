@@ -1,0 +1,11 @@
+system/sepolicy | d34efd1 | Christopher A. Williamson | 2026-10-04 | sepolicy: restore /dev/ion access for the keymaster hal
+system/sepolicy | 339df31 | Christopher A. Williamson | 2026-10-02 | sepolicy: restore /dev/ion access for the graphics stack
+system/sepolicy | cdb12e5 | Christopher A. Williamson | 2026-09-28 | gate ranging_service in pcc_component on the ranging flag
+system/sepolicy | 105343d | Christopher A. Williamson | 2026-09-27 | declare early_virtmgr types unconditionally
+system/sepolicy | 78be77d | Christopher A. Williamson | 2026-04-09 | sepolicy: ship plat_sepolicy_genfs_202404.cil for legacy vendor partitions
+system/sepolicy | 9aa243a | Christopher A. Williamson | 2026-02-17 | Allow fingerprint HAL to read serialno_prop
+system/sepolicy | 9ae00ef | Christopher A. Williamson | 2026-06-10 | sepolicy: label dmabuf filesystem to fix camera video recording
+system/sepolicy | 0576216 | Christopher A. Williamson | 2026-04-20 | sepolicy: allow crash_dump to ptrace init for GSI tombstone capture
+system/sepolicy | 5592bbc | Christopher A. Williamson | 2026-03-30 | allow TrebleDroid permissive domains in user builds
+system/sepolicy | fdd5c75 | danielzhang130 | 2024-04-12 | Fix sepolicy for kernel < 5.10 that doesn't support bpf file context (#1)
+system/sepolicy | 8362014 | Christopher A. Williamson | 2026-09-25 | Revert removal of 28.0-30.0 SEPolicy compat support

@@ -1,0 +1,98 @@
+From d36a0006365523e28a8bb715b81bc0803544dc84 Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Tue, 29 Sep 2026 13:36:01 +0100
+Subject: [PATCH 5/8] build: drop the virtualization deps from the gsi product
+ images
+
+the virtualization sources are excluded from the gsi manifest sync,
+so the compos apex and the virtualizationservice aidl backends do not
+exist. remove them from the gsi system image defaults and the generic
+product dependency lists.
+ target/product/default_art_config.mk | 4 ----
+ target/product/generic/Android.bp    | 2 --
+ target/product/gsi/Android.bp        | 8 --------
+ tools/otatools_package/Android.bp    | 3 ---
+ 4 files changed, 17 deletions(-)
+---
+ target/product/default_art_config.mk | 4 ----
+ target/product/generic/Android.bp    | 2 --
+ target/product/gsi/Android.bp        | 8 --------
+ tools/otatools_package/Android.bp    | 3 ---
+ 4 files changed, 17 deletions(-)
+
+diff --git a/target/product/default_art_config.mk b/target/product/default_art_config.mk
+index f5d5be3..b7dbe11 100644
+--- a/target/product/default_art_config.mk
++++ b/target/product/default_art_config.mk
+@@ -221,10 +221,6 @@ ifeq ($(RELEASE_TELECOM_MAINLINE_MODULE),true)
+ 
+ endif
+ 
+-ifeq ($(RELEASE_AVF_ENABLE_LLPVM_CHANGES),true)
+-  PRODUCT_APEX_SYSTEM_SERVER_JARS += com.android.virt:service-virtualization
+-endif
+-
+ # List of jars on the platform that system_server loads dynamically using separate classloaders.
+ # Keep the list sorted library names.
+ PRODUCT_STANDALONE_SYSTEM_SERVER_JARS := \
+diff --git a/target/product/generic/Android.bp b/target/product/generic/Android.bp
+index 06de021..35ac194 100644
+--- a/target/product/generic/Android.bp
++++ b/target/product/generic/Android.bp
+@@ -1022,8 +1022,6 @@ system_image_defaults {
+         },
+         lib64: {
+             deps: [
+-                "android.system.virtualizationcommon-ndk",
+-                "android.system.virtualizationservice-ndk",
+                 "libgsi",
+                 "servicemanager",
+             ],
+diff --git a/target/product/gsi/Android.bp b/target/product/gsi/Android.bp
+index 2a28747..f9c9aaa 100644
+--- a/target/product/gsi/Android.bp
++++ b/target/product/gsi/Android.bp
+@@ -143,14 +143,6 @@ android_filesystem_defaults {
+         "android.hidl.allocator@1.0-service",
+     ],
+     multilib: {
+-        lib64: {
+-            deps: [
+-                ///////////////////////////////////////////
+-                // AVF
+-                ///////////////////////////////////////////
+-                "com.android.compos",
+-            ],
+-        },
+         both: {
+             // PRODUCT_PACKAGES_SHIPPING_API_LEVEL_34
+             deps: ["android.hidl.memory@1.0-impl"],
+diff --git a/tools/otatools_package/Android.bp b/tools/otatools_package/Android.bp
+index e8619f2..88f86f7 100644
+--- a/tools/otatools_package/Android.bp
++++ b/tools/otatools_package/Android.bp
+@@ -151,7 +151,6 @@ cc_genrule {
+         ":host_init_verifier",
+         ":img2simg",
+         ":img_from_target_files",
+-        ":initrd_bootconfig",
+         ":lpmake",
+         ":lpunpack",
+         ":lz4",
+@@ -177,13 +176,11 @@ cc_genrule {
+         ":shflags",
+         ":sign_apex",
+         ":sign_target_files_apks",
+-        ":sign_virt_apex",
+         ":simg2img",
+         ":sload_f2fs",
+         ":soong_zip",
+         ":toybox",
+         ":treble_labeling_tests",
+-        ":trusty_vm_signing_tool",
+         ":tune2fs",
+         ":unpack_bootimg",
+         ":update_device",
+-- 
+2.34.1
+

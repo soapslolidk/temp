@@ -1,0 +1,37 @@
+From 73e103ec69cfae1a574bf5e7fc1ecdfcdb897fe5 Mon Sep 17 00:00:00 2001
+From: pixelos-gsi <pixelos-gsi@localhost>
+Date: Fri, 9 Oct 2026 20:31:38 +0000
+Subject: [PATCH 7/8] gsi: drop gms_mainline release config maps
+
+Change-Id: I6a7b0470415785996249ea9b3e21e05f27d47926
+---
+ target/product/generic_system.mk | 2 --
+ target/product/go_defaults.mk    | 2 --
+ 2 files changed, 4 deletions(-)
+
+diff --git a/target/product/generic_system.mk b/target/product/generic_system.mk
+index 7ee2abc..55772bb 100644
+--- a/target/product/generic_system.mk
++++ b/target/product/generic_system.mk
+@@ -139,5 +139,3 @@ _my_paths := \
+ $(call require-artifacts-in-path, $(_my_paths), $(_my_allowed_list))
+ 
+ # Product config map to toggle between sources and prebuilts of required mainline modules
+-PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard build/release/gms_mainline/required/release_config_map.textproto)
+-PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard vendor/google_shared/build/release/gms_mainline/required/release_config_map.textproto)
+diff --git a/target/product/go_defaults.mk b/target/product/go_defaults.mk
+index ccc4f36..48dfe2a 100644
+--- a/target/product/go_defaults.mk
++++ b/target/product/go_defaults.mk
+@@ -18,8 +18,6 @@
+ $(call inherit-product, build/make/target/product/go_defaults_common.mk)
+ 
+ # Product config map to toggle between sources and prebuilts of required mainline modules
+-PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard build/release/gms_mainline_go/required/release_config_map.textproto)
+-PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard vendor/google_shared/build/release/gms_mainline_go/required/release_config_map.textproto)
+ 
+ # Add the system properties.
+ TARGET_SYSTEM_PROP += \
+-- 
+2.34.1
+

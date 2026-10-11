@@ -1,0 +1,7 @@
+system/vold | 1e671c5 | Christopher A. Williamson | 2026-04-24 | vold: use sdcardfs as fallback when FUSE BPF is unavailable
+system/vold | e16b043 | pixelos-gsi | 2026-10-09 | Revert "vold: remove session keyring workaround for old
+system/vold | a267f82 | Pierre-Hugues Husson | 2020-03-11 | Every voldmanaged storage is adoptable
+system/vold | 9becde2 | Pierre-Hugues Husson | 2022-10-18 | Exfat can be mounted with "exfat" kernel fs driver, or "sdfat" or "texfat" (Samsung and Sony variants)
+system/vold | 7d6ac17 | Pierre-Hugues Husson | 2021-11-29 | Don't unmount rw-system.sh binds
+system/vold | 1d77612 | Pierre-Hugues Husson | 2020-03-07 | Failing to create facedata shouldn't be fatal
+system/vold | e5c5c49 | Pierre-Hugues Husson | 2018-02-17 | Allow deletion of symlink

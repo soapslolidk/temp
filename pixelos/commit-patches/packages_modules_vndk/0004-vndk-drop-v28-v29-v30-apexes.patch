@@ -1,0 +1,41 @@
+From 9ff3ee6d2175ec7e3158284632b0b32612b41bd6 Mon Sep 17 00:00:00 2001
+From: pixelos-gsi <pixelos-gsi@localhost>
+Date: Fri, 9 Oct 2026 20:37:04 +0000
+Subject: [PATCH 4/4] vndk: drop v28 v29 v30 apexes
+
+Change-Id: I14eb472ca6c8cb42cd5f91c571b8c0af41df15a7
+---
+ apex/Android.bp | 18 ------------------
+ 1 file changed, 18 deletions(-)
+
+diff --git a/apex/Android.bp b/apex/Android.bp
+index 9151ceb..4ae1434 100644
+--- a/apex/Android.bp
++++ b/apex/Android.bp
+@@ -64,23 +64,5 @@ apex_vndk {
+     system_ext_specific: true,
+ }
+ 
+-apex_vndk {
+-    name: "com.android.vndk.v30",
+-    defaults: ["vndk-apex-defaults"],
+-    vndk_version: "30",
+-    system_ext_specific: true,
+-}
+ 
+-apex_vndk {
+-    name: "com.android.vndk.v29",
+-    defaults: ["vndk-apex-defaults"],
+-    vndk_version: "29",
+-    system_ext_specific: true,
+-}
+ 
+-apex_vndk {
+-    name: "com.android.vndk.v28",
+-    defaults: ["vndk-apex-defaults"],
+-    vndk_version: "28",
+-    system_ext_specific: true,
+-}
+-- 
+2.34.1
+

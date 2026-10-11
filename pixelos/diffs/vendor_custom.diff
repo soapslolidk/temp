@@ -1,0 +1,12 @@
+diff --git a/config/version.mk b/config/version.mk
+index 698ac7e..7207712 100644
+--- a/config/version.mk
++++ b/config/version.mk
+@@ -8,7 +8,6 @@ CUSTOM_VERSION_PROP := seventeen
+ # PixelOS Platform Version
+ PRODUCT_PRODUCT_PROPERTIES += \
+     ro.custom.build.date=$(CUSTOM_BUILD_DATE) \
+-    ro.custom.device=$(CUSTOM_BUILD) \
+     ro.custom.version=PixelOS_$(CUSTOM_VERSION) \
+     net.pixelos.version=$(CUSTOM_VERSION_PROP)
+ 

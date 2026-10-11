@@ -1,0 +1,8 @@
+system/netd | 34d11fe | Christopher A. Williamson | 2026-10-02 | netd: don't restart zygote when netd restarts
+system/netd | a1ec305 | Christopher A. Williamson | 2026-03-25 | make dnsmasq communication failures non-fatal for tethering
+system/netd | b8e489f | Christopher A. Williamson | 2026-03-25 | fix iptables COMMIT#PING parse error in tethering CT helper rules
+system/netd | c1dfd62 | Christopher A. Williamson | 2026-05-29 | netd: drop POSIX_SPAWN_CLOEXEC_DEFAULT to fix dnsmasq crash on some devices
+system/netd | 7011e9d | Pierre-Hugues Husson | 2022-10-26 | Don't abort in case of cgroup/bpf setup fail, since some devices dont have BPF
+system/netd | 51b831d | ChonDoit | 2022-10-07 | Support no-bpf usecase
+system/netd | b3294da | Pierre-Hugues Husson | 2019-07-29 | Don't fail on FTP conntracking failing
+system/netd | 1cc1d41 | Pierre-Hugues Husson | 2018-07-02 | Huawei Kirin 960:: accept broken rpfilter match

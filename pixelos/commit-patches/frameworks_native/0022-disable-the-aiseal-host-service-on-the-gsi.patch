@@ -1,0 +1,28 @@
+From 13fdaedcca1821fe85f7d96b94eb01564e9f12cf Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Tue, 29 Sep 2026 12:44:19 +0100
+Subject: [PATCH 22/25] disable the aiseal host service on the gsi
+
+the aiseal host service is a virtualization-backed isolated storage
+client: it links against the virtualization aidl interfaces and client
+libraries, which are not built on the gsi because the virtualization
+sources are excluded from the manifest sync.
+---
+ services/aisealhostservice/Android.bp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/services/aisealhostservice/Android.bp b/services/aisealhostservice/Android.bp
+index 22c4f2b..3ec6b33 100644
+--- a/services/aisealhostservice/Android.bp
++++ b/services/aisealhostservice/Android.bp
+@@ -4,6 +4,7 @@ package {
+ 
+ rust_binary {
+     name: "aisealhostservice",
++    enabled: false, // the virtualization stack is not built on the gsi
+     srcs: ["src/main.rs"],
+     edition: "2021",
+     prefer_rlib: true,
+-- 
+2.34.1
+

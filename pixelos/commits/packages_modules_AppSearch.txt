@@ -1,0 +1,1 @@
+packages/modules/AppSearch | 57a287f | Christopher A. Williamson | 2026-09-28 | appsearch: neuter the isolated storage service

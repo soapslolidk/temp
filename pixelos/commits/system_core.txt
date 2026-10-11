@@ -1,0 +1,21 @@
+system/core | d1d7a9c | Christopher A. Williamson | 2026-09-28 | libprocessgroup and init carry several assumptions that break on legacy vendor kernels: cgroup v2-only controllers, memcg layout expected by lmkd, selinux policy versions old kernels cannot compile, erofs restorecon behaviour, xperms cil rules and cgroup.procs write races. the patches form one dependent chain against the same files, so they are merged into a single legacy kernel tolerance change.
+system/core | b8bac7a | pixelos-gsi | 2026-10-09 | fuzz-applied patch
+system/core | 904f3e4 | Chrisopher A. Williamson | 2026-02-04 | Required by the session keyring workaround for older kernels. AOSP removed this in Android 16, but GSI/Treble builds need it to support devices with kernels < 4.8 that lack filesystem-level keyring support.
+system/core | 836118c | Christopher A. Williamson | 2026-10-05 | ueventd: restore legacy config paths for pre-S vendors
+system/core | 28999f8 | Alberto Ponces | 2024-10-20 | Revert "init: remove session keyring workaround for old kernels"
+system/core | 8244bdc | Pierre-Hugues Husson | 2024-04-02 | Flattened apexes no longer exist, we'll deal with it another way
+system/core | 461efb4 | Pierre-Hugues Husson | 2023-11-23 | HACK: Ignore errors when setting fscrypt directory. Some devices fail to set it on first boot, but is happy later (?!?)
+system/core | 9cbb0ef | Huy Hoang | 2023-10-19 | fix: Nubia 6 series custom rc action prop validation
+system/core | 7c2fe7f | Pierre-Hugues Husson | 2022-10-26 | Fix support for devices without cgroupv2 support
+system/core | f1c5b86 | pixelos-gsi | 2026-10-09 | Ignore dm-verity and AVB setup failures
+system/core | 14bffd5 | Pierre-Hugues Husson | 2023-07-11 | Add /vendor/firmware_mnt. Moto Razr 2019 look for firmwares (modem, sensors, ...) there
+system/core | 8113eb6 | Raphael Mounier | 2023-05-21 | healthd : offline charger fix screen off 3/3
+system/core | 74aba16 | Pierre-Hugues Husson | 2023-05-27 | watchdogd: Support pinging two watchdogs
+system/core | 51c73ef | Pierre-Hugues Husson | 2022-01-22 | Add my own OTA mechanism going over /data (1/2)
+system/core | 95669dc | Alberto Ponces | 2022-02-01 | Revert "Set /system/xbin permissions to 750."
+system/core | a99242e | Pierre-Hugues Husson | 2019-11-01 | Ugly but secure: Set /dev/uinput as 0666 to fix fingerprint sensor on some devices
+system/core | 814d2ea | Pierre-Hugues Husson | 2018-08-14 | Detect allowed sdcard options based on vndk
+system/core | eb333f3 | Pierre-Hugues Husson | 2019-09-04 | Panic into recovery rather than bootloader
+system/core | 1fb460e | Isaac Chen | 2021-06-23 | init: Do not start console service when debuggable
+system/core | f9fb3d7 | Pierre-Hugues Husson | 2020-10-18 | Don't abandon creating property tree if there is a conflict, and hope for the best
+system/core | 61d5ef2 | Christopher A. Williamson | 2026-09-25 | property_service: system override policy for apex, adb and logd props

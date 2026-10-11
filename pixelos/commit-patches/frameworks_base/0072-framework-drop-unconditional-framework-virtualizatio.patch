@@ -1,0 +1,67 @@
+From 36860f1acbf3adf6c03494fed0f4d9148fc65a92 Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Mon, 28 Sep 2026 15:22:54 +0100
+Subject: [PATCH 72/87] framework: drop unconditional framework-virtualization
+ refs references
+
+the com.android.virt apex and its framework-virtualization boot jar
+are removed from the gsi, but SystemServiceRegistry resolved
+VirtualizationFrameworkInitializer unconditionally during static
+initialisation and PackageManagerNative read
+BuildFlags.SUPPORT_AVF_ADVANCE_MULTITENANCY at runtime, so zygote
+died with NoClassDefFoundError while preloading
+android.app.SystemServiceRegistry. drop the registration (nothing
+to register without the apex) and the multitenancy sourceDir block
+(meaningless without avf vendor modules); the aiseal registration
+stays as it is already gated behind aisealHostApis().
+---
+ core/java/android/app/SystemServiceRegistry.java             | 2 --
+ .../java/com/android/server/pm/PackageManagerNative.java     | 5 -----
+ 2 files changed, 7 deletions(-)
+
+diff --git a/core/java/android/app/SystemServiceRegistry.java b/core/java/android/app/SystemServiceRegistry.java
+index cc0e7b5cb..127dd4603 100644
+--- a/core/java/android/app/SystemServiceRegistry.java
++++ b/core/java/android/app/SystemServiceRegistry.java
+@@ -289,7 +289,6 @@ import android.service.personalcontext.PersonalContextManager;
+ import android.service.uprobestats.DynamicInstrumentationManager;
+ import android.service.uprobestats.UprobestatsFrameworkInitializer;
+ import android.service.vr.IVrManager;
+-import android.system.virtualmachine.VirtualizationFrameworkInitializer;
+ import android.telecom.TelecomManager;
+ import android.telephony.MmsManager;
+ import android.telephony.TelephonyFrameworkInitializer;
+@@ -2193,7 +2192,6 @@ public final class SystemServiceRegistry {
+             OnDeviceIntelligenceFrameworkInitializer.registerServiceWrappers();
+             DeviceLockFrameworkInitializer.registerServiceWrappers();
+             NpuManagerFrameworkInitializer.registerServiceWrappers();
+-            VirtualizationFrameworkInitializer.registerServiceWrappers();
+             ConnectivityFrameworkInitializerBaklava.registerServiceWrappers();
+ 
+             if (TelecomDependencies.isMainlineBuildFlagEnabled()) {
+diff --git a/services/core/java/com/android/server/pm/PackageManagerNative.java b/services/core/java/com/android/server/pm/PackageManagerNative.java
+index da0790eda..c9ea27f5f 100644
+--- a/services/core/java/com/android/server/pm/PackageManagerNative.java
++++ b/services/core/java/com/android/server/pm/PackageManagerNative.java
+@@ -33,7 +33,6 @@ import android.content.pm.StagedApexInfo;
+ import android.os.Binder;
+ import android.os.RemoteException;
+ import android.os.UserHandle;
+-import android.system.virtualmachine.BuildFlags;
+ import android.text.TextUtils;
+ import android.util.Slog;
+ 
+@@ -84,10 +83,6 @@ final class PackageManagerNative extends IPackageManagerNative.Stub {
+         PackageInfoNative result = new PackageInfoNative();
+         result.packageName = packageName;
+ 
+-        if (BuildFlags.SUPPORT_AVF_ADVANCE_MULTITENANCY && pInfo.applicationInfo != null) {
+-            result.sourceDir = pInfo.applicationInfo.sourceDir;
+-            result.splitSourceDirs = pInfo.applicationInfo.splitSourceDirs;
+-        }
+         if (pInfo.signingInfo == null) {
+             return result;
+         }
+-- 
+2.34.1
+

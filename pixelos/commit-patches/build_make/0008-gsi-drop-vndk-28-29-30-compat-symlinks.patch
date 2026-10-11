@@ -1,0 +1,72 @@
+From b8fef27074f27c9fe0a051207b9067175d5050f6 Mon Sep 17 00:00:00 2001
+From: pixelos-gsi <pixelos-gsi@localhost>
+Date: Fri, 9 Oct 2026 20:37:04 +0000
+Subject: [PATCH 8/8] gsi: drop vndk 28 29 30 compat symlinks
+
+Change-Id: I883265768abd91e99a87ebc4e47dcbfe6665f395
+---
+ target/product/gsi/Android.bp | 48 -----------------------------------
+ 1 file changed, 48 deletions(-)
+
+diff --git a/target/product/gsi/Android.bp b/target/product/gsi/Android.bp
+index 82a3739..c122a3e 100644
+--- a/target/product/gsi/Android.bp
++++ b/target/product/gsi/Android.bp
+@@ -78,54 +78,6 @@ gsi_symlinks = [
+ // hardcode /system/${LIB}/vndk-${VER} and vndk-sp-${VER} search paths. point them
+ // into the matching vndk apex so those paths keep resolving on old devices.
+ vndk_compat_symlinks = [
+-    {
+-        target: "/apex/com.android.vndk.v28/lib",
+-        name: "lib/vndk-28",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v28/lib64",
+-        name: "lib64/vndk-28",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v28/lib",
+-        name: "lib/vndk-sp-28",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v28/lib64",
+-        name: "lib64/vndk-sp-28",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v29/lib",
+-        name: "lib/vndk-29",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v29/lib64",
+-        name: "lib64/vndk-29",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v29/lib",
+-        name: "lib/vndk-sp-29",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v29/lib64",
+-        name: "lib64/vndk-sp-29",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v30/lib",
+-        name: "lib/vndk-30",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v30/lib64",
+-        name: "lib64/vndk-30",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v30/lib",
+-        name: "lib/vndk-sp-30",
+-    },
+-    {
+-        target: "/apex/com.android.vndk.v30/lib64",
+-        name: "lib64/vndk-sp-30",
+-    },
+ ]
+ 
+ android_filesystem_defaults {
+-- 
+2.34.1
+

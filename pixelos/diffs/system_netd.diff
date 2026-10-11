@@ -1,0 +1,116 @@
+diff --git a/server/Controllers.cpp b/server/Controllers.cpp
+index 8a2c3be..5c1d594 100644
+--- a/server/Controllers.cpp
++++ b/server/Controllers.cpp
+@@ -335,7 +335,7 @@ void Controllers::init() {
+         // As such simply exit netd.  This may crash loop the system, but by failing
+         // to bootup we will trigger rollback and thus this offers us protection against
+         // a mainline update breaking things.
+-        exit(2);
++        // exit(2);
+     }
+     gLog.info("Enabling bandwidth control: %" PRId64 "us", s.getTimeAndResetUs());
+ 
+diff --git a/server/TetherController.cpp b/server/TetherController.cpp
+index b159d95..5611b89 100644
+--- a/server/TetherController.cpp
++++ b/server/TetherController.cpp
+@@ -291,7 +291,7 @@ int TetherController::startTethering(bool usingLegacyDnsProxy, int num_addrs, ch
+         return -res;
+     }
+     const android::base::ScopeGuard attrGuard = [&] { posix_spawnattr_destroy(&attr); };
+-    res = posix_spawnattr_setflags(&attr, POSIX_SPAWN_USEVFORK | POSIX_SPAWN_CLOEXEC_DEFAULT);
++    res = posix_spawnattr_setflags(&attr, POSIX_SPAWN_USEVFORK);
+     if (res) {
+         ALOGE("posix_spawnattr_setflags failed (%s)", strerror(res));
+         return -res;
+@@ -406,9 +406,10 @@ int TetherController::setDnsForwarders(unsigned netId, char **servers, int numSe
+     mDnsmasqState.update_dns_cmd = std::move(daemonCmd);
+     if (mDaemonFd != -1) {
+         if (mDnsmasqState.sendAllState(mDaemonFd) != 0) {
+-            mDnsForwarders.clear();
+-            errno = EREMOTEIO;
+-            return -errno;
++            // on GSI builds dnsmasq may not be running; the modern tethering
++            // stack (NetworkStackService) provides its own DHCP/DNS server,
++            // so a dnsmasq communication failure is not fatal.
++            ALOGW("Failed to send DNS state to dnsmasq (non-fatal on GSI)");
+         }
+     }
+     return 0;
+@@ -446,7 +447,11 @@ bool TetherController::applyDnsInterfaces() {
+         mDnsmasqState.update_ifaces_cmd.clear();
+     } else {
+         mDnsmasqState.update_ifaces_cmd = std::move(daemonCmd);
+-        if (mDaemonFd != -1) return (mDnsmasqState.sendAllState(mDaemonFd) == 0);
++        if (mDaemonFd != -1) {
++            if (mDnsmasqState.sendAllState(mDaemonFd) != 0) {
++                ALOGW("Failed to send iface state to dnsmasq (non-fatal on GSI)");
++            }
++        }
+     }
+     return true;
+ }
+@@ -718,17 +723,23 @@ int TetherController::setForwardRules(bool add, const char *intIface, const char
+         "*raw\n"
+         "%s %s -i %s -m rpfilter --invert ! -s fe80::/64 -j DROP\n"
+         "COMMIT\n", op, LOCAL_RAW_PREROUTING, intIface);
+-    if (iptablesRestoreFunction(V6, rpfilterCmd, nullptr) == -1 && add) {
++    if (iptablesRestoreFunction(V6, rpfilterCmd, nullptr) == -1 && add && false) {
+         return -EREMOTEIO;
+     }
+ 
+-    std::vector<std::string> v4 = {
++    std::vector<std::string> v4Ftp = {
+             "*raw",
+-            StringPrintf("%s %s -p tcp --dport 21 -i %s -j CT --helper ftp", op,
+-                         LOCAL_RAW_PREROUTING, intIface),
++            StringPrintf("%s %s -p tcp --dport 21 -i %s -j CT --helper ftp",
++                            op, LOCAL_RAW_PREROUTING, intIface),
+             StringPrintf("%s %s -p tcp --dport 1723 -i %s -j CT --helper pptp", op,
+                          LOCAL_RAW_PREROUTING, intIface),
+-            "COMMIT",
++            "COMMIT\n",
++    };
++    if(iptablesRestoreFunction(V4, Join(v4Ftp, '\n'), nullptr) == -1) {
++            ALOGE("Failed adding iptables CT target on FTP.");
++    }
++
++    std::vector<std::string> v4 = {
+             "*filter",
+             StringPrintf("%s %s -i %s -o %s -m state --state ESTABLISHED,RELATED -g %s", op,
+                          LOCAL_FORWARD, extIface, intIface, LOCAL_TETHER_COUNTERS_CHAIN),
+diff --git a/server/main.cpp b/server/main.cpp
+index be9a1d0..e84899e 100644
+--- a/server/main.cpp
++++ b/server/main.cpp
+@@ -147,7 +147,7 @@ int main(const int argc, const char* argv[]) {
+ 
+     if (libnetd_updatable_init(cg2_path.c_str())) {
+         ALOGE("libnetd_updatable_init failed");
+-        exit(1);
++        //exit(1);
+     }
+     gLog.info("libnetd_updatable_init success");
+ 
+diff --git a/server/netd.rc b/server/netd.rc
+index 38f7cd4..fac1db2 100644
+--- a/server/netd.rc
++++ b/server/netd.rc
+@@ -28,9 +28,13 @@ service netd /system/bin/netd
+     # netd is not updatable, but depends on libs provided by tethering apex.
+     # Mark it as updatable so init won't start it until all APEX packages are ready.
+     updatable
+-    # for obvious reasons 'onrestart' doesn't apply to netd1shot above
+-    onrestart restart zygote
+-    onrestart restart zygote_secondary
++    # upstream restarts zygote whenever netd restarts so the framework rebinds
++    # after mainline module updates.  on a gsi with legacy bpf-less kernels netd
++    # can restart during boot, and zygote's own onrestart restarts netd -- the
++    # two hooks feed each other and produce an endless zygote/netd restart
++    # ping-pong that prevents boot completion (watchdog eventually resets the
++    # device).  connectivityservice rebinds to netd via binder death
++    # recipients anyway, so the zygote kill is unnecessary here.
+ 
+ # Moved from external/android-clat/vendor-464xlat.rc. Since
+ # clatd is modularized and shipped in apex, migrate the

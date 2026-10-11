@@ -1,0 +1,8 @@
+build/make | b8fef27 | pixelos-gsi | 2026-10-09 | gsi: drop vndk 28 29 30 compat symlinks
+build/make | 73e103e | pixelos-gsi | 2026-10-09 | gsi: drop gms_mainline release config maps
+build/make | 98d8037 | pixelos-gsi | 2026-10-09 | partial: 0002-gsi-product-trim-adjustments.patch
+build/make | d36a000 | Christopher A. Williamson | 2026-09-29 | build: drop the virtualization deps from the gsi product images
+build/make | 1f26625 | Christopher A. Williamson | 2026-09-28 | gsi: build system adjustments
+build/make | 534a4b9 | Pierre-Hugues Husson | 2023-10-06 | Include vndk v28, v29 and v30 sepolicy support
+build/make | 0aad2c0 | Andy CrossGate Yan | 2021-10-14 | build: Remove llkd
+build/make | a41df83 | Andy CrossGate Yan | 2021-12-08 | Remove init.vndk-nodef.rc

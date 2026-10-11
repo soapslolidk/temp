@@ -1,0 +1,42 @@
+From 2796d1742fcb06ee9987d95c75cb66ad41524415 Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Mon, 28 Sep 2026 16:59:35 +0100
+Subject: [PATCH 74/87] frameworks: drop the framework-virtualization build
+ refs references
+
+the virtualization sources are removed from the gsi manifest sync, so
+the impl library and the combined apis entry pointing at them cannot
+resolve. the visibility grant stays; grants do not require the target
+to exist.
+---
+ Android.bp     | 1 -
+ api/Android.bp | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/Android.bp b/Android.bp
+index 9ee63cc4a..b7a6d47d3 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -456,7 +456,6 @@ java_library {
+     name: "framework-non-updatable-unbundled-impl-libs",
+     static_libs: [
+         "framework-location.impl",
+-        "framework-virtualization.impl",
+     ] + select(release_flag("RELEASE_TELECOM_MAINLINE_MODULE"), {
+         true: [],
+         default: [
+diff --git a/api/Android.bp b/api/Android.bp
+index 5424a9346..5cc734498 100644
+--- a/api/Android.bp
++++ b/api/Android.bp
+@@ -97,7 +97,6 @@ combined_apis {
+         "framework-telecom",
+         "framework-tethering",
+         "framework-uwb",
+-        "framework-virtualization",
+         "framework-wifi",
+         "i18n.module.public.api",
+     ] + select(release_flag("RELEASE_ONDEVICE_INTELLIGENCE_MODULE"), {
+-- 
+2.34.1
+

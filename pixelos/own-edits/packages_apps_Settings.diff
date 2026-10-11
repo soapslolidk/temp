@@ -1,0 +1,18 @@
+diff --git a/src/com/android/settings/development/linuxterminal/LinuxTerminalPreferenceController.java b/src/com/android/settings/development/linuxterminal/LinuxTerminalPreferenceController.java
+index 66f5cff..bf1f776 100644
+--- a/src/com/android/settings/development/linuxterminal/LinuxTerminalPreferenceController.java
++++ b/src/com/android/settings/development/linuxterminal/LinuxTerminalPreferenceController.java
+@@ -16,13 +16,11 @@
+ 
+ package com.android.settings.development.linuxterminal;
+ 
+-import static android.system.virtualmachine.VirtualMachineManager.CAPABILITY_NON_PROTECTED_VM;
+ 
+ import android.content.Context;
+ import android.content.pm.PackageManager;
+ import android.os.Process;
+ import android.os.storage.StorageManager;
+-import android.system.virtualmachine.VirtualMachineManager;
+ import android.text.TextUtils;
+ import android.util.DataUnit;
+ 

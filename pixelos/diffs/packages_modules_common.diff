@@ -1,0 +1,12 @@
+diff --git a/build/Android.bp b/build/Android.bp
+index 5f2b9a6..5065cfd 100644
+--- a/build/Android.bp
++++ b/build/Android.bp
+@@ -58,7 +58,6 @@ phony {
+         "com.android.tethering",
+         "com.android.tzdata",
+         "com.android.uwb",
+-        "com.android.virt",
+         "com.android.wifi",
+     ] + select(product_variable("use_debug_art"), {
+         true: [

@@ -1,0 +1,311 @@
+bionic | fcd04e8 | Christopher A. Williamson | 2026-04-07 | bionic: tolerate MADV_WIPEONFORK failure on pre-4.14 kernels
+bionic | 98cc340 | Christopher A. Williamson | 2026-03-25 | make property area init failures non-fatal for old vendors
+bionic | 95e6a0c | Christopher A. Williamson | 2026-03-12 | epoll_pwait2: fall back to epoll_pwait on kernels < 5.11
+bionic | f69034e | Pierre-Hugues Husson | 2022-02-19 | Add new mechanism to fake vendor props on a per-process basis
+bootable/recovery | 0b29bef | Pierre-Hugues Husson | 2019-09-12 | Don't reboot if we couldn't get bootctrl
+build/make | b8fef27 | pixelos-gsi | 2026-10-09 | gsi: drop vndk 28 29 30 compat symlinks
+build/make | 73e103e | pixelos-gsi | 2026-10-09 | gsi: drop gms_mainline release config maps
+build/make | 98d8037 | pixelos-gsi | 2026-10-09 | partial: 0002-gsi-product-trim-adjustments.patch
+build/make | d36a000 | Christopher A. Williamson | 2026-09-29 | build: drop the virtualization deps from the gsi product images
+build/make | 1f26625 | Christopher A. Williamson | 2026-09-28 | gsi: build system adjustments
+build/make | 534a4b9 | Pierre-Hugues Husson | 2023-10-06 | Include vndk v28, v29 and v30 sepolicy support
+build/make | 0aad2c0 | Andy CrossGate Yan | 2021-10-14 | build: Remove llkd
+build/make | a41df83 | Andy CrossGate Yan | 2021-12-08 | Remove init.vndk-nodef.rc
+build/release | cd14717 | Christopher A. Williamson | 2026-10-04 | disable require_gralloc4_or_newer for the gsi
+build/release | 91898d5 | Langsdorff | 2026-10-02 | Enable the ime switcher button in navbar setting
+build/release | 3d69e5e | Christopher A. Williamson | 2026-09-28 | disable unavailable mainline features for aosp_current
+build/release | 60dd118 | Christopher A. Williamson | 2026-02-18 | Enable navbar flip order option
+device/generic/common | e05d68f | Christopher A. Williamson | 2026-04-25 | product: Exclude AOSP sample APN list from GSI product config
+device/generic/trusty | 5847c30 | Christopher A. Williamson | 2026-09-29 | disable the pvmfw test image modules on the gsi
+device/generic/trusty | 1a8970b | Christopher A. Williamson | 2026-09-29 | disable the trusty vm launcher binaries on the gsi
+external/rust/android-crates-io | e78ac530 | Christopher A. Williamson | 2026-09-29 | drop the virtualization apexes from the crates availability lists
+external/rust/crates/openssl | e15633e | Christopher A. Williamson | 2026-09-29 | grant libopenssl visibility to the gsi stubs
+external/selinux | 4150adc | Christopher A. Williamson | 2026-04-22 | libsepol: skip xperms entries when writing policy below version 30
+external/selinux | a8b4442 | Christopher A. Williamson | 2026-03-27 | broaden /sys/vm/ genfscon bypass to cover all subpaths
+external/selinux | adff8bc | pixelos-gsi | 2026-10-09 | Skip grapheneos_flags when proc attribute is unavailable
+external/selinux | f53fc5a | Pierre-Hugues Husson | 2025-01-06 | Fix secilc on Moto One Action
+external/selinux | 71d21b3 | Pierre-Hugues Husson | 2024-10-23 | Fix conflicting sepolicy for compaction_proactiveness on Galaxy A12s
+external/selinux | b160fdc | Pierre-Hugues Husson | 2023-10-06 | Allow conflict on fuseblk
+external/selinux | e24759f | Pierre-Hugues Husson | 2023-07-20 | Allow /sys/vm/watermark_scale_factor conflict -- seen on Freebox Player Pop
+external/selinux | ae75d8b | ponces | 2022-11-07 | Improve SELinux policy workaround on device/phh/treble conflict to exit with SEPOL_OK instead of SEPOL_EEXIST
+external/selinux | 2f8f7dc | Pierre-Hugues Husson | 2019-10-25 | Fix boot on Moto devices using unknown class
+external/selinux | c9f4461 | Pierre-Hugues Husson | 2020-05-24 | Allow mismatches of exfat genfscon
+external/selinux | cb9c111 | Pierre-Hugues Husson | 2019-09-12 | if service is "rcs", accept conflict. Seen on Moto E5
+external/selinux | 1a78954 | Pierre-Hugues Husson | 2019-09-06 | Allow /devices/virtual/block/ genfscon conflict (seen on Xiaomi Mi 9)
+external/selinux | 46f15b1 | Pierre-Hugues Husson | 2021-03-31 | Workaround device/phh/treble conflict with SELinux policy
+external/selinux | 99f7520 | Pierre-Hugues Husson | 2020-09-09 | Revert "libsepol: Make an unknown permission an error in CIL"
+external/selinux | 96f466f | Pierre-Hugues Husson | 2018-04-09 | Increase default log_level to get actual selinux error in kmsg
+frameworks/av | 16772b4 | Langsdorff | 2026-10-04 | camera: keep samsung 60fps video working across reconfigures
+frameworks/av | 251e23a | Langsdorff | 2026-10-03 | camera: record samsung 60fps video modes behind persist.sys.phh.samsung.video60
+frameworks/av | 426092e | Langsdorff | 2026-10-03 | camera: gate samsung remosaic capture behind persist.sys.phh.samsung.remosaic
+frameworks/av | e13ff84 | Langsdorff | 2026-10-03 | camera: list the samsung remosaic size as a high resolution size
+frameworks/av | 2c99e4a | Langsdorff | 2026-10-02 | camera: expose samsung remosaic capture behind debug.phh.samsung.remosaic
+frameworks/av | 8ef65a0 | Christopher A. Williamson | 2026-06-01 | MediaCodecSource: fallback to createInputSurface when PersistentSurface fails
+frameworks/av | 162ff27 | Christopher A. Williamson | 2026-04-10 | MediaProfiles: fall back to defaults when XML file cannot be opened
+frameworks/av | 1b3806a | Peng Zhu | 2013-11-20 | Camera: Add support for manual 3A.
+frameworks/av | 352f29d | Manikanta Kanamarlapudi | 2026-03-24 | libstagefright: Free buffers on observer died
+frameworks/av | 8fa54cf | Christopher A. Williamson | 2026-02-16 | CameraParameters: don't segfault on NULL key or value
+frameworks/av | 9db9e2d | Pierre-Hugues Husson | 2025-06-13 | Revert "Remove framework support for audio HIDL HAL V5"
+frameworks/av | 0bef48a | Pierre-Hugues Husson | 2024-11-29 | Tell Unihertz/Agold we are not a GSI. Fixes aux cam on Jelly Max
+frameworks/av | 715159b | Pierre-Hugues Husson | 2024-02-10 | Allow using camera modes declared in Samsung proprietary values
+frameworks/av | e6810df | Pierre-Hugues Husson | 2024-02-07 | Include Samsung AIDL camera ids
+frameworks/av | 5a26899 | Alberto Ponces | 2023-11-05 | Add a prop to fix echo on incoming or outgoing calls
+frameworks/av | 5498878 | Pierre-Hugues Husson | 2023-10-30 | Add a prop to disable AUDIO_OUTPUT_FLAG_FAST from audio policies, when CPU can't really handle that kind of load
+frameworks/av | e97b9a7 | Alberto Ponces | 2023-04-30 | audiopolicy: Fix broken mic while video recording on some Exynos devices
+frameworks/av | 9c197f0 | ponces | 2022-10-24 | voip: Fix high pitched voice on Qualcomm devices
+frameworks/av | 14fe148 | Pierre-Hugues Husson | 2022-04-16 | Add a prop to change Samsung flash strength
+frameworks/av | bb0a6b6 | Pierre-Hugues Husson | 2021-03-28 | Use a fake volume policy when none has been found
+frameworks/av | 74ca0f2 | Pierre-Hugues Husson | 2021-03-28 | Not all sources in a route are valid. Dont ignore the whole route because of one broken source
+frameworks/av | cf07bee | Pierre-Hugues Husson | 2021-03-13 | Support Samsung R multi-cams
+frameworks/av | 0746b5b | Pierre-Hugues Husson | 2020-12-21 | Make camera IDs filter-out optional
+frameworks/av | b347bc8 | Pierre-Hugues Husson | 2020-09-12 | No longer make re-assigning legacy audio groups fatal. Mi9 declares AUDIO_STREAM_PATCH and AUDIO_STREAM_REROUTING which is defined by framework too
+frameworks/av | 60e2600 | Pierre-Hugues Husson | 2018-04-24 | FIH devices: Fix "Earpiece" audio output
+frameworks/av | c56d236 | Pierre-Hugues Husson | 2020-05-19 | Add a property to force camera timestamp source
+frameworks/av | 4de461a | Pierre-Hugues Husson | 2020-05-14 | Add persist.sys.phh.samsung.camera_ids property to access hidden Samsung cameras
+frameworks/av | 234cee0 | Pierre-Hugues Husson | 2020-04-13 | There are three SCO devices. Fallback from one to the others if needed
+frameworks/av | 78d624c | Peter Cai | 2022-06-01 | camera: Implement property to override default camera
+frameworks/av | c3d36b9 | Peter Cai | 2020-01-23 | audiopolicy: try again with trimmed audio port name if not found
+frameworks/av | 95eb89b | Peter Cai | 2022-08-25 | APM: Remove A2DP audio ports from the primary HAL
+frameworks/av | d0900ad | Peter Cai | 2022-08-24 | APM: Optionally force-load audio policy for system-side bt audio HAL
+frameworks/av | ffb956b | Pierre-Hugues Husson | 2019-10-01 | Add (partial, cam id is hardcoded) support for Asus ZF6 motor camera
+frameworks/av | b03e4a0 | Pierre-Hugues Husson | 2019-08-05 | Fix BT in-call on CAF devices
+frameworks/av | 415c1dc | Peter Cai | 2022-08-18 | APM: Restore S, R and Q behavior respectively for telephony audio
+frameworks/base | 970e3f27e | pixelos-gsi | 2026-10-09 | partial: 0033-keyguard-fall-back-to-the-primary-bouncer-when-the-s.patch
+frameworks/base | c6e43fce0 | pixelos-gsi | 2026-10-09 | partial: 0011-skip-fs-verity-on-kernels-that-don-t-support-it.patch
+frameworks/base | ed20e8624 | pixelos-gsi | 2026-10-09 | partial: 0036-Fix-brightness-slider-curve-for-some-devices.patch
+frameworks/base | de2cec1a8 | pixelos-gsi | 2026-10-09 | partial: 0006-Implement-a-persistent-property-to-override-the-defa.patch
+frameworks/base | e614708f4 | pixelos-gsi | 2026-10-09 | overlays: add a gestural navigation mode overlay without the
+frameworks/base | 2d349749f | Langsdorff | 2026-10-03 | inputmethod: drop the ime navigation bar when it has no visible buttons
+frameworks/base | 5bb1d422e | pixelos-gsi | 2026-10-09 | settingslib: make the linear brightness curve map the slider
+frameworks/base | df8674491 | pixelos-gsi | 2026-10-09 | inputmethod: add a setting to hide the ime back button in the
+frameworks/base | c9a601812 | Langsdorff | 2026-09-30 | display: drive the samsung sysinput aidl hal around display power changes
+frameworks/base | 2cfb5c954 | Christopher A. Williamson | 2026-09-30 | systemserver: drop the ranging service start
+frameworks/base | 9d8f2680d | Christopher A. Williamson | 2026-09-29 | disable the aiseal test modules on the gsi
+frameworks/base | 227135743 | Christopher A. Williamson | 2026-09-29 | frameworks: drop the AvfBuildFlags dep from services.core
+frameworks/base | 9095132b4 | Christopher A. Williamson | 2026-09-29 | frameworks: drop framework-virtualization from the api module lists
+frameworks/base | 2796d1742 | Christopher A. Williamson | 2026-09-28 | frameworks: drop the framework-virtualization build refs references
+frameworks/base | 6f21611cb | Christopher A. Williamson | 2026-09-28 | remove aiseal and npu framework clients
+frameworks/base | 36860f1ac | Christopher A. Williamson | 2026-09-28 | framework: drop unconditional framework-virtualization refs references
+frameworks/base | a24cc7164 | Christopher A. Williamson | 2026-09-28 | platform_bootclasspath: drop the virt fragment reference
+frameworks/base | 36b229b6c | Christopher A. Williamson | 2026-09-22 | core api: add entries for restored FDE and network class APIs
+frameworks/base | 02caacb9b | Christopher A. Williamson | 2026-06-21 | skip fake hw-keyboard in DisplayContent config
+frameworks/base | 3d23b1be5 | dozeofffff | 2026-05-10 | Record event to prop for oplus fingerprint sensor actuation
+frameworks/base | dee6b0c54 | Christopher A. Williamson | 2026-09-25 | Bitmap: scale down bitmaps and tolerate seal failures on legacy kernels
+frameworks/base | ede06a66e | Christopher A. Williamson | 2026-05-23 | voiceinteraction: disable assistant screenshot on kernels below 4.14
+frameworks/base | 4200e782a | Christopher A. Williamson | 2026-05-07 | EuiccManager: force-enable when eUICC slots are forced via prop
+frameworks/base | f5db5e3dd | Christopher A. Williamson | 2026-04-26 | deviceidle: auto-disable AnyMotionDetector on MTK devices
+frameworks/base | 27bb35174 | Christopher A. Williamson | 2026-04-01 | fall back to sysfs touch poke when samsung sysinput HAL is missing
+frameworks/base | 5dd4d8fbd | rmp22 | 2026-03-25 | add performance activity animation override for low-end MTK devices
+frameworks/base | af7d7f9d1 | Christopher A. Williamson | 2026-03-13 | SettingsProvider: Fix NPE in SSAID migration on legacy vendor partitions
+frameworks/base | 56b5d70cf | Christopher A. Williamson | 2026-02-16 | NetworkRegistrationInfo: conditionally force LTE carrier aggregation
+frameworks/base | 321375429 | Christopher A. Williamson | 2026-02-16 | TelephonyManager: add prop to force SIM slot count
+frameworks/base | 72d4ae1cd | OpenCode | 2026-02-16 | Catch NoSuchElementException in Watchdog HIDL lookup
+frameworks/base | 1a987c76f | Christopher A. Williamson | 2026-03-17 | Add system property overrides for status bar and corner geometry
+frameworks/base | ab32d51b1 | Christopher A. Williamson | 2026-04-10 | power: vendor HAL compatibility suppressions
+frameworks/base | 2bbb17487 | Pierre-Hugues Husson | 2026-02-04 | Allow a prop to override DOZE_SUSPEND to DOZE for AoD if device doesnt support DOZE_SUSPEND
+frameworks/base | f0798b6ae | TBM13 | 2025-03-26 | Prefer HIDL when AIDL fingerprint sensor is "virtual"
+frameworks/base | a3b56f68e | pixelos-gsi | 2026-10-09 | frameworks_base: add gnss as a fallback time source with a disable toggle
+frameworks/base | 546c870c7 | pixelos-gsi | 2026-10-09 | SystemUI: toggle flashlight on Click for binary flashlights
+frameworks/base | f8128d7c1 | Christopher A. Williamson | 2026-09-26 | wallpaper: enable per-screen default wallpaper properties
+frameworks/base | c4ed89374 | Christopher A. Williamson | 2026-06-23 | NMS: hide the treble_app foreground-service notification
+frameworks/base | ba1168de8 | Christopher A. Williamson | 2026-03-11 | Skip multiArch ABI forceMatch for system apps
+frameworks/base | 06a3bc103 | Pierre-Hugues Husson | 2025-06-16 | Not all kernel support splicing pipes (or is it sockets?), so gracefully fallback to dumb userspace copy when splice() fails
+frameworks/base | 89998849e | electimon | 2025-04-01 | HintManagerService: Generate dummy mSupportInfo for non power AIDL devices
+frameworks/base | a0dd33d46 | Jonathan Klee | 2024-12-12 | Allow spoofing signingInfo for microG Companion/Services
+frameworks/base | 288ed96e3 | Peter Cai | 2024-12-21 | Add support for treating virtual biometric sensors as real ones
+frameworks/base | a3769a4b4 | Andy CrossGate Yan | 2024-07-07 | Allow APKs of a certain signature to install/work like platform-signed
+frameworks/base | d23569d5b | Pierre-Hugues Husson | 2024-05-08 | Add a prop to disable animation in for sysui media carousel
+frameworks/base | a53605058 | Pierre-Hugues Husson | 2024-04-17 | Don't crash system_server if we fail to parse dynamic udfps position
+frameworks/base | 54f8f8dd8 | pixelos-gsi | 2026-10-09 | Allow signature spoofing for microG Companion/Services
+frameworks/base | f4dc8ff6f | Pierre-Hugues Husson | 2024-02-21 | Include vendor.samsung.hardware.radio-V2.2-java HIDL in base libs, will be used by f/o/telephony
+frameworks/base | 05fc4f592 | Pierre-Hugues Husson | 2024-02-21 | Include vendor.samsung.hardware.radio.network-V1-java in base libs, will be used by f/o/telephony
+frameworks/base | e2c38f68e | Pierre-Hugues Husson | 2024-02-04 | Some Samsung devices use SW_FLIP 0x15 rather than SW_MACHINE_COVER 0x10, so use that
+frameworks/base | 94dfbfc16 | Pierre-Hugues Husson | 2024-01-29 | Bunch of FOD stuff -- commonize refreshing the services, start supporting AIDL Samsung
+frameworks/base | 5456fe5d6 | Pierre-Hugues Husson | 2024-01-29 | Add Samsung sysinput
+frameworks/base | 1b9ac4f9c | Pierre-Hugues Husson | 2023-12-10 | Add support for Samsung full brightness on their AIDL HAL
+frameworks/base | 8e1287a87 | pixelos-gsi | 2026-10-09 | Add a prop to use linear backlight control
+frameworks/base | 98fa14dc1 | Pierre-Hugues Husson | 2023-10-18 | Samsung tablets use SW_MACHINE_COVER rather than SW_LID
+frameworks/base | 95c445ea3 | Pierre-Hugues Husson | 2023-10-18 | Ignore cgroup creation errors
+frameworks/base | b9b06abb9 | pixelos-gsi | 2026-10-09 | FOD support for Asus, Samsung recent Xiaomi and
+frameworks/base | bdae1d6dd | Pierre-Hugues Husson | 2021-12-27 | Once we integrate Samsung Power hal in libpowermanager, libpowermanager and its deps require linking against vendor.samsung.hardware.miscpower@2.0
+frameworks/base | 88c52f272 | Pierre-Hugues Husson | 2023-10-06 | Catch NPE in SystemUI
+frameworks/base | f9b5664ea | Andy CrossGate Yan | 2023-08-12 | Add runWithCleanCallingIdentity variant with both executor and return value
+frameworks/base | 91da24be2 | Andy CrossGate Yan | 2023-08-02 | Restore getSimStateForSlotIndex in SubscriptionManager
+frameworks/base | 9509a674e | Pierre-Hugues Husson | 2023-07-05 | Detect Moto dynamic hardware feature
+frameworks/base | 86e42a125 | Pierre-Hugues Husson | 2023-06-17 | Add Mediatek power hints on touch
+frameworks/base | e10e0ce34 | Pierre-Hugues Husson | 2023-06-02 | Try catch around constrainNitsAndBacklightArrays, and falls back to dumb curve. It crashes on Xperia 1 IV.
+frameworks/base | 6855b683e | Pierre-Hugues Husson | 2022-12-14 | Call Samsung's ISehSysInputDev to report screen state to touchscreen driver
+frameworks/base | 260d88922 | Pierre-Hugues Husson | 2022-12-03 | Set old fingerprint sensors to security "strong"
+frameworks/base | abf47996f | Andy CrossGate Yan | 2022-10-15 | Revert "Remove more FDE methods from StorageManager"
+frameworks/base | f42712388 | Pierre-Hugues Husson | 2021-12-20 | Dynamically resize boot animation to match screen size
+frameworks/base | 54cc2e33f | pixelos-gsi | 2026-10-09 | Allow disabling of fingerprint cleanups, needed on some
+frameworks/base | fe2b1faa4 | Pierre-Hugues Husson | 2018-03-24 | backlight: Fix backlight control on Galaxy S9(+)
+frameworks/base | 5b0674d76 | Pierre-Hugues Husson | 2021-03-23 | Catch broken mainBuiltInDisplayCutoutRectApproximation
+frameworks/base | 8dd4bf4d2 | Pierre-Hugues Husson | 2021-03-20 | Automatically detect pick up sensor, so that an overlay is required for the sole purpose of enabling pulse doze on pick up sensor
+frameworks/base | 08d635d4e | Peter Cai | 2020-12-16 | TelephonyManager: add API annotations for setTelephonyProperty
+frameworks/base | 5a6b49593 | Peter Cai | 2020-12-16 | TelephonyManager: bring back getNetworkClass()
+frameworks/base | a0febcbb0 | Peter Cai | 2020-12-16 | Revert "Remove unused SystemProperties.set"
+frameworks/base | 0fff8dc5e | Pierre-Hugues Husson | 2020-09-29 | Fix brightness range not being complete on Samsung devices
+frameworks/base | b29bfbaab | Pierre-Hugues Husson | 2020-09-29 | Some devices have proximity sensor reporting NaN as max range for some reason. Make them behave standard way by setting 5 cm
+frameworks/base | cdecd9bf1 | Pierre-Hugues Husson | 2020-06-06 | HOME deserves to wake-up devices just as well as back and menu
+frameworks/base | d416f9aba | Pierre-Hugues Husson | 2020-04-05 | Always allow overriding the number of work profiles
+frameworks/base | 86c7f3cc2 | Pierre-Hugues Husson | 2019-08-12 | Add support for samsung touch, physical and hover proximity sensor as fallback to real proximity sensor
+frameworks/base | 90d13fafc | Pierre-Hugues Husson | 2019-03-24 | Support samsung Pie and Q light hal
+frameworks/base | 323737f29 | Pierre-Hugues Husson | 2018-11-08 | Re-order services so that it works even without qtaguid
+frameworks/base | abad1fa2c | Pierre-Hugues Husson | 2018-05-17 | Don't crash if there is IR HAL is not declared
+frameworks/base | c96b86383 | pixelos-gsi | 2026-10-09 | Relax requirement for visible flag to sdcards
+frameworks/base | 6693efc41 | Raphael Mounier | 2022-08-06 | Fix env empty string - ANDROID_STORAGE
+frameworks/base | f9d41fff7 | Pierre-Hugues Husson | 2021-10-05 | Fallback to stupid autobrightness if brightness values are broken
+frameworks/base | a7858c675 | Andy CrossGate Yan | 2018-04-05 | Disable vendor mismatch warning
+frameworks/native | b236c70 | Christopher A. Williamson | 2026-10-02 | renderengine: detect vendor EGL driver init failures
+frameworks/native | 18858f4 | Christopher A. Williamson | 2026-10-02 | renderengine: don't abort on buffers without gpu usage flags
+frameworks/native | 2592a14 | Christopher A. Williamson | 2026-09-29 | grant rpc servicemanager aidl visibility to the gsi stubs
+frameworks/native | 13fdaed | Christopher A. Williamson | 2026-09-29 | disable the aiseal host service on the gsi
+frameworks/native | 927d974 | Christopher A. Williamson | 2026-04-08 | BLASTBufferQueue: avoid recursive mMutex during initialize
+frameworks/native | 0fe5f9b | Christopher A. Williamson | 2026-04-03 | fix display power-on for vendor HWCs with stale bootloader state
+frameworks/native | d6db9e2 | Christopher A. Williamson | 2026-03-12 | Stall GpuWork on kernels without gpu_work_period tracepoint
+frameworks/native | 47ea498 | Christopher A. Williamson | 2026-03-19 | SurfaceFlinger: Restore mPropagateBackpressure for HWC backpressure control
+frameworks/native | 7b91947 | Christopher A. Williamson | 2026-04-10 | power: read blocked_power_modes property in PowerAdvisor
+frameworks/native | 7f8debe | Peter Cai | 2025-03-16 | Revert "Remove dead code from LayerFE"
+frameworks/native | b6db5ab | WUKAWL | 2025-04-03 | Fix touch on MEIZU 21 Pro (#1)
+frameworks/native | ad56ad5 | Andy CrossGate Yan | 2024-08-17 | Fix touch on Meizu 21 / Note
+frameworks/native | b8a6cc2 | Andy CrossGate Yan | 2024-05-26 | SurfaceFlinger: Disable SF HWC backpressure
+frameworks/native | b67badb | Pierre-Hugues Husson | 2024-05-07 | Disable gpuservice on old BPF-less kernel
+frameworks/native | 56c2edd | Pierre-Hugues Husson | 2024-02-03 | Increase SW_MAX *= 4
+frameworks/native | 09c117b | Pierre-Hugues Husson | 2023-12-20 | Fix loading unnamed GLES
+frameworks/native | 95f848b | Pierre-Hugues Husson | 2023-11-25 | Add MTK GED KPI support to fix broken Mediatek gpufreq
+frameworks/native | 2a22ad8 | Pierre-Hugues Husson | 2022-12-18 | FOD support for Samsung and Asus
+frameworks/native | 15971a8 | Pierre-Hugues Husson | 2021-12-27 | powermanager: Add support Samsung miscpower HAL
+frameworks/native | 31928d8 | Pierre-Hugues Husson | 2022-03-25 | MIUI13 devices hide their vibrator HAL behind non-default name: "vibratorfeature"
+frameworks/native | 6291424 | Pierre-Hugues Husson | 2021-12-12 | Mark accelerometer input as sensor exclusively if there are ABS axis
+frameworks/native | a1703ff | Pierre-Hugues Husson | 2021-03-31 | Remove Samsung system permission on sensors
+frameworks/native | 7d1bd85 | Pierre-Hugues Husson | 2021-01-05 | unshared_oob didn't exist in O/P, so detect its supported based on vndk version
+frameworks/native | 1323e41 | Pierre-Hugues Husson | 2020-10-22 | Matching an input with a display uses uniqueId
+frameworks/native | ba4ed87 | Pierre-Hugues Husson | 2019-08-14 | On Samsung, we need to send a hack-message to HAL to get all Sensors
+frameworks/opt/net/ims | 4cc73ff | Christopher A. Williamson | 2026-03-12 | ImsCall: Auto-detect and correct inverted hold/resume callbacks
+frameworks/opt/net/ims | c9c1708 | Pierre-Hugues Husson | 2021-11-14 | Pie MTK IMS calls static ImsManager.updateImsServiceConfig(Context,int,boolean). Bring it back
+frameworks/opt/telephony | 1cbafa1 | Langsdorff | 2026-09-30 | SimPhonebookRecordCache: fall back to SIM_IO ADN when the modem rejects the phonebook capacity query
+frameworks/opt/telephony | 810c225 | Christopher A. Williamson | 2026-05-09 | UiccSlot: force eUICC detection and EuiccCard creation for non-standard eSIM
+frameworks/opt/telephony | 73c2008 | ironydelerium | 2021-12-31 | Reintroduce TelephonyMetrics stub for MediaTek IMS compatibility
+frameworks/opt/telephony | 960de8f | mytja | 2025-03-30 | Allow for SMSC patching to be configurable
+frameworks/opt/telephony | 863bc2f | Pierre-Hugues Husson | 2025-01-11 | Samsung SMSC: When we receive those weird SMSC, actually parse it because even in 2025 we still need SMSC for some carriers
+frameworks/opt/telephony | ad94d6e | Pierre-Hugues Husson | 2024-02-25 | When reading SMSC, ignore invalid SMSC
+frameworks/opt/telephony | 5985fff | Pierre-Hugues Husson | 2024-02-21 | Initialize Samsung HIDL ISehRadio. Fixes 5G on S20 Ultra
+frameworks/opt/telephony | 00c0c13 | Pierre-Hugues Husson | 2024-02-21 | Initialize Samsung AIDL ISehRadioNetwork. Fixes 5G on S24
+frameworks/opt/telephony | 92bbfe5 | Pierre-Hugues Husson | 2023-10-17 | When logging UiccSlot, ignore error if we cant print IccIds
+frameworks/opt/telephony | 92e229f | Christian Hoffmann | 2022-10-21 | Fix NPE with 1.0 and 1.1 CardStatus
+frameworks/opt/telephony | 212e9d6 | Pierre-Hugues Husson | 2021-12-06 | Fix baseband being too long to fit into a 91 chars property, preventing telephony subsystem from starting
+frameworks/opt/telephony | 4e0e0ad | Artem Borisov | 2018-11-10 | Telephony: Don not call onUssdRelease for Huawei RIL
+frameworks/opt/telephony | 7604c8c | Peter Cai | 2022-09-05 | SubscriptionController: Do not override default calling account from third-party apps
+hardware/interfaces | de61a92 | Christopher A. Williamson | 2026-09-28 | restore legacy HAL interfaces and matrices
+hardware/interfaces | 39b55fb | Pierre-Hugues Husson | 2023-10-24 | Fix crash on Samsung S23 using stock properties, because of sensor reporting vec3 instead of scalar. Likely the device orientation sensor
+hardware/interfaces | dff0e2c | Andy CrossGate Yan | 2023-04-18 | Fix light sensor crash on Xiaomi 13
+hardware/interfaces | 16a456d | Pierre-Hugues Husson | 2021-12-19 | Add a vendor800 command, to be able to call vendor-specific hwc functions
+kernel/configs | 372b928 | pixelos-gsi | 2026-10-09 | partial: 0001-Restore-old-kernel-configs-and-lower-version-require.patch
+packages/apps/Settings | aad45d5 | pixelos-gsi | 2026-10-09 | partial: 0001-settings-drop-the-vm-capability-check-from-the-lin.patch
+packages/apps/Settings | b4ba1c5 | Langsdorff | 2026-10-03 | gestures: add a toggle to hide the gesture navigation handle
+packages/apps/Settings | 1a86350 | Christopher A. Williamson | 2026-05-30 | AssistScreenshot: show legacy kernel warning when feature is unavailable
+packages/apps/Settings | fcc22fb | Christopher A. Williamson | 2026-02-16 | Hide OEM unlocking toggle from Developer Options
+packages/apps/Settings | 16bf9ee | Christopher A. Williamson | 2026-09-28 | settings: drop the framework-virtualization stub dep
+packages/apps/Settings | 3be206d | Christopher A. Williamson | 2026-05-28 | AppPermissionPreference: warn when BPF-based firewall is unavailable
+packages/apps/Settings | 048eea6 | Christopher A. Williamson | 2026-03-28 | Skip biometric enrollment gracefully when no hardware is available
+packages/apps/Settings | 45e4750 | Alberto Ponces | 2023-11-02 | Revert "[Wi-Fi] Check if domain field is not empty when users choose a ca certificate"
+packages/apps/Settings | 5c6046f | TogoFire | 2021-08-06 | Revert "[Wi-Fi] Remove 'Do not validate' option in CA certificate spinner"
+packages/apps/Settings | 41dc541 | Pierre-Hugues Husson | 2022-05-02 | Ignore cancelled fingerprint events, they are expected, plus add more fingerprint enroll logs
+packages/apps/Settings | 4d84ee2 | Pierre-Hugues Husson | 2018-08-14 | Act as usb device when there is no hal, but we believe we are a device
+packages/modules/AppSearch | 57a287f | Christopher A. Williamson | 2026-09-28 | appsearch: neuter the isolated storage service
+packages/modules/Bluetooth | c4a9df7 | pixelos-gsi | 2026-10-09 | partial: 0001-bluetooth-legacy-controller-and-kernel-tolerance.patch
+packages/modules/Bluetooth | 2760c7c | wbs306 | 2023-01-20 | gd: hci: Ignore command READ_REMOTE_VERSION_INFORMATION result if it doesn't in command_queue_
+packages/modules/Bluetooth | a8e5e34 | Pierre-Hugues Husson | 2023-05-30 | Add a property to cap declared le vendor version. Found needed on unisoc
+packages/modules/Bluetooth | 4f06589 | Pierre-Hugues Husson | 2023-05-27 | Add properties to disable some features/commands/states that the ble chip declared but doesnt actually support
+packages/modules/Bluetooth | ce43e11 | Andreas Schneider | 2022-11-12 | On Samsung devices, we need to tell Audio HAL if we're running narrow band or wide band
+packages/modules/Bluetooth | aaecc82 | Pierre-Hugues Husson | 2021-10-17 | Don't abort when failing to get real-time priority
+packages/modules/Bluetooth | 0593da4 | Alberto Ponces | 2021-06-17 | Add option to change eSCO Transport Unit Size
+packages/modules/Bluetooth | 305e62b | DerTeufel | 2023-01-04 | Don't crash on status:UNSUPPORTED_REMOTE_OR_LMP_FEATURE
+packages/modules/Bluetooth | d7ac92e | Peter Cai | 2022-08-24 | audio_hal_interface: Optionally use sysbta HAL
+packages/modules/Connectivity | 524153f | pixelos-gsi | 2026-10-09 | connectivity: tolerate BPF-less legacy kernels
+packages/modules/Connectivity | 3e7d051 | Langsdorff | 2026-10-02 | bpfnetmaps: keep system_server up when lpm_trie maps cannot be iterated on pre-4.16 kernels
+packages/modules/Connectivity | 67a0303 | Christopher A. Williamson | 2026-10-01 | libeventpolling: degrade gracefully when the ringbuf maps are missing
+packages/modules/Connectivity | 8d195a9 | Christopher A. Williamson | 2026-10-01 | netbpfload: drop reboot_on_failure from the loader rc files
+packages/modules/Connectivity | aab98c3 | Pierre-Hugues Husson | 2025-06-16 | Some additional handling of bpf-less device
+packages/modules/Connectivity | 9211c40 | Pierre-Hugues Husson | 2024-10-17 | Additional bpf prevent-crash
+packages/modules/Connectivity | b937455 | Alberto Ponces | 2024-06-20 | Revert "netdupdatable: add back abort() on init() fail"
+packages/modules/Connectivity | a4ed70d | Pierre-Hugues Husson | 2024-05-15 | More bpf errors ignore -- there are some 4.14 without the bpf jit file
+packages/modules/Connectivity | 3b88f8c | Michael Bestas | 2024-03-15 | netd: Remove <4.14 kernel restrictions
+packages/modules/Connectivity | 85f3a8c | Peter Cai | 2024-03-16 | Revert "drop support for V gsi on pixel 5 R base kernel"
+packages/modules/Connectivity | 216e18a | koron393 | 2023-01-20 | Bring back traffic indicators for legacy devices
+packages/modules/Connectivity | 6d9ff20 | Pierre-Hugues Husson | 2022-10-26 | Support non-working BPF maps on old BPF-less kernel
+packages/modules/Connectivity | ba06b6e | Pierre-Hugues Husson | 2022-10-26 | Allow failing to load bpf programs, for BPF-less devices
+packages/modules/DeviceLock | afa2b3f | Pierre-Hugues Husson | 2023-10-18 | Don't crash when we get no DeviceLockManager
+packages/modules/DnsResolver | f4d6582 | Christopher A. Williamson | 2026-03-04 | Replace Google DoH providers with Quad9
+packages/modules/RemoteKeyProvisioning | 3f2297b | Christopher A. Williamson | 2026-09-29 | disable the avf rkpd integration tests on the gsi
+packages/modules/Wifi | d159554 | Pierre-Hugues Husson | 2024-02-21 | Add persist.sys.phh.wifi_disable_sae property to disable WPA2=>WPA3 upgrades
+packages/modules/common | 092c48f | Christopher A. Williamson | 2026-09-29 | drop the virtualization apex from the aosp mainline modules list
+packages/modules/vndk | 9ff3ee6 | pixelos-gsi | 2026-10-09 | vndk: drop v28 v29 v30 apexes
+packages/modules/vndk | f0c943b | Christopher A. Williamson | 2026-02-04 | Revert "Removing vndk apex v30"
+packages/modules/vndk | 0965943 | Alberto Ponces | 2025-03-25 | Revert "Remove VNDK v28"
+packages/modules/vndk | b4e6c2b | Alberto Ponces | 2025-03-25 | Revert "Removing vndk apex v29"
+packages/providers/DownloadProvider | 69e6f08 | Christopher A. Williamson | 2026-09-26 | DownloadProvider: don't trust stale uids for user-initiated jobs
+prebuilts/sdk | dc24ef90 | Christopher A. Williamson | 2026-09-29 | sdk: drop the aiseal package from the api 37 latest api text
+system/apex | 9463098 | Pierre-Hugues Husson | 2024-05-07 | Disable O_DIRECT for old kernels
+system/bpf | 8965458 | Christopher A. Williamson | 2026-03-17 | bpfloader: relax kernel version gates and fatal errors for GSI
+system/bpf | d3c7baa | Pierre-Hugues Husson | 2025-06-16 | Prepare for the future: making bpfloader.rs fails all non-panic
+system/bpf | 2b27ec6 | Pierre-Hugues Husson | 2021-10-13 | Support no-bpf usecase
+system/core | d1d7a9c | Christopher A. Williamson | 2026-09-28 | libprocessgroup and init carry several assumptions that break on legacy vendor kernels: cgroup v2-only controllers, memcg layout expected by lmkd, selinux policy versions old kernels cannot compile, erofs restorecon behaviour, xperms cil rules and cgroup.procs write races. the patches form one dependent chain against the same files, so they are merged into a single legacy kernel tolerance change.
+system/core | b8bac7a | pixelos-gsi | 2026-10-09 | fuzz-applied patch
+system/core | 904f3e4 | Chrisopher A. Williamson | 2026-02-04 | Required by the session keyring workaround for older kernels. AOSP removed this in Android 16, but GSI/Treble builds need it to support devices with kernels < 4.8 that lack filesystem-level keyring support.
+system/core | 836118c | Christopher A. Williamson | 2026-10-05 | ueventd: restore legacy config paths for pre-S vendors
+system/core | 28999f8 | Alberto Ponces | 2024-10-20 | Revert "init: remove session keyring workaround for old kernels"
+system/core | 8244bdc | Pierre-Hugues Husson | 2024-04-02 | Flattened apexes no longer exist, we'll deal with it another way
+system/core | 461efb4 | Pierre-Hugues Husson | 2023-11-23 | HACK: Ignore errors when setting fscrypt directory. Some devices fail to set it on first boot, but is happy later (?!?)
+system/core | 9cbb0ef | Huy Hoang | 2023-10-19 | fix: Nubia 6 series custom rc action prop validation
+system/core | 7c2fe7f | Pierre-Hugues Husson | 2022-10-26 | Fix support for devices without cgroupv2 support
+system/core | f1c5b86 | pixelos-gsi | 2026-10-09 | Ignore dm-verity and AVB setup failures
+system/core | 14bffd5 | Pierre-Hugues Husson | 2023-07-11 | Add /vendor/firmware_mnt. Moto Razr 2019 look for firmwares (modem, sensors, ...) there
+system/core | 8113eb6 | Raphael Mounier | 2023-05-21 | healthd : offline charger fix screen off 3/3
+system/core | 74aba16 | Pierre-Hugues Husson | 2023-05-27 | watchdogd: Support pinging two watchdogs
+system/core | 51c73ef | Pierre-Hugues Husson | 2022-01-22 | Add my own OTA mechanism going over /data (1/2)
+system/core | 95669dc | Alberto Ponces | 2022-02-01 | Revert "Set /system/xbin permissions to 750."
+system/core | a99242e | Pierre-Hugues Husson | 2019-11-01 | Ugly but secure: Set /dev/uinput as 0666 to fix fingerprint sensor on some devices
+system/core | 814d2ea | Pierre-Hugues Husson | 2018-08-14 | Detect allowed sdcard options based on vndk
+system/core | eb333f3 | Pierre-Hugues Husson | 2019-09-04 | Panic into recovery rather than bootloader
+system/core | 1fb460e | Isaac Chen | 2021-06-23 | init: Do not start console service when debuggable
+system/core | f9fb3d7 | Pierre-Hugues Husson | 2020-10-18 | Don't abandon creating property tree if there is a conflict, and hope for the best
+system/core | 61d5ef2 | Christopher A. Williamson | 2026-09-25 | property_service: system override policy for apex, adb and logd props
+system/extras | 971270e | Christopher A. Williamson | 2026-05-19 | bootctl: add BOOTCTL_V1_1 to version string mapping
+system/extras | a408115 | Luca Stefani | 2020-09-09 | libfscrypt: Bail out if we can't open directory
+system/fs/fs_mgr | ef52f27 | Christopher A. Williamson | 2026-09-28 | fs_mgr: legacy storage compatibility
+system/fs/fs_mgr | 4c84820 | Pierre-Hugues Husson | 2022-01-22 | Add my own OTA mechanism going over /data (2/2)
+system/linkerconfig | 16b46a3 | Pierre-Hugues Husson | 2021-10-27 | Disable vndklite handling
+system/memory/lmkd | 6a145db | Christopher A. Williamson | 2026-03-24 | Auto-promote to new kill strategy on cgroup v2
+system/netd | 34d11fe | Christopher A. Williamson | 2026-10-02 | netd: don't restart zygote when netd restarts
+system/netd | a1ec305 | Christopher A. Williamson | 2026-03-25 | make dnsmasq communication failures non-fatal for tethering
+system/netd | b8e489f | Christopher A. Williamson | 2026-03-25 | fix iptables COMMIT#PING parse error in tethering CT helper rules
+system/netd | c1dfd62 | Christopher A. Williamson | 2026-05-29 | netd: drop POSIX_SPAWN_CLOEXEC_DEFAULT to fix dnsmasq crash on some devices
+system/netd | 7011e9d | Pierre-Hugues Husson | 2022-10-26 | Don't abort in case of cgroup/bpf setup fail, since some devices dont have BPF
+system/netd | 51b831d | ChonDoit | 2022-10-07 | Support no-bpf usecase
+system/netd | b3294da | Pierre-Hugues Husson | 2019-07-29 | Don't fail on FTP conntracking failing
+system/netd | 1cc1d41 | Pierre-Hugues Husson | 2018-07-02 | Huawei Kirin 960:: accept broken rpfilter match
+system/security | 78e25d7 | Christopher A. Williamson | 2026-09-27 | keystore2: wait for the keymint backend instead of aborting
+system/sepolicy | d34efd1 | Christopher A. Williamson | 2026-10-04 | sepolicy: restore /dev/ion access for the keymaster hal
+system/sepolicy | 339df31 | Christopher A. Williamson | 2026-10-02 | sepolicy: restore /dev/ion access for the graphics stack
+system/sepolicy | cdb12e5 | Christopher A. Williamson | 2026-09-28 | gate ranging_service in pcc_component on the ranging flag
+system/sepolicy | 105343d | Christopher A. Williamson | 2026-09-27 | declare early_virtmgr types unconditionally
+system/sepolicy | 78be77d | Christopher A. Williamson | 2026-04-09 | sepolicy: ship plat_sepolicy_genfs_202404.cil for legacy vendor partitions
+system/sepolicy | 9aa243a | Christopher A. Williamson | 2026-02-17 | Allow fingerprint HAL to read serialno_prop
+system/sepolicy | 9ae00ef | Christopher A. Williamson | 2026-06-10 | sepolicy: label dmabuf filesystem to fix camera video recording
+system/sepolicy | 0576216 | Christopher A. Williamson | 2026-04-20 | sepolicy: allow crash_dump to ptrace init for GSI tombstone capture
+system/sepolicy | 5592bbc | Christopher A. Williamson | 2026-03-30 | allow TrebleDroid permissive domains in user builds
+system/sepolicy | fdd5c75 | danielzhang130 | 2024-04-12 | Fix sepolicy for kernel < 5.10 that doesn't support bpf file context (#1)
+system/sepolicy | 8362014 | Christopher A. Williamson | 2026-09-25 | Revert removal of 28.0-30.0 SEPolicy compat support
+system/vold | 1e671c5 | Christopher A. Williamson | 2026-04-24 | vold: use sdcardfs as fallback when FUSE BPF is unavailable
+system/vold | e16b043 | pixelos-gsi | 2026-10-09 | Revert "vold: remove session keyring workaround for old
+system/vold | a267f82 | Pierre-Hugues Husson | 2020-03-11 | Every voldmanaged storage is adoptable
+system/vold | 9becde2 | Pierre-Hugues Husson | 2022-10-18 | Exfat can be mounted with "exfat" kernel fs driver, or "sdfat" or "texfat" (Samsung and Sony variants)
+system/vold | 7d6ac17 | Pierre-Hugues Husson | 2021-11-29 | Don't unmount rw-system.sh binds
+system/vold | 1d77612 | Pierre-Hugues Husson | 2020-03-07 | Failing to create facedata shouldn't be fatal
+system/vold | e5c5c49 | Pierre-Hugues Husson | 2018-02-17 | Allow deletion of symlink
+test/vts-testcase/hal | 460bb7d | Christopher A. Williamson | 2026-09-29 | disable the trusty hal vintf test on the gsi
+trusty/device/desktop | a80e161 | Christopher A. Williamson | 2026-09-29 | disable the arm64 desktop trusty boot images on the gsi
+trusty/vendor/google/aosp | 81c88a6 | Christopher A. Williamson | 2026-09-29 | disable the trusty desktop vm images on the gsi
+vendor/apn | 5a50c1a | Christopher A. Williamson | 2026-06-01 | apn: add TRACFONE.VZWENTP for Tracfone Verizon (311480)

@@ -1,0 +1,58 @@
+diff --git a/PrivateDnsConfiguration.h b/PrivateDnsConfiguration.h
+index 4cae0c2..69b22f7 100644
+--- a/PrivateDnsConfiguration.h
++++ b/PrivateDnsConfiguration.h
+@@ -274,15 +274,15 @@ class PrivateDnsConfiguration {
+     // TODO: Move below DoH relevant stuff into Rust implementation.
+     std::map<unsigned, DohIdentity> mDohTracker GUARDED_BY(mPrivateDnsLock);
+     std::array<DohProviderEntry, 5> mAvailableDoHProviders = {{
+-            {"Google",
+-             {"2001:4860:4860::8888", "2001:4860:4860::8844", "8.8.8.8", "8.8.4.4"},
+-             "dns.google",
+-             "https://dns.google/dns-query",
++            {"Quad9",
++             {"2620:fe::fe", "2620:fe::9", "9.9.9.9", "149.112.112.112"},
++             "dns.quad9.net",
++             "https://dns.quad9.net/dns-query",
+              false},
+-            {"Google DNS64",
+-             {"2001:4860:4860::64", "2001:4860:4860::6464"},
+-             "dns64.dns.google",
+-             "https://dns64.dns.google/dns-query",
++            {"Quad9 ECS",
++             {"2620:fe::10", "2620:fe::fe:10", "9.9.9.10", "149.112.112.10"},
++             "dns10.quad9.net",
++             "https://dns10.quad9.net/dns-query",
+              false},
+             {"Cloudflare",
+              {"2606:4700::6810:f8f9", "2606:4700::6810:f9f9", "104.16.248.249", "104.16.249.249"},
+@@ -298,11 +298,11 @@ class PrivateDnsConfiguration {
+              "example.com",
+              "https://example.com/dns-query",
+              true},
+-            {"AndroidTesting",
+-             {"192.0.2.100"},
+-             "dns.androidtesting.org",
+-             "https://dns.androidtesting.org/dns-query",
+-             false},
++            {"ResolverTestProvider2",
++             {"127.0.0.4", "::1"},
++             "example.org",
++             "https://example.org/dns-query",
++             true},
+     }};
+ 
+     // Makes a DohIdentity if
+diff --git a/getaddrinfo.cpp b/getaddrinfo.cpp
+index 6738d9b..f809206 100644
+--- a/getaddrinfo.cpp
++++ b/getaddrinfo.cpp
+@@ -252,7 +252,7 @@ static bool have_local_ipv6_connectivity(unsigned mark, uid_t uid, int netid) {
+ static bool have_ipv4_connectivity(unsigned mark, uid_t uid) {
+     static const struct sockaddr_in sin_test = {
+             .sin_family = AF_INET,
+-            .sin_addr.s_addr = __constant_htonl(0x08080808L)  // 8.8.8.8
++            .sin_addr.s_addr = __constant_htonl(0x09090909L)  // 9.9.9.9
+     };
+     sockaddr_union addr = {.sin = sin_test};
+     sockaddr_storage sa;

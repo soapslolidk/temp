@@ -1,0 +1,27 @@
+From c96b86383e7161021fa1cc20d84c3c4b40ace23a Mon Sep 17 00:00:00 2001
+From: pixelos-gsi <pixelos-gsi@localhost>
+Date: Fri, 9 Oct 2026 19:20:05 +0000
+Subject: [PATCH 04/87] Relax requirement for visible flag to sdcards
+
+Change-Id: I6a28fb15b0ba740596d922df2892a656ec1f7635
+---
+ .../core/java/com/android/server/StorageManagerService.java    | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/services/core/java/com/android/server/StorageManagerService.java b/services/core/java/com/android/server/StorageManagerService.java
+index c7d9893a3..c976c337a 100644
+--- a/services/core/java/com/android/server/StorageManagerService.java
++++ b/services/core/java/com/android/server/StorageManagerService.java
+@@ -1721,7 +1721,8 @@ class StorageManagerService extends IStorageManager.Stub
+ 
+             // Adoptable public disks are visible to apps, since they meet
+             // public API requirement of being in a stable location.
+-            if (vol.getDisk().isAdoptable()) {
++            // Assume all SDs match this as well
++            if (vol.getDisk().isAdoptable() || vol.getDisk().isSd()) {
+                 vol.setMountFlags(vol.getMountFlags() | VolumeInfo.MOUNT_FLAG_VISIBLE_FOR_WRITE);
+             } else if (vol.getDisk().isSd()) {
+                 vol.setMountFlags(vol.getMountFlags() | VolumeInfo.MOUNT_FLAG_VISIBLE_FOR_WRITE);
+-- 
+2.34.1
+

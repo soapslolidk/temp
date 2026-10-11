@@ -1,0 +1,1 @@
+external/rust/android-crates-io | e78ac530 | Christopher A. Williamson | 2026-09-29 | drop the virtualization apexes from the crates availability lists

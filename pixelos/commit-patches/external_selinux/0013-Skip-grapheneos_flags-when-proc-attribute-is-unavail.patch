@@ -1,0 +1,35 @@
+From adff8bc34566a63e2a6d7761e3c0d8d3d4c7358f Mon Sep 17 00:00:00 2001
+From: pixelos-gsi <pixelos-gsi@localhost>
+Date: Fri, 9 Oct 2026 19:20:30 +0000
+Subject: [PATCH 13/15] Skip grapheneos_flags when proc attribute is
+ unavailable
+
+Change-Id: I8a543a54787b04b71f4f6f1f85a8ba87a20454ef
+---
+ libselinux/src/android/android_device.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/libselinux/src/android/android_device.c b/libselinux/src/android/android_device.c
+index 9339e8a..68e00a7 100644
+--- a/libselinux/src/android/android_device.c
++++ b/libselinux/src/android/android_device.c
+@@ -122,7 +122,15 @@ int selinux_android_setcontext(uid_t uid,
+ 
+ 	if (strcmp(ctx_str, orig_ctx_str)) {
+ 		rc = selinux_android_setcon(ctx_str);
+-		if (rc < 0)
++		if (rc < 0 && errno == ENOENT) {
++			/* Kernel does not support the grapheneos_flags proc
++			 * attribute (requires GrapheneOS kernel patches).
++			 * Silently skip -- the hardening features backed by
++			 * these flags simply won't be enforced. */
++			selinux_log(SELINUX_WARNING,
++				"%s: kernel lacks grapheneos_flags support, skipping\n",
++				__FUNCTION__);
++		} else if (rc < 0)
+ 			goto err;
+ 	}
+ 
+-- 
+2.34.1
+

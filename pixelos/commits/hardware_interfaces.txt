@@ -1,0 +1,4 @@
+hardware/interfaces | de61a92 | Christopher A. Williamson | 2026-09-28 | restore legacy HAL interfaces and matrices
+hardware/interfaces | 39b55fb | Pierre-Hugues Husson | 2023-10-24 | Fix crash on Samsung S23 using stock properties, because of sensor reporting vec3 instead of scalar. Likely the device orientation sensor
+hardware/interfaces | dff0e2c | Andy CrossGate Yan | 2023-04-18 | Fix light sensor crash on Xiaomi 13
+hardware/interfaces | 16a456d | Pierre-Hugues Husson | 2021-12-19 | Add a vendor800 command, to be able to call vendor-specific hwc functions

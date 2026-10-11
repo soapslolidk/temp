@@ -1,0 +1,15 @@
+trebledroid/platform_frameworks_base/0006-Implement-a-persistent-property-to-override-the-defa.patch
+trebledroid/platform_frameworks_base/0014-Re-implement-fnmatch-like-behaviour-for-RRO-java-sid.patch
+trebledroid/platform_frameworks_base/0015-Remove-useless-notification-about-console-service-be.patch
+trebledroid/platform_frameworks_base/0025-SystemUI-Use-AVCProfileMain-for-screen-recorder.patch
+trebledroid/platform_frameworks_base/0036-Fix-brightness-slider-curve-for-some-devices.patch
+trebledroid/platform_frameworks_opt_telephony/0005-Conditionally-revert-Block-Binder-thread-until-incom.patch
+rom/platform_frameworks_base/0011-frameworks_base-suppress-the-engineering-prototype-notification.patch
+personal/packages_apps_Settings/0001-settings-drop-the-vm-capability-check-from-the-lin.patch
+personal/platform_build/0002-gsi-product-trim-adjustments.patch
+personal/platform_frameworks_base/0011-skip-fs-verity-on-kernels-that-don-t-support-it.patch
+personal/platform_frameworks_base/0033-keyguard-fall-back-to-the-primary-bouncer-when-the-s.patch
+personal/platform_kernel_configs/0001-Restore-old-kernel-configs-and-lower-version-require.patch
+personal/platform_packages_modules_Bluetooth/0001-bluetooth-legacy-controller-and-kernel-tolerance.patch
+personal/treble_app/0001-Add-Unihertz-8849-hardware-controls.patch
+personal/treble_app/0016-treble_app-add-a-GNSS-time-fallback-toggle.patch

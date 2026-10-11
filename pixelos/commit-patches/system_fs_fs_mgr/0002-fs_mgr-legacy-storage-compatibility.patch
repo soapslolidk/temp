@@ -1,0 +1,142 @@
+From ef52f27e862b05a547d8a8950fba7620863476ff Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Mon, 28 Sep 2026 09:16:30 +0100
+Subject: [PATCH 2/2] fs_mgr: legacy storage compatibility
+
+legacy vendor fstabs and storage setups hit several fatal assumptions
+in fs_mgr: dropped encryptable fstab flags with no fde fallback,
+project quotas on old filesystems, and disabled loop mapping in
+libfiemap. restore the legacy paths as one storage compatibility
+change.
+---
+ fs_mgr.cpp                  | 15 +++++++++++++++
+ libfiemap/image_manager.cpp | 30 +++++++++++++++++-------------
+ libfstab/fstab.cpp          | 17 +++--------------
+ 3 files changed, 35 insertions(+), 27 deletions(-)
+
+diff --git a/fs_mgr.cpp b/fs_mgr.cpp
+index de1ba25..0fdacff 100644
+--- a/fs_mgr.cpp
++++ b/fs_mgr.cpp
+@@ -444,6 +444,21 @@ static void tune_quota(const std::string& blk_device, const FstabEntry& entry,
+         return;
+     }
+ 
++    // There is no relation between quotas and encryption disabled, it's just that encryption
++    // being disabled shows that the device is pretty old, so quotas might be broken on it
++    if (!entry.fs_mgr_flags.file_encryption) {
++        LINFO << "Disabling quotas on legacy devices with encryption disabled";
++        want_quota = false;
++    }
++
++    struct utsname uts;
++    unsigned int major, minor;
++
++    if ((uname(&uts) == 0) && (sscanf(uts.release, "%u.%u", &major, &minor) == 2)) {
++        if(major < 4) want_projid = false;
++        if(major == 4 && minor < 9) want_projid = false;
++    }
++
+     if (!tune2fs_available()) {
+         LERROR << "Unable to " << (want_quota ? "enable" : "disable") << " quotas on " << blk_device
+                << " because " TUNE2FS_BIN " is missing";
+diff --git a/libfiemap/image_manager.cpp b/libfiemap/image_manager.cpp
+index ad78220..e2659c7 100644
+--- a/libfiemap/image_manager.cpp
++++ b/libfiemap/image_manager.cpp
+@@ -531,16 +531,11 @@ bool ImageManager::MapImageDevice(const std::string& name,
+         // If there is no intermediate device-mapper node, then partitions cannot be
+         // opened writable due to sepolicy and exclusivity of having a mounted
+         // filesystem. This should only happen on devices with no encryption, or
+-        // devices with FBE and no metadata encryption. For these cases we COULD
+-        // perform normal writes to /data/gsi (which is unencrypted), but given that
+-        // metadata encryption has been mandated since Android R, we don't actually
+-        // support or test this.
++        // devices with FBE and no metadata encryption. For these cases it suffices
++        // to perform normal file writes to /data/gsi (which is unencrypted).
+         //
+-        // So, we validate here that /data is backed by device-mapper. This code
+-        // isn't needed in recovery since there is no /data.
+-        //
+-        // If this logic sticks for a release, we can remove MapWithLoopDevice, as
+-        // well as WrapUserdataIfNeeded in fs_mgr.
++        // Note: this is not gated on DeviceInfo, because the recovery-specific path
++        // must only be used in actual recovery.
+         std::string block_device;
+         bool can_use_devicemapper;
+         if (!FiemapWriter::GetBlockDeviceForFile(image_header, &block_device,
+@@ -549,16 +544,25 @@ bool ImageManager::MapImageDevice(const std::string& name,
+             return false;
+         }
+ 
+-        if (!can_use_devicemapper) {
+-            LOG(ERROR) << "Cannot map image: /data must be mounted on top of device-mapper.";
++        if (can_use_devicemapper) {
++            if (!MapWithDmLinear(*partition_opener_.get(), name, timeout_ms, path)) {
++                return false;
++            }
++        } else if (!MapWithLoopDevice(name, timeout_ms, path)) {
++            return false;
++        }
++    } else {
++        if (!MapWithDmLinear(*partition_opener_.get(), name, timeout_ms, path)) {
+             return false;
+         }
+     }
+-#endif
+-
++#else
++    // In recovery, we can *only* use device-mapper, since partitions aren't
++    // mounted. That also means we cannot call GetBlockDeviceForFile.
+     if (!MapWithDmLinear(*partition_opener_.get(), name, timeout_ms, path)) {
+         return false;
+     }
++#endif
+ 
+     // Set a property so we remember this is mapped.
+     auto prop_name = GetStatusPropertyName(name);
+diff --git a/libfstab/fstab.cpp b/libfstab/fstab.cpp
+index 85a5778..792ca84 100644
+--- a/libfstab/fstab.cpp
++++ b/libfstab/fstab.cpp
+@@ -230,7 +230,7 @@ bool ParseFsMgrFlags(const std::string& flags, FstabEntry* entry) {
+ #undef CheckFlag
+ 
+         // Then handle flags that take an argument.
+-        if (StartsWith(flag, "encryptable=")) {
++        if (StartsWith(flag, "encryptable=") || StartsWith(flag, "forceencrypt=")) {
+             // The "encryptable" flag identifies adoptable storage volumes.  The
+             // argument to this flag is ignored, but it should be "userdata".
+             //
+@@ -240,9 +240,8 @@ bool ParseFsMgrFlags(const std::string& flags, FstabEntry* entry) {
+             // storage volumes.  Today, FDE is no longer supported, leaving only
+             // the adoptable storage volume meaning for this flag.
+             entry->fs_mgr_flags.crypt = true;
+-        } else if (StartsWith(flag, "forceencrypt=") || StartsWith(flag, "forcefdeorfbe=")) {
+-            LERROR << "flag no longer supported: " << flag;
+-            return false;
++        } else if (StartsWith(flag, "forcefdeorfbe=")) {
++            ParseFileEncryption("aes-256-xts:aes-256-cts", entry);
+         } else if (StartsWith(flag, "voldmanaged=")) {
+             // The voldmanaged flag is followed by an = and the label, a colon and the partition
+             // number or the word "auto", e.g. voldmanaged=sdcard:3
+@@ -361,16 +360,6 @@ bool ParseFsMgrFlags(const std::string& flags, FstabEntry* entry) {
+         }
+     }
+ 
+-    // FDE is no longer supported, so reject "encryptable" when used without
+-    // "vold_managed".  For now skip this check when in recovery mode, since
+-    // some recovery fstabs still contain the FDE options since they didn't do
+-    // anything in recovery mode anyway (except possibly to cause the
+-    // reservation of a crypto footer) and thus never got removed.
+-    if (entry->fs_mgr_flags.crypt && !entry->fs_mgr_flags.vold_managed && !InRecovery()) {
+-        LERROR << "FDE is no longer supported; 'encryptable' can only be used for adoptable "
+-                  "storage";
+-        return false;
+-    }
+     return true;
+ }
+ 
+-- 
+2.34.1
+

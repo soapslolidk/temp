@@ -1,0 +1,32 @@
+From 9095132b4fb609a58373190c3979403def9a6484 Mon Sep 17 00:00:00 2001
+From: "Christopher A. Williamson" <contact@chrisaw.io>
+Date: Tue, 29 Sep 2026 10:56:56 +0100
+Subject: [PATCH 75/87] frameworks: drop framework-virtualization from the api
+ module lists
+
+the virtualization sources are excluded from the gsi manifest sync, so
+the framework-virtualization module does not exist. api.go adds it to
+the non updatable modules list, which makes the generated
+all-modules-system-stubs reference framework-virtualization.stubs.system
+and fails soong analysis. drop it from the list.
+---
+ api/api.go | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/api/api.go b/api/api.go
+index f3cc76b73..43b1a334f 100644
+--- a/api/api.go
++++ b/api/api.go
+@@ -46,7 +46,8 @@ var core_libraries_modules = []string{art, conscrypt, i18n}
+ // APIs.
+ // In addition, the modules in this list are allowed to contribute to test APIs
+ // stubs.
+-var non_updatable_modules = []string{virtualization, location, platformCrashrecovery, ondeviceintelligence, platformTelephony}
++// the virtualization module is not built on the gsi, so it is excluded
++var non_updatable_modules = []string{location, platformCrashrecovery, ondeviceintelligence, platformTelephony}
+ 
+ // Map of RELEASE_ flags and the module associated with the flag.
+ type moduleFlagInfo struct {
+-- 
+2.34.1
+

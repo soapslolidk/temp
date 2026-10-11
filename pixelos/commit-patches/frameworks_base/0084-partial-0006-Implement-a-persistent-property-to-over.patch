@@ -1,0 +1,34 @@
+From de2cec1a85d96da1353d7533e17712fdedf1d52e Mon Sep 17 00:00:00 2001
+From: pixelos-gsi <pixelos-gsi@localhost>
+Date: Fri, 9 Oct 2026 19:48:42 +0000
+Subject: [PATCH 84/87] partial:
+ 0006-Implement-a-persistent-property-to-override-the-defa.patch
+
+Change-Id: I4fa3c902c6f29bda0b5675f24e638211f9066a98
+---
+ core/java/android/hardware/camera2/CameraManager.java | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/core/java/android/hardware/camera2/CameraManager.java b/core/java/android/hardware/camera2/CameraManager.java
+index 623527160..c2b3e1b7d 100644
+--- a/core/java/android/hardware/camera2/CameraManager.java
++++ b/core/java/android/hardware/camera2/CameraManager.java
+@@ -2606,6 +2606,15 @@ public final class CameraManager {
+                             return s1.compareTo(s2);
+                         }
+                     }});
++
++            // HAXX: Allow overriding default primary camera (assumed to be camera 0) via property
++            // Should match with libcameraservice/common/CameraProviderManager.cpp
++            int altPrimaryCamera = SystemProperties.getInt("persist.sys.alt_primary_camera", -1);
++            if (altPrimaryCamera > 0 && altPrimaryCamera < cameraIds.length) {
++                String origPrimary = cameraIds[0];
++                cameraIds[0] = cameraIds[altPrimaryCamera];
++                cameraIds[altPrimaryCamera] = origPrimary;
++            }
+         }
+ 
+         private boolean shouldHideCamera(int currentDeviceId, int devicePolicy,
+-- 
+2.34.1
+

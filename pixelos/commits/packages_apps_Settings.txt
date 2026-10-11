@@ -1,0 +1,11 @@
+packages/apps/Settings | aad45d5 | pixelos-gsi | 2026-10-09 | partial: 0001-settings-drop-the-vm-capability-check-from-the-lin.patch
+packages/apps/Settings | b4ba1c5 | Langsdorff | 2026-10-03 | gestures: add a toggle to hide the gesture navigation handle
+packages/apps/Settings | 1a86350 | Christopher A. Williamson | 2026-05-30 | AssistScreenshot: show legacy kernel warning when feature is unavailable
+packages/apps/Settings | fcc22fb | Christopher A. Williamson | 2026-02-16 | Hide OEM unlocking toggle from Developer Options
+packages/apps/Settings | 16bf9ee | Christopher A. Williamson | 2026-09-28 | settings: drop the framework-virtualization stub dep
+packages/apps/Settings | 3be206d | Christopher A. Williamson | 2026-05-28 | AppPermissionPreference: warn when BPF-based firewall is unavailable
+packages/apps/Settings | 048eea6 | Christopher A. Williamson | 2026-03-28 | Skip biometric enrollment gracefully when no hardware is available
+packages/apps/Settings | 45e4750 | Alberto Ponces | 2023-11-02 | Revert "[Wi-Fi] Check if domain field is not empty when users choose a ca certificate"
+packages/apps/Settings | 5c6046f | TogoFire | 2021-08-06 | Revert "[Wi-Fi] Remove 'Do not validate' option in CA certificate spinner"
+packages/apps/Settings | 41dc541 | Pierre-Hugues Husson | 2022-05-02 | Ignore cancelled fingerprint events, they are expected, plus add more fingerprint enroll logs
+packages/apps/Settings | 4d84ee2 | Pierre-Hugues Husson | 2018-08-14 | Act as usb device when there is no hal, but we believe we are a device

@@ -1,0 +1,25 @@
+frameworks/native | b236c70 | Christopher A. Williamson | 2026-10-02 | renderengine: detect vendor EGL driver init failures
+frameworks/native | 18858f4 | Christopher A. Williamson | 2026-10-02 | renderengine: don't abort on buffers without gpu usage flags
+frameworks/native | 2592a14 | Christopher A. Williamson | 2026-09-29 | grant rpc servicemanager aidl visibility to the gsi stubs
+frameworks/native | 13fdaed | Christopher A. Williamson | 2026-09-29 | disable the aiseal host service on the gsi
+frameworks/native | 927d974 | Christopher A. Williamson | 2026-04-08 | BLASTBufferQueue: avoid recursive mMutex during initialize
+frameworks/native | 0fe5f9b | Christopher A. Williamson | 2026-04-03 | fix display power-on for vendor HWCs with stale bootloader state
+frameworks/native | d6db9e2 | Christopher A. Williamson | 2026-03-12 | Stall GpuWork on kernels without gpu_work_period tracepoint
+frameworks/native | 47ea498 | Christopher A. Williamson | 2026-03-19 | SurfaceFlinger: Restore mPropagateBackpressure for HWC backpressure control
+frameworks/native | 7b91947 | Christopher A. Williamson | 2026-04-10 | power: read blocked_power_modes property in PowerAdvisor
+frameworks/native | 7f8debe | Peter Cai | 2025-03-16 | Revert "Remove dead code from LayerFE"
+frameworks/native | b6db5ab | WUKAWL | 2025-04-03 | Fix touch on MEIZU 21 Pro (#1)
+frameworks/native | ad56ad5 | Andy CrossGate Yan | 2024-08-17 | Fix touch on Meizu 21 / Note
+frameworks/native | b8a6cc2 | Andy CrossGate Yan | 2024-05-26 | SurfaceFlinger: Disable SF HWC backpressure
+frameworks/native | b67badb | Pierre-Hugues Husson | 2024-05-07 | Disable gpuservice on old BPF-less kernel
+frameworks/native | 56c2edd | Pierre-Hugues Husson | 2024-02-03 | Increase SW_MAX *= 4
+frameworks/native | 09c117b | Pierre-Hugues Husson | 2023-12-20 | Fix loading unnamed GLES
+frameworks/native | 95f848b | Pierre-Hugues Husson | 2023-11-25 | Add MTK GED KPI support to fix broken Mediatek gpufreq
+frameworks/native | 2a22ad8 | Pierre-Hugues Husson | 2022-12-18 | FOD support for Samsung and Asus
+frameworks/native | 15971a8 | Pierre-Hugues Husson | 2021-12-27 | powermanager: Add support Samsung miscpower HAL
+frameworks/native | 31928d8 | Pierre-Hugues Husson | 2022-03-25 | MIUI13 devices hide their vibrator HAL behind non-default name: "vibratorfeature"
+frameworks/native | 6291424 | Pierre-Hugues Husson | 2021-12-12 | Mark accelerometer input as sensor exclusively if there are ABS axis
+frameworks/native | a1703ff | Pierre-Hugues Husson | 2021-03-31 | Remove Samsung system permission on sensors
+frameworks/native | 7d1bd85 | Pierre-Hugues Husson | 2021-01-05 | unshared_oob didn't exist in O/P, so detect its supported based on vndk version
+frameworks/native | 1323e41 | Pierre-Hugues Husson | 2020-10-22 | Matching an input with a display uses uniqueId
+frameworks/native | ba4ed87 | Pierre-Hugues Husson | 2019-08-14 | On Samsung, we need to send a hack-message to HAL to get all Sensors

@@ -1,0 +1,2 @@
+device/generic/trusty | 5847c30 | Christopher A. Williamson | 2026-09-29 | disable the pvmfw test image modules on the gsi
+device/generic/trusty | 1a8970b | Christopher A. Williamson | 2026-09-29 | disable the trusty vm launcher binaries on the gsi

@@ -1,0 +1,15 @@
+external/selinux | 4150adc | Christopher A. Williamson | 2026-04-22 | libsepol: skip xperms entries when writing policy below version 30
+external/selinux | a8b4442 | Christopher A. Williamson | 2026-03-27 | broaden /sys/vm/ genfscon bypass to cover all subpaths
+external/selinux | adff8bc | pixelos-gsi | 2026-10-09 | Skip grapheneos_flags when proc attribute is unavailable
+external/selinux | f53fc5a | Pierre-Hugues Husson | 2025-01-06 | Fix secilc on Moto One Action
+external/selinux | 71d21b3 | Pierre-Hugues Husson | 2024-10-23 | Fix conflicting sepolicy for compaction_proactiveness on Galaxy A12s
+external/selinux | b160fdc | Pierre-Hugues Husson | 2023-10-06 | Allow conflict on fuseblk
+external/selinux | e24759f | Pierre-Hugues Husson | 2023-07-20 | Allow /sys/vm/watermark_scale_factor conflict -- seen on Freebox Player Pop
+external/selinux | ae75d8b | ponces | 2022-11-07 | Improve SELinux policy workaround on device/phh/treble conflict to exit with SEPOL_OK instead of SEPOL_EEXIST
+external/selinux | 2f8f7dc | Pierre-Hugues Husson | 2019-10-25 | Fix boot on Moto devices using unknown class
+external/selinux | c9f4461 | Pierre-Hugues Husson | 2020-05-24 | Allow mismatches of exfat genfscon
+external/selinux | cb9c111 | Pierre-Hugues Husson | 2019-09-12 | if service is "rcs", accept conflict. Seen on Moto E5
+external/selinux | 1a78954 | Pierre-Hugues Husson | 2019-09-06 | Allow /devices/virtual/block/ genfscon conflict (seen on Xiaomi Mi 9)
+external/selinux | 46f15b1 | Pierre-Hugues Husson | 2021-03-31 | Workaround device/phh/treble conflict with SELinux policy
+external/selinux | 99f7520 | Pierre-Hugues Husson | 2020-09-09 | Revert "libsepol: Make an unknown permission an error in CIL"
+external/selinux | 96f466f | Pierre-Hugues Husson | 2018-04-09 | Increase default log_level to get actual selinux error in kmsg

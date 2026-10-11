@@ -1,0 +1,1 @@
+kernel/configs | 372b928 | pixelos-gsi | 2026-10-09 | partial: 0001-Restore-old-kernel-configs-and-lower-version-require.patch

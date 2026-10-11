@@ -1,0 +1,50 @@
+From a3b56f68eb7bb2a17045000d4aae479b4ac589e7 Mon Sep 17 00:00:00 2001
+From: pixelos-gsi <pixelos-gsi@localhost>
+Date: Fri, 9 Oct 2026 19:20:24 +0000
+Subject: [PATCH 53/87] frameworks_base: add gnss as a fallback time source
+ with a disable toggle
+
+Change-Id: I903553de1dff219e299adc3b7c30fedbbb7c88be
+---
+ core/res/res/values/config.xml                     | 3 ++-
+ services/java/com/android/server/SystemServer.java | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/core/res/res/values/config.xml b/core/res/res/values/config.xml
+index 10613692a..f98f1431a 100644
+--- a/core/res/res/values/config.xml
++++ b/core/res/res/values/config.xml
+@@ -2071,6 +2071,7 @@
+          See com.android.server.timedetector.TimeDetectorStrategy for available sources. -->
+     <string-array name="config_autoTimeSourcesPriority">
+         <item>network</item>
++        <item>gnss</item>
+         <item>telephony</item>
+     </string-array>
+ 
+@@ -2081,7 +2082,7 @@
+ 
+     <!-- Enables the GnssTimeUpdate service. This is the global switch for enabling Gnss time based
+          suggestions to TimeDetector service. See also config_autoTimeSourcesPriority. -->
+-    <bool name="config_enableGnssTimeUpdateService">false</bool>
++    <bool name="config_enableGnssTimeUpdateService">true</bool>
+ 
+     <!-- Whether the geolocation time zone detection feature is enabled. Setting this to false means
+          the feature cannot be used. Setting this to true means system server components can be
+diff --git a/services/java/com/android/server/SystemServer.java b/services/java/com/android/server/SystemServer.java
+index 99aa6afc4..7d673b81d 100644
+--- a/services/java/com/android/server/SystemServer.java
++++ b/services/java/com/android/server/SystemServer.java
+@@ -2444,7 +2444,8 @@ public final class SystemServer implements Dumpable {
+             }
+             t.traceEnd();
+ 
+-            if (context.getResources().getBoolean(R.bool.config_enableGnssTimeUpdateService)) {
++            if (context.getResources().getBoolean(R.bool.config_enableGnssTimeUpdateService)
++                    && !"false".equals(SystemProperties.get("persist.sys.phh.hardening.gnss_time"))) {
+                 t.traceBegin("StartGnssTimeUpdateService");
+                 try {
+                     mSystemServiceManager.startService(GnssTimeUpdateService.Lifecycle.class);
+-- 
+2.34.1
+

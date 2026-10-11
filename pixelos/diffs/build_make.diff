@@ -1,0 +1,296 @@
+diff --git a/core/config.mk b/core/config.mk
+index 8e0bb7f..0db45a8 100644
+--- a/core/config.mk
++++ b/core/config.mk
+@@ -915,6 +915,9 @@ BOARD_SEPOLICY_VERS := $(PLATFORM_SEPOLICY_VERSION)
+ 
+ # A list of SEPolicy versions, besides PLATFORM_SEPOLICY_VERSION, that the framework supports.
+ PLATFORM_SEPOLICY_COMPAT_VERSIONS := \
++    28.0 \
++    29.0 \
++    30.0 \
+     31.0 \
+     32.0 \
+     33.0 \
+diff --git a/target/product/aosp_product.mk b/target/product/aosp_product.mk
+index 9a05573..5c72bc8 100644
+--- a/target/product/aosp_product.mk
++++ b/target/product/aosp_product.mk
+@@ -41,5 +41,5 @@ PRODUCT_PACKAGES += \
+ #   Provide a APN configuration to GSI product
+ ifeq ($(or $(LINEAGE_BUILD),$(CUSTOM_BUILD)),)
+ PRODUCT_COPY_FILES += \
+-    device/sample/etc/apns-full-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
++    
+ endif
+diff --git a/target/product/aosp_product.mk.bak b/target/product/aosp_product.mk.bak
+new file mode 100644
+index 0000000..9a05573
+--- /dev/null
++++ b/target/product/aosp_product.mk.bak
+@@ -0,0 +1,45 @@
++#
++# Copyright (C) 2019 The Android Open Source Project
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#      http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
++
++# Includes all AOSP product packages
++$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_product.mk)
++$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_product.mk)
++
++# Default AOSP sounds
++ifeq ($(or $(LINEAGE_BUILD),$(CUSTOM_BUILD)),)
++$(call inherit-product-if-exists, frameworks/base/data/sounds/AllAudio.mk)
++endif
++
++# Additional settings used in all AOSP builds
++PRODUCT_PRODUCT_PROPERTIES += \
++    ro.config.ringtone?=Ring_Synth_04.ogg \
++    ro.config.notification_sound?=pixiedust.ogg \
++    ro.com.android.dataroaming?=true \
++
++# More AOSP packages
++PRODUCT_PACKAGES += \
++    initial-package-stopped-states-aosp.xml \
++    messaging \
++    PhotoTable \
++    preinstalled-packages-platform-aosp-product.xml \
++    ThemePicker \
++
++# Telephony:
++#   Provide a APN configuration to GSI product
++ifeq ($(or $(LINEAGE_BUILD),$(CUSTOM_BUILD)),)
++PRODUCT_COPY_FILES += \
++    device/sample/etc/apns-full-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
++endif
+diff --git a/target/product/base_system.mk b/target/product/base_system.mk
+index 771a449..4c490e9 100644
+--- a/target/product/base_system.mk
++++ b/target/product/base_system.mk
+@@ -86,7 +86,6 @@ PRODUCT_PACKAGES += \
+     $(RELEASE_PACKAGE_TZDATA_MODULE) \
+     com.android.uprobestats \
+     com.android.uwb \
+-    com.android.virt \
+     com.android.wifi \
+     ContactsProvider \
+     content \
+@@ -219,7 +218,6 @@ PRODUCT_PACKAGES += \
+     libvintf_jni \
+     libvulkan \
+     libwilhelm \
+-    llkd \
+     llndk_libs \
+     lmkd \
+     LocalTransport \
+diff --git a/target/product/default_art_config.mk b/target/product/default_art_config.mk
+index f5d5be3..dca7ca1 100644
+--- a/target/product/default_art_config.mk
++++ b/target/product/default_art_config.mk
+@@ -89,7 +89,6 @@ PRODUCT_APEX_BOOT_JARS := \
+     com.android.tethering:framework-connectivity-b \
+     com.android.tethering:framework-tethering \
+     com.android.uwb:framework-uwb \
+-    com.android.virt:framework-virtualization \
+     com.android.wifi:framework-wifi \
+ 
+ # When we release ondeviceintelligence in NeuralNetworks module
+@@ -221,10 +220,6 @@ ifeq ($(RELEASE_TELECOM_MAINLINE_MODULE),true)
+ 
+ endif
+ 
+-ifeq ($(RELEASE_AVF_ENABLE_LLPVM_CHANGES),true)
+-  PRODUCT_APEX_SYSTEM_SERVER_JARS += com.android.virt:service-virtualization
+-endif
+-
+ # List of jars on the platform that system_server loads dynamically using separate classloaders.
+ # Keep the list sorted library names.
+ PRODUCT_STANDALONE_SYSTEM_SERVER_JARS := \
+diff --git a/target/product/generic/Android.bp b/target/product/generic/Android.bp
+index b2ee0fe..35ac194 100644
+--- a/target/product/generic/Android.bp
++++ b/target/product/generic/Android.bp
+@@ -1022,8 +1022,6 @@ system_image_defaults {
+         },
+         lib64: {
+             deps: [
+-                "android.system.virtualizationcommon-ndk",
+-                "android.system.virtualizationservice-ndk",
+                 "libgsi",
+                 "servicemanager",
+             ],
+@@ -1175,6 +1173,7 @@ system_image_defaults {
+ android_system_image {
+     name: "aosp_shared_system_image",
+     defaults: ["system_image_defaults"],
++    enabled: false,
+     dirs: android_rootdirs,
+     symlinks: android_symlinks,
+     type: "erofs",
+diff --git a/target/product/generic_system.mk b/target/product/generic_system.mk
+index 7ee2abc..55772bb 100644
+--- a/target/product/generic_system.mk
++++ b/target/product/generic_system.mk
+@@ -139,5 +139,3 @@ _my_paths := \
+ $(call require-artifacts-in-path, $(_my_paths), $(_my_allowed_list))
+ 
+ # Product config map to toggle between sources and prebuilts of required mainline modules
+-PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard build/release/gms_mainline/required/release_config_map.textproto)
+-PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard vendor/google_shared/build/release/gms_mainline/required/release_config_map.textproto)
+diff --git a/target/product/go_defaults.mk b/target/product/go_defaults.mk
+index ccc4f36..48dfe2a 100644
+--- a/target/product/go_defaults.mk
++++ b/target/product/go_defaults.mk
+@@ -18,8 +18,6 @@
+ $(call inherit-product, build/make/target/product/go_defaults_common.mk)
+ 
+ # Product config map to toggle between sources and prebuilts of required mainline modules
+-PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard build/release/gms_mainline_go/required/release_config_map.textproto)
+-PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard vendor/google_shared/build/release/gms_mainline_go/required/release_config_map.textproto)
+ 
+ # Add the system properties.
+ TARGET_SYSTEM_PROP += \
+diff --git a/target/product/gsi/Android.bp b/target/product/gsi/Android.bp
+index 8fd7928..c122a3e 100644
+--- a/target/product/gsi/Android.bp
++++ b/target/product/gsi/Android.bp
+@@ -55,13 +55,6 @@ prebuilt_etc {
+     relative_install_path: "init",
+ }
+ 
+-prebuilt_etc {
+-    name: "init.vndk-nodef.rc",
+-    src: "init.vndk-nodef.rc",
+-    system_ext_specific: true,
+-    relative_install_path: "gsi",
+-}
+-
+ gsi_symlinks = [
+     {
+         target: "/system/system_ext",
+@@ -81,6 +74,12 @@ gsi_symlinks = [
+     },
+ ]
+ 
++// compat symlinks for legacy vendor partitions: pre-q vendor ld.config.txt files
++// hardcode /system/${LIB}/vndk-${VER} and vndk-sp-${VER} search paths. point them
++// into the matching vndk apex so those paths keep resolving on old devices.
++vndk_compat_symlinks = [
++]
++
+ android_filesystem_defaults {
+     name: "android_gsi_defaults",
+     defaults: [
+@@ -88,7 +87,7 @@ android_filesystem_defaults {
+         "system_ext_image_defaults",
+         "product_image_defaults",
+     ],
+-    symlinks: gsi_symlinks,
++    symlinks: gsi_symlinks + vndk_compat_symlinks,
+     dirs: ["cache"],
+     deps: [
+         ///////////////////////////////////////////
+@@ -114,7 +113,6 @@ android_filesystem_defaults {
+         ///////////////////////////////////////////
+         "gsi_skip_mount.cfg",
+         "init.gsi.rc",
+-        "init.vndk-nodef.rc",
+         // Overlay the GSI specific setting for framework and SystemUI
+         "gsi_overlay_framework",
+         "gsi_overlay_systemui",
+@@ -151,14 +149,6 @@ android_filesystem_defaults {
+         "android.hidl.allocator@1.0-service",
+     ],
+     multilib: {
+-        lib64: {
+-            deps: [
+-                ///////////////////////////////////////////
+-                // AVF
+-                ///////////////////////////////////////////
+-                "com.android.compos",
+-            ],
+-        },
+         both: {
+             // PRODUCT_PACKAGES_SHIPPING_API_LEVEL_34
+             deps: ["android.hidl.memory@1.0-impl"],
+diff --git a/target/product/gsi/gsi_skip_mount.cfg b/target/product/gsi/gsi_skip_mount.cfg
+index 28f4349..612c3bc 100644
+--- a/target/product/gsi/gsi_skip_mount.cfg
++++ b/target/product/gsi/gsi_skip_mount.cfg
+@@ -7,3 +7,6 @@
+ /product/*
+ /system_ext/*
+ /system/*
++# Skip OPlus "my_manifest" mountpoints.
++/mnt/vendor/my_manifest
++/my_manifest
+diff --git a/target/product/gsi/init.gsi.rc b/target/product/gsi/init.gsi.rc
+index 69c8e46..c6faba7 100644
+--- a/target/product/gsi/init.gsi.rc
++++ b/target/product/gsi/init.gsi.rc
+@@ -1,5 +1,3 @@
+ #
+ # Android init script for GSI required initialization
+ #
+-
+-import /system/system_ext/etc/gsi/init.vndk-${ro.vndk.version:-nodef}.rc
+diff --git a/target/product/gsi/init.vndk-nodef.rc b/target/product/gsi/init.vndk-nodef.rc
+deleted file mode 100644
+index 1b141a0..0000000
+--- a/target/product/gsi/init.vndk-nodef.rc
++++ /dev/null
+@@ -1,3 +0,0 @@
+-on early-init
+-    # Reboot if BOARD_VNDK_VERSION is not defined
+-    exec - root -- /system/bin/reboot bootloader
+diff --git a/target/product/gsi_release.mk b/target/product/gsi_release.mk
+index 124610b..1a13162 100644
+--- a/target/product/gsi_release.mk
++++ b/target/product/gsi_release.mk
+@@ -56,8 +56,7 @@ PRODUCT_USE_DYNAMIC_PARTITION_SIZE := true
+ # GSI specific tasks on boot
+ PRODUCT_PACKAGES += \
+     gsi_skip_mount.cfg \
+-    init.gsi.rc \
+-    init.vndk-nodef.rc \
++    init.gsi.rc
+ 
+ # Add all system_ext packages used to support older/upgrading devices that have
+ # PRODUCT_SHIPPING_API_LEVEL 34 or older.
+diff --git a/tools/otatools_package/Android.bp b/tools/otatools_package/Android.bp
+index e8619f2..88f86f7 100644
+--- a/tools/otatools_package/Android.bp
++++ b/tools/otatools_package/Android.bp
+@@ -151,7 +151,6 @@ cc_genrule {
+         ":host_init_verifier",
+         ":img2simg",
+         ":img_from_target_files",
+-        ":initrd_bootconfig",
+         ":lpmake",
+         ":lpunpack",
+         ":lz4",
+@@ -177,13 +176,11 @@ cc_genrule {
+         ":shflags",
+         ":sign_apex",
+         ":sign_target_files_apks",
+-        ":sign_virt_apex",
+         ":simg2img",
+         ":sload_f2fs",
+         ":soong_zip",
+         ":toybox",
+         ":treble_labeling_tests",
+-        ":trusty_vm_signing_tool",
+         ":tune2fs",
+         ":unpack_bootimg",
+         ":update_device",

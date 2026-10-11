@@ -1,0 +1,2 @@
+system/fs/fs_mgr | ef52f27 | Christopher A. Williamson | 2026-09-28 | fs_mgr: legacy storage compatibility
+system/fs/fs_mgr | 4c84820 | Pierre-Hugues Husson | 2022-01-22 | Add my own OTA mechanism going over /data (2/2)
